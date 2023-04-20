@@ -8,12 +8,6 @@ file_name = '2021 Menu Posting - 22-10-02.pdf'
 
 # Functions
 
-parts = []
-def visitor_body(text, cm, tm, fontDict, fontSize):
-    y = tm[5]
-    if y > 50 and y < 720:
-        parts.append(text)
-
 def is_menu_package_item(x):
     return x > 14 and x < 17
 
@@ -35,38 +29,40 @@ def extract_ward_number(text):
 last_y = 0
 last_x = 0
 ward = 0
+data = []
+current_row = {"ward": 0, "item": "", "loc": "", "cost": ""}
 def get_table_data(text, cm, tm, fontDict, fontSize):
-    global last_x, last_y, ward
+    global last_x, last_y, ward, data, current_row
 
     x = tm[4]
     y = tm[5]
     
     if (text != "" and text != "\n"):
 
-        text = text.replace("\n", "")
+        text = text.replace("\n", "").strip()
 
         if(is_ward(x,y)):
             ward = extract_ward_number(text)
             print("ward: " + ward)
+            current_row["ward"] = ward
         elif (is_in_table(y)):
+
+            y_diff = last_y - y
+            if(y_diff> 15 or y_diff<-20):
+                # new item!
+                data.append(current_row)
+                current_row = {"ward": ward, "item": "", "loc": "", "cost":""}
+
             if(is_menu_package_item(x)):
-                if (x == last_x and y == last_y):
-                    #second line of same item
-                    print(text)
-                else:
-                    print("item: " + text)
+                current_row["item"] += text
             elif(is_location(x)):
-                if (x == last_x and y == last_y):
-                    # second line of same item
-                    print(text)
-                else:
-                    print("loc: " + text)
+                current_row["loc"] += text
             elif(is_cost(x)):
-                print("cost: " + text)
+                current_row["cost"] += text
             
 
-        last_y = y
-        last_x = x
+            last_y = y
+            last_x = x
 
 
 # Main Code
@@ -87,9 +83,11 @@ with open(file_path, 'rb') as pdf_file:
 output_file_name = file_name[:-4] + '.csv'
 output_file_path = os.path.join(os.getcwd(), 'data', 'output',
                          output_file_name)
-# with open(output_file_path, "w", newline="") as csvfile:
-#     writer = csv.writer(csvfile)
+with open(output_file_path, "w", newline="") as csvfile:
+    writer = csv.writer(csvfile)
 
-#     lines = extracted_data.split("\n")
-#     for line in lines:
-#         writer.writerow([line])
+    # headers
+    writer.writerow(["ward","item", "location", "cost"])
+
+    for row in data:
+        writer.writerow(row.values())
