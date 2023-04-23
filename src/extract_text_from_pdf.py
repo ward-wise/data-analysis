@@ -18,7 +18,7 @@ def is_cost(x):
     return x > 830 and x < 890
 
 def is_in_table(y):
-    return y > 40 and y < 452
+    return y > 40 and y < 460
 
 def is_ward(x,y):
     return (x > 14 and x < 17) and (y > 490 and y < 510)
@@ -44,7 +44,6 @@ def get_table_data(text, cm, tm, fontDict, fontSize):
         if(is_ward(x,y)):
             ward = extract_ward_number(text)
             print("ward: " + ward)
-            current_row["ward"] = ward
         elif (is_in_table(y)):
 
             y_diff = last_y - y
@@ -54,9 +53,21 @@ def get_table_data(text, cm, tm, fontDict, fontSize):
                 current_row = {"ward": ward, "item": "", "loc": "", "cost":""}
 
             if(is_menu_package_item(x)):
-                current_row["item"] += text
+                item_text = text
+                if (x == last_x and y == last_y):
+                    # second line of same item, need to add a space
+                    item_text = " " + item_text
+
+                current_row["item"] += item_text
+
             elif(is_location(x)):
-                current_row["loc"] += text
+                loc_text = text
+                if (x == last_x and y == last_y):
+                    # second line of same loc, need to add a space
+                    loc_text = " " + loc_text
+
+                current_row["loc"] += loc_text
+
             elif(is_cost(x)):
                 current_row["cost"] += text
             
@@ -90,4 +101,5 @@ with open(output_file_path, "w", newline="") as csvfile:
     writer.writerow(["ward","item", "location", "cost"])
 
     for row in data:
-        writer.writerow(row.values())
+        if row["item"] not in ("MENU BUDGET", "WARD COMMITTED 2021 TOTAL", "WARD 2021 BALANCE"):
+            writer.writerow(row.values())
