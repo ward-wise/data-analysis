@@ -5,6 +5,7 @@ import csv
 # Parameters
 file_name = '2021 Menu Posting - 22-10-02.pdf'
 
+# below numbers work for 2019+ format of menu posting PDFs
 
 # Functions
 
@@ -47,7 +48,7 @@ def get_table_data(text, cm, tm, fontDict, fontSize):
         elif (is_in_table(y)):
 
             y_diff = last_y - y
-            if(y_diff> 15 or y_diff<-20):
+            if(y_diff> 15 or y_diff<-50):
                 # new item!
                 data.append(current_row)
                 current_row = {"ward": ward, "item": "", "loc": "", "cost":""}
