@@ -18,7 +18,7 @@ def is_cost(x):
     return x > 830 and x < 890
 
 def is_in_table(y):
-    return y > 40 and y < 460
+    return y > 30 and y < 460
 
 def is_ward(x,y):
     return (x > 14 and x < 17) and (y > 490 and y < 510)
@@ -86,6 +86,12 @@ with open(file_path, 'rb') as pdf_file:
 
     # Loop through each page in the PDF file
     for page_num in range(num_pages):
+        
+        # reset last_x and last_y for new page
+        # needed to prevent issue when item on next page matches coords of last item on previous page
+        last_y = 0
+        last_x = 0
+        
         page = pdf_reader.pages[page_num]
         page.extract_text(visitor_text=get_table_data)
 
@@ -101,5 +107,5 @@ with open(output_file_path, "w", newline="") as csvfile:
     writer.writerow(["ward","item", "location", "cost"])
 
     for row in data:
-        if row["item"] not in ("MENU BUDGET", "WARD COMMITTED 2021 TOTAL", "WARD 2021 BALANCE"):
+        if ((row["item"] not in ("MENU BUDGET", "WARD COMMITTED 2021 TOTAL", "WARD 2021 BALANCE")) and row["ward"] != 0):
             writer.writerow(row.values())
