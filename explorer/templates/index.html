@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chicago Ward Budget Visualization</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body class="bg-gray-100">
+  <div class="container mx-auto px-4">
+    <h1 class="text-center text-4xl font-bold mt-10 mb-5">Chicago Ward Budget Visualization</h1>
+    <div class="flex justify-center mb-10">
+      <div class="w-full max-w-xs">
+        <label for="wardSelect" class="block text-sm font-medium text-gray-700">Select a Ward:</label>
+        <select class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="wardSelect">
+          <!-- Populate with ward options dynamically -->
+        </select>
+        <label for="yearelect" class="block text-sm font-medium text-gray-700">Select a Year:</label>
+        <select class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="yearSelect">
+          <!-- Populate with ward options dynamically -->
+        </select>
+      </div>
+    </div>
+    <div>
+      <h3 class="text-center text-2xl font-bold mb-5">Investments</h3>
+      <div id="bar-graphs" class="flex justify-center mb-8">
+        <!-- Bar graphs will be created here using D3.js -->
+      </div>
+    </div>
+    <div id="tooltip" class="hidden p-2 bg-gray-200 text-sm rounded shadow-lg absolute">
+      <!-- Tooltip content will be created using D3.js -->
+    </div>
+  </div>
+  <script>
+    // Fetch data from your API
+    fetch('/api/budget-data')
+      .then(response => response.json())
+      .then(data => {
+        // Populate the dropdown with ward options
+        populateDropdown(data);
+
+        // Create the initial bar graph
+        const initialWard = data[0].ward;
+        const initialYear = data[0].year;
+        createBarGraph(data, initialWard, initialYear);
+
+        // Update the bar graph when the user selects a different ward
+        const wardSelect = document.getElementById('wardSelect');
+        const yearSelect = document.getElementById('yearSelect');
+
+        wardSelect.addEventListener('change', (event) => {
+          const selectedWard = event.target.value;
+          const selectedYear = yearSelect.value;
+          createBarGraph(data, selectedWard, selectedYear);
+        });
+
+        // Update the bar graph when the user selects a different ward
+        yearSelect.addEventListener('change', (event) => {
+          const selectedWard = wardSelect.value;
+          const selectedYear = event.target.value;
+          createBarGraph(data, selectedWard, selectedYear);
+        });
+      });
+
+    function populateDropdown(data) {
+      const wards = [...new Set(data.map(d => d.ward))];
+      const wardSelect = document.getElementById('wardSelect');
+      
+      wards.forEach(ward => {
+        const option = document.createElement('option');
+        option.value = ward;
+        option.textContent = `Ward ${ward}`;
+        wardSelect.appendChild(option);
+      });
+
+      const years = [...new Set(data.map(d => d.year))];
+      const yearSelect = document.getElementById('yearSelect');
+      
+      years.forEach(year => {
+        const option = document.createElement('option');
+        option.value = year;
+        option.textContent = `${year}`;
+        yearSelect.appendChild(option);
+      });
+    }
+
+    function createBarGraph(data, selectedWard, selectedYear) {
+      const barGraphs = document.getElementById('bar-graphs');
+
+      const oldGraph = document.getElementById('bar-graph');
+      if (oldGraph) {
+        oldGraph.remove();
+      }      
+
+      // Filter data for the selected ward
+      const filteredData = data.filter(d => d.ward.toString() === selectedWard.toString() && d.year.toString() === selectedYear.toString()).sort((a, b) => b.cost - a.cost);
+
+      const barHeight = 5;
+      const barPadding = 2;
+      const svgHeight = filteredData.length * (barHeight + barPadding);
+
+      // Set up the D3.js scales and axis
+      const xScale = d3.scaleLinear().domain([0, d3.max(filteredData, d => d.cost)]).range([0, 400]);
+      const yScale = d3.scaleBand().domain(filteredData.map(d => d.index)).range([0, svgHeight]).padding(0.2);
+
+      // Create a new div for the graph and append an SVG
+      const graphDiv = document.createElement('div');
+      graphDiv.id = 'bar-graph';
+      document.getElementById('bar-graphs').appendChild(graphDiv);
+
+      const svg = d3.select('#bar-graph')
+        .append('svg')
+        .attr('width', 500)
+        .attr('height', svgHeight);
+
+      // Draw the bars
+      svg.selectAll('rect')
+        .data(filteredData)
+        .join('rect')
+        .attr('x', 0)
+        .attr('y', d => yScale(d.index))
+        .attr('width', d => xScale(d.cost))
+        .attr('height', yScale.bandwidth())
+        .attr('fill', 'steelblue');
+
+      // Add x-axis
+      svg.append('g')
+        .attr('transform', `translate(0, ${svgHeight})`)
+        .call(d3.axisBottom(xScale));
+
+      // Add y-axis
+      svg.append('g')
+        .call(d3.axisLeft(yScale));
+
+      // Create the tooltip div
+      const tooltip = d3.select('#tooltip');
+
+      // Add mouse event listeners to the bars
+      svg.selectAll('rect')
+        .on('mouseover', (event, d) => {
+          // Show the tooltip with item name and value
+          tooltip
+            .html(`<strong>${d.item}:</strong> $${d.cost}`)
+            .style('left', `${event.pageX + 10}px`)
+            .style('top', `${event.pageY + 10}px`)
+            .classed('hidden', false);
+        })
+        .on('mousemove', (event, d) => {
+          // Update the tooltip position as the mouse moves
+          tooltip
+            .style('left', `${event.pageX + 10}px`)
+            .style('top', `${event.pageY + 10}px`);
+        })
+        .on('mouseout', () => {
+          // Hide the tooltip when the mouse leaves the bar
+          tooltip.classed('hidden', true);
+        });
+    }
+  </script>
+</body>
+</html>
