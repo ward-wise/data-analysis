@@ -15,7 +15,7 @@ def budget_data():
     for y in years:
         temp_df = pd.read_csv(f'data/menu-postings/{y}.csv')
         temp_df['year'] = y
-        budget_df = budget_df.append(temp_df)
+        budget_df = pd.concat([budget_df, temp_df], ignore_index=True)
 
     budget_df['cost'] = budget_df['cost'].str.replace(',', '').str.replace('$', '')
     budget_df['cost'] = pd.to_numeric(budget_df['cost'])
