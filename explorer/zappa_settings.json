@@ -1,0 +1,21 @@
+{
+    "dev": {
+        "app_function": "app.app",
+        "aws_region": "us-east-1",
+        "profile_name": null,
+        "project_name": "chi-pbx",
+        "s3_bucket": "chi-pbx-dev",
+        "runtime": "python3.9",
+    },
+    "prod": {
+        "app_function": "app.app",
+        "aws_region": "us-east-1",
+        "profile_name": null,
+        "project_name": "chi-pbx",
+        "runtime": "python3.9",
+        "s3_bucket": "chi-pbx-prod",
+        "certificate_arn": "",
+        "domain": "chi-pbx.org",
+        "route53_enabled": false,
+    },
+}
