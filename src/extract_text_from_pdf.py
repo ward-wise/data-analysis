@@ -1,9 +1,11 @@
 import PyPDF2
 import os
 import csv
+import re
 
 # Parameters
-file_name = '2021 Menu Posting - 22-10-02.pdf'
+file_name = '2020 Menu Posting - 22-10-02.pdf'
+#file_name = '2022 Menu - 2-9-23.pdf'
 
 # below numbers work for 2019+ format of menu posting PDFs
 
@@ -108,5 +110,8 @@ with open(output_file_path, "w", newline="") as csvfile:
     writer.writerow(["ward","item", "location", "cost"])
 
     for row in data:
-        if ((row["item"] not in ("MENU BUDGET", "WARD COMMITTED 2021 TOTAL", "WARD 2021 BALANCE")) and row["ward"] != 0):
+        if ((row["item"] != "MENU BUDGET") 
+            and not (re.search("WARD COMMITTED 20\d\d TOTAL", row["item"]))
+            and not (re.search("WARD 20\d\d BALANCE", row["item"]))
+            and row["ward"] != 0):
             writer.writerow(row.values())
