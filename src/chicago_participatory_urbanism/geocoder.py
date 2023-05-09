@@ -1,7 +1,15 @@
 import pandas as pd
+import geopandas as gpd
+from shapely.ops import unary_union
+from shapely.geometry import Point
 
 # address point csv from https://hub-cookcountyil.opendata.arcgis.com/datasets/5ec856ded93e4f85b3f6e1bc027a2472_0/about
 df = pd.read_csv('data//geocode/Address_Points.csv')
+
+# street center lines GeoJSON from https://data.cityofchicago.org/Transportation/Street-Center-Lines/6imu-meau
+gdf = gpd.read_file('/data//geocode/Street Center Lines.geojson')
+
+print("Data loaded.")
 
 
 
@@ -13,7 +21,7 @@ def get_street_address_coordinates_from_full_name(address: str):
     - address (string): A street address in Chicago matching the following format: "1763 W BELMONT AVE"
 
     Returns:
-    - (float, float): A tuple containing the longitude and latitude.
+    - Point: A Shapely point with the GPS coordinates of the address (longitude, latitude).
     """
     result = df[df['CMPADDABRV'] == address.upper()]
 
@@ -23,7 +31,7 @@ def get_street_address_coordinates_from_full_name(address: str):
     except:
         (longitude, latitude) = (0,0)
     
-    return (longitude, latitude)
+    return Point(longitude, latitude)
 
 
 
@@ -40,7 +48,7 @@ def get_street_address_coordinates(address_number: int, direction_abbr: str, str
         
 
     Returns:
-    - (float, float): A tuple containing the longitude and latitude.
+    - Point: A Shapely point with the GPS coordinates of the address (longitude, latitude).
     """
     results = df[(address_number - fuzziness <= df['Add_Number']) &
                 (df['Add_Number'] <= address_number + fuzziness) &
@@ -66,7 +74,7 @@ def get_street_address_coordinates(address_number: int, direction_abbr: str, str
     except:
         (longitude, latitude) = (0, 0)
     
-    return (longitude, latitude)
+    return Point(longitude, latitude)
 
 
 def get_intersection_coordinates(street1: str, street2: str):
@@ -74,12 +82,23 @@ def get_intersection_coordinates(street1: str, street2: str):
     Return the GPS coordinates of an intersection in Chicago.
 
     Parameters:
-    - street1 (str): A street name in Chicago matching the format "W BELMONT AVE".
-    - street2 (str): A street name in Chicago matching the format "N CLARK ST".
+    - street1 (str): A street name in Chicago. Ex: "BELMONT"
+    - street2 (str): A street name in Chicago. Ex: "CLARK"
 
     Returns:
-    - (float, float): A tuple containing the longitude and latitude.
+    - Point: A Shapely point with the GPS coordinates of the address (longitude, latitude).
     """
-    # TO DO
+    # select street shapes from data
+    street1_data = gdf[gdf["street_nam"] == street1.upper()]
+    street2_data = gdf[gdf["street_nam"] == street2.upper()]
 
-    return (0,0)
+    # join street shapes together
+    street1_geometry = unary_union(street1_data['geometry'])
+    street2_geometry = unary_union(street2_data['geometry'])
+
+    intersection = street1_geometry.intersection(street2_geometry)
+
+    if not intersection.is_empty:
+        return intersection
+    else:
+        return Point(0,0)

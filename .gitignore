@@ -2,3 +2,4 @@ data/pdf/
 data/output/
 data/geocode/
 src/chicago_participatory_urbanism/__pycache__/
+src/test_scripts/
