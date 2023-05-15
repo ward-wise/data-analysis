@@ -35,7 +35,7 @@ def get_street_address_coordinates_from_full_name(address: str):
 
 
 
-def get_street_address_coordinates(address_number: int, direction_abbr: str, street_name: str, street_name_post_type_abbr: str, fuzziness: int = 10):
+def get_street_address_coordinates(address_number: int, direction_abbr: str, street_name: str, street_type_abbr: str, fuzziness: int = 10):
     """
     Return the GPS coordinates of a street address in Chicago.
 
@@ -43,7 +43,7 @@ def get_street_address_coordinates(address_number: int, direction_abbr: str, str
     - address_number (int): A street number in Chicago. Ex: 1736
     - direction_abbrev (str): An abbreviated cardinal direction. Ex: "W"
     - street_name (str): A street name in Chicago. Ex: "BELMONT"
-    - street_name_post_type_abbr (str): An abbreviated street type. Ex: "AVE"
+    - street_type_abbr (str): An abbreviated street type. Ex: "AVE"
     - fuzziness (int): The number of addresses +/- the desired address number when searching for coordinates. The function will always return the closest address' coordinates.
         
 
@@ -54,7 +54,7 @@ def get_street_address_coordinates(address_number: int, direction_abbr: str, str
                 (df['Add_Number'] <= address_number + fuzziness) &
                 (df['LSt_PreDir'] == direction_abbr.upper()) &
                 (df['St_Name'] == street_name.upper()) &
-                (df['LSt_Type'] == street_name_post_type_abbr.upper())]
+                (df['LSt_Type'] == street_type_abbr.upper())]
     
     # print(results[['Add_Number', 'St_Name','Long','Lat']])
 
@@ -72,7 +72,8 @@ def get_street_address_coordinates(address_number: int, direction_abbr: str, str
             longitude = results.loc[closest_index, "Long"]
             latitude = results.loc[closest_index, "Lat"]
     except:
-        (longitude, latitude) = (0, 0)
+        print(f"Error finding coordinates for street address {address_number} {direction_abbr} {street_name} {street_type_abbr}")
+        return None
     
     return Point(longitude, latitude)
 
@@ -92,13 +93,17 @@ def get_intersection_coordinates(street1: str, street2: str):
     street1_data = gdf[gdf["street_nam"] == street1.upper()]
     street2_data = gdf[gdf["street_nam"] == street2.upper()]
 
-    # join street shapes together
-    street1_geometry = unary_union(street1_data['geometry'])
-    street2_geometry = unary_union(street2_data['geometry'])
+    try:
+        # join street shapes together
+        street1_geometry = unary_union(street1_data['geometry'])
+        street2_geometry = unary_union(street2_data['geometry'])
 
-    intersection = street1_geometry.intersection(street2_geometry)
+        intersection = street1_geometry.intersection(street2_geometry)
 
-    if not intersection.is_empty:
-        return intersection
-    else:
-        return Point(0,0)
+        if not intersection.is_empty:
+            return intersection
+        else:
+            return None
+    except:
+        print(f"Error getting intersection coordinates for {street1} & {street2}")
+        return None
