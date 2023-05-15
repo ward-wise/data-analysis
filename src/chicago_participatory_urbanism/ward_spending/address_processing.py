@@ -1,7 +1,10 @@
 import re
-from enum import auto,Enum
+from shapely.geometry import Point, MultiPoint
+from enum import auto, Enum
+#import chicago_participatory_urbanism.geocoder as geocoder
 
-class AddressFormat(Enum):
+
+class LocationFormat(Enum):
     STREET_ADDRESS = auto()
     STREET_ADDRESS_RANGE = auto()
     INTERSECTION = auto()
@@ -12,26 +15,27 @@ class AddressFormat(Enum):
 
 
 # TO DO: modify regex to work with two word street names (e.g., COTTAGE GROVE)
-address_patterns = {
+location_patterns = {
     # Pattern for format: 1640 N MAPLEWOOD AVE
-    AddressFormat.STREET_ADDRESS: r"^\d+\s+[NWES]\s+\w+\s+\w+$",
+    LocationFormat.STREET_ADDRESS: r"^\d+\s+[NWES]\s+\w+\s+\w+$",
     # Pattern for format: 434-442 E 46TH PL
-    AddressFormat.STREET_ADDRESS_RANGE: r"^\d+-\d+\s+[NWES]\s+\w+\s+\w+$",
+    LocationFormat.STREET_ADDRESS_RANGE: r"^\d+-\d+\s+[NWES]\s+\w+\s+\w+$",
     # Pattern for format: N ASHLAND AVE & W CHESTNUT ST
-    AddressFormat.INTERSECTION: r"^[NWES]\s+\w+\s+\w+\s+&\s+[NWES]+\s+\w+\s+\w+$",
+    LocationFormat.INTERSECTION: r"^[NWES]\s+\w+\s+\w+\s+&\s+[NWES]+\s+\w+\s+\w+$",
     # Pattern for format: N WOOD ST & W AUGUSTA BLVD & W CORTEZ ST & N HERMITAGE AVE
-    AddressFormat.ALLEY: r"^[NWES]\s+\w+\s+\w+\s+&\s+[NWES]\s+\w+\s+\w+\s+&\s+[NWES]\s+\w+\s+\w+\s+&\s+[NWES]\s+\w+\s+\w+$",
+    LocationFormat.ALLEY: r"^[NWES]\s+\w+\s+\w+\s+&\s+[NWES]\s+\w+\s+\w+\s+&\s+[NWES]\s+\w+\s+\w+\s+&\s+[NWES]\s+\w+\s+\w+$",
     # Pattern for format: ON N LEAVITT ST FROM W DIVISION ST (1200 N) TO W NORTH AVE (1600 N)
-    AddressFormat.STREET_SEGMENT_INTERSECTIONS: r"^ON\s+([NWES]\s+\w+\s+\w+)\s+FROM\s+[NWES]\s+\w+\s+\w+\s+\((\d+)\s+[NWES]\)\s+TO\s+[NWES]\s+\w+\s+\w+\s+\((\d+)\s+[NWES]\)$",
+    LocationFormat.STREET_SEGMENT_INTERSECTIONS: r"^ON\s+([NWES]\s+\w+\s+\w+)\s+FROM\s+[NWES]\s+\w+\s+\w+\s+\((\d+)\s+[NWES]\)\s+TO\s+[NWES]\s+\w+\s+\w+\s+\((\d+)\s+[NWES]\)$",
     # Pattern for format: ON W 52ND PL FROM 322 W TO S PRINCETON AVE (300 W)
-    AddressFormat.STREET_SEGMENT_ADDRESS_INTERSECTION: r"^ON\s+[NWES]\s+\w+\s+\w+\s+FROM\s+\d+\s+[NWES]\s+TO\s+[NWES]\s+\w+\s+\w+\s+\(\d+\s+[NWES]\)$",
+    LocationFormat.STREET_SEGMENT_ADDRESS_INTERSECTION: r"^ON\s+[NWES]\s+\w+\s+\w+\s+FROM\s+\d+\s+[NWES]\s+TO\s+[NWES]\s+\w+\s+\w+\s+\(\d+\s+[NWES]\)$",
     # Pattern for format: ON W 52ND PL FROM S PRINCETON AVE (300 W) TO 322 W
-    AddressFormat.STREET_SEGMENT_INTERSECTION_ADDRESS: r"^ON\s+[NWES]\s+\w+\s+\w+\s+FROM\s+[NWES]\s+\w+\s+\w+\s+\(\d+\s+[NWES]\)\s+TO\s+\d+\s+[NWES]$",
+    LocationFormat.STREET_SEGMENT_INTERSECTION_ADDRESS: r"^ON\s+[NWES]\s+\w+\s+\w+\s+FROM\s+[NWES]\s+\w+\s+\w+\s+\(\d+\s+[NWES]\)\s+TO\s+\d+\s+[NWES]$",
 }
 
-def get_address_format(address):
+
+def get_location_format(address):
     """Detect and return the address format."""
-    for format, pattern in address_patterns.items():
+    for format, pattern in location_patterns.items():
         if re.match(pattern, address):
             return format
 
@@ -41,7 +45,7 @@ def get_address_format(address):
 def extract_address_range(address):
     """For the STREET_SEGMENT_INTERSECTIONS format, return a tuple with the address of the first and second intersection"""
     # Format: ON N LEAVITT ST FROM W DIVISION ST (1200 N) TO W NORTH AVE (1600 N)
-    pattern = address_patterns[AddressFormat.STREET_SEGMENT_INTERSECTIONS]
+    pattern = location_patterns[LocationFormat.STREET_SEGMENT_INTERSECTIONS]
     # Check if the address matches the pattern
     match = re.match(pattern, address)
     if match:
@@ -54,3 +58,76 @@ def extract_address_range(address):
         return start_address, end_address
     else:
         return None, None
+
+
+def get_location_text_format(text):
+    """Return a string of detected formats. Use this function to debug address format matching en masse."""
+
+    locations = text.split(";")
+    format = ""
+    for location in locations:
+        format += get_location_format(location) + ";"
+
+    return format
+
+
+def process_location_text(text):
+    """Take the location text from the ward spending data and return a geometry matching the GPS coordinates."""
+
+    locations = text.split(";")
+
+    geometry = None
+    for location in locations:
+        location_geometry = get_geometry_from_location(location)
+        # assign if geometry is empty, otherwise add to existing geometry
+        if geometry is None:
+            geometry = location_geometry
+        else:   
+            geometry = geometry.union(location_geometry)
+
+    return geometry
+
+
+def get_geometry_from_location(location):
+    format = get_location_format(location)
+
+    match format:
+        case LocationFormat.STREET_ADDRESS:
+            return get_geometry_from_street_address(location)
+
+        case LocationFormat.STREET_ADDRESS_RANGE:
+            #handle_street_address_range()
+            return None
+
+        case LocationFormat.INTERSECTION:
+            #handle_intersection()
+            return None
+
+        case LocationFormat.STREET_SEGMENT_INTERSECTIONS:
+            #handle_street_segment_intersections()
+            return None
+
+        case LocationFormat.STREET_SEGMENT_ADDRESS_INTERSECTION:
+            #handle_street_segment_address_intersection()
+            return None
+
+        case LocationFormat.STREET_SEGMENT_INTERSECTION_ADDRESS:
+            #handle_street_segment_intersection_address()
+            return None
+
+        case LocationFormat.ALLEY:
+            #handle_alley()
+            return None
+
+        case _ :
+            return None
+
+
+def get_geometry_from_street_address(street_address):
+    address_parts = street_address.strip().split(" ")
+    number = address_parts[0]
+    direction = address_parts[1]
+    name = " ".join(address_parts[2:-1]) #capture multi-word names
+    street_type = address_parts [-1]
+    #geometry = geocoder.get_street_address_coordinates(number, direction, name, street_type)
+    return None #geometry
