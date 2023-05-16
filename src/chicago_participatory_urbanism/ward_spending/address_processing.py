@@ -1,7 +1,7 @@
 import re
-from shapely.geometry import Point, MultiPoint
+from shapely.geometry import Point, MultiPoint, LineString
 from enum import auto, Enum
-#import chicago_participatory_urbanism.geocoder as geocoder
+import chicago_participatory_urbanism.geocoder as geocoder
 
 
 class LocationFormat(Enum):
@@ -19,9 +19,9 @@ location_patterns = {
     # Pattern for format: 1640 N MAPLEWOOD AVE
     LocationFormat.STREET_ADDRESS: r"^\d+\s+[NWES]\s+\w+\s+\w+$",
     # Pattern for format: 434-442 E 46TH PL
-    LocationFormat.STREET_ADDRESS_RANGE: r"^\d+-\d+\s+[NWES]\s+\w+\s+\w+$",
+    LocationFormat.STREET_ADDRESS_RANGE: r"^(\d+)-(\d+)\s+([NWES]\s+\w+\s+\w+)$",
     # Pattern for format: N ASHLAND AVE & W CHESTNUT ST
-    LocationFormat.INTERSECTION: r"^[NWES]\s+\w+\s+\w+\s+&\s+[NWES]+\s+\w+\s+\w+$",
+    LocationFormat.INTERSECTION: r"^[NWES]\s+(\w+)\s+\w+\s+&\s+[NWES]+\s+(\w+)\s+\w+$",
     # Pattern for format: N WOOD ST & W AUGUSTA BLVD & W CORTEZ ST & N HERMITAGE AVE
     LocationFormat.ALLEY: r"^[NWES]\s+\w+\s+\w+\s*&\s*[NWES]\s+\w+\s+\w+\s*&\s*[NWES]\s+\w+\s+\w+\s*&\s*[NWES]\s+\w+\s+\w+$",
     # Pattern for format: ON N LEAVITT ST FROM W DIVISION ST (1200 N) TO W NORTH AVE (1600 N)
@@ -42,12 +42,12 @@ def get_location_format(location):
     return None
 
 
-def extract_address_range(address):
+def extract_address_range(street_segment_intersections):
     """For the STREET_SEGMENT_INTERSECTIONS format, return a tuple with the address of the first and second intersection"""
     # Format: ON N LEAVITT ST FROM W DIVISION ST (1200 N) TO W NORTH AVE (1600 N)
     pattern = location_patterns[LocationFormat.STREET_SEGMENT_INTERSECTIONS]
     # Check if the address matches the pattern
-    match = re.match(pattern, address)
+    match = re.match(pattern, street_segment_intersections)
     if match:
         street = match.group(1)
         start_number = match.group(2)
@@ -90,22 +90,37 @@ def process_location_text(text):
 
 def get_geometry_from_location(location):
     format = get_location_format(location)
-
     match format:
         case LocationFormat.STREET_ADDRESS:
             return get_geometry_from_street_address(location)
 
         case LocationFormat.STREET_ADDRESS_RANGE:
-            #handle_street_address_range()
-            return None
+            match = re.match(location_patterns[LocationFormat.STREET_ADDRESS_RANGE], location)
+            number1 = match.group(1)
+            number2 = match.group(2)
+            street = match.group(3)
+
+            address1 = f"{number1} {street}"
+            address2 = f"{number2} {street}"
+            point1 = get_geometry_from_street_address(address1)
+            point2 = get_geometry_from_street_address(address2)
+            street_segment = LineString([point1, point2])
+            return street_segment
 
         case LocationFormat.INTERSECTION:
-            #handle_intersection()
-            return None
+            match = re.match(location_patterns[LocationFormat.INTERSECTION], location)
+            street1 = match.group(1)
+            street2 = match.group(2)
+            intersection = geocoder.get_intersection_coordinates(street1, street2)
+            return intersection
 
         case LocationFormat.STREET_SEGMENT_INTERSECTIONS:
-            #handle_street_segment_intersections()
-            return None
+            # TO DO change to use intersection function instead of street address
+            (street_address1, street_address2) = extract_address_range(location)
+            point1 = get_geometry_from_street_address(street_address1)
+            point2 = get_geometry_from_street_address(street_address2)
+            street_segment = LineString([point1, point2])
+            return street_segment
 
         case LocationFormat.STREET_SEGMENT_ADDRESS_INTERSECTION:
             #handle_street_segment_address_intersection()
@@ -125,9 +140,9 @@ def get_geometry_from_location(location):
 
 def get_geometry_from_street_address(street_address):
     address_parts = street_address.strip().split(" ")
-    number = address_parts[0]
+    number = int(address_parts[0])
     direction = address_parts[1]
     name = " ".join(address_parts[2:-1]) #capture multi-word names
     street_type = address_parts [-1]
-    #geometry = geocoder.get_street_address_coordinates(number, direction, name, street_type)
-    return None #geometry
+    geometry = geocoder.get_street_address_coordinates(number, direction, name, street_type)
+    return geometry
