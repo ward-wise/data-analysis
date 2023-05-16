@@ -23,7 +23,7 @@ location_patterns = {
     # Pattern for format: N ASHLAND AVE & W CHESTNUT ST
     LocationFormat.INTERSECTION: r"^[NWES]\s+\w+\s+\w+\s+&\s+[NWES]+\s+\w+\s+\w+$",
     # Pattern for format: N WOOD ST & W AUGUSTA BLVD & W CORTEZ ST & N HERMITAGE AVE
-    LocationFormat.ALLEY: r"^[NWES]\s+\w+\s+\w+\s+&\s+[NWES]\s+\w+\s+\w+\s+&\s+[NWES]\s+\w+\s+\w+\s+&\s+[NWES]\s+\w+\s+\w+$",
+    LocationFormat.ALLEY: r"^[NWES]\s+\w+\s+\w+\s*&\s*[NWES]\s+\w+\s+\w+\s*&\s*[NWES]\s+\w+\s+\w+\s*&\s*[NWES]\s+\w+\s+\w+$",
     # Pattern for format: ON N LEAVITT ST FROM W DIVISION ST (1200 N) TO W NORTH AVE (1600 N)
     LocationFormat.STREET_SEGMENT_INTERSECTIONS: r"^ON\s+([NWES]\s+\w+\s+\w+)\s+FROM\s+[NWES]\s+\w+\s+\w+\s+\((\d+)\s+[NWES]\)\s+TO\s+[NWES]\s+\w+\s+\w+\s+\((\d+)\s+[NWES]\)$",
     # Pattern for format: ON W 52ND PL FROM 322 W TO S PRINCETON AVE (300 W)
@@ -33,10 +33,10 @@ location_patterns = {
 }
 
 
-def get_location_format(address):
+def get_location_format(location):
     """Detect and return the address format."""
     for format, pattern in location_patterns.items():
-        if re.match(pattern, address):
+        if re.match(pattern, location.strip()):
             return format
 
     return None
@@ -66,7 +66,7 @@ def get_location_text_format(text):
     locations = text.split(";")
     format = ""
     for location in locations:
-        format += get_location_format(location) + ";"
+        format += str(get_location_format(location)) + ";"
 
     return format
 
