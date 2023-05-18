@@ -42,7 +42,7 @@ def get_geometry_from_location(location):
                 street_segment = LineString([point1, point2])
                 return street_segment
 
-            case afp.afp.LocationFormat.INTERSECTION:
+            case afp.LocationFormat.INTERSECTION:
                 match = re.match(afp.location_patterns[afp.LocationFormat.INTERSECTION], location)
                 street1 = match.group(1)
                 street2 = match.group(2)
