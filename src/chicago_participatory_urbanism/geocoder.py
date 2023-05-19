@@ -1,13 +1,23 @@
 import pandas as pd
+import os
 import geopandas as gpd
 from shapely.ops import unary_union
-from shapely.geometry import Point
+from shapely.geometry import Point, MultiPoint
+
+# Get the current directory of the geocoder.py module
+module_dir = os.path.dirname(os.path.abspath(__file__))
+root_dir = os.path.dirname(os.path.dirname(module_dir))
+
+# Construct the relative paths to the data files
+data_dir = os.path.join(root_dir, 'data', 'geocode')
+address_point_path = os.path.join(data_dir, "Address_Points.csv")
+streets_path = os.path.join(data_dir, "Street Center Lines.geojson")
 
 # address point csv from https://hub-cookcountyil.opendata.arcgis.com/datasets/5ec856ded93e4f85b3f6e1bc027a2472_0/about
-df = pd.read_csv('data//geocode/Address_Points.csv')
+df = pd.read_csv(address_point_path)
 
 # street center lines GeoJSON from https://data.cityofchicago.org/Transportation/Street-Center-Lines/6imu-meau
-gdf = gpd.read_file('/data//geocode/Street Center Lines.geojson')
+gdf = gpd.read_file(streets_path)
 
 print("Data loaded.")
 
@@ -67,7 +77,7 @@ def get_street_address_coordinates(address_number: int, direction_abbr: str, str
             latitude = exact_address["Lat"].iloc[0]
         else:
             # find closest address
-            results['difference'] = abs(results['Add_Number'] - address_number)
+            results['difference'] = abs(results.loc[:,'Add_Number'] - address_number)
             closest_index = results['difference'].idxmin()
             longitude = results.loc[closest_index, "Long"]
             latitude = results.loc[closest_index, "Lat"]
@@ -101,7 +111,13 @@ def get_intersection_coordinates(street1: str, street2: str):
         intersection = street1_geometry.intersection(street2_geometry)
 
         if not intersection.is_empty:
-            return intersection
+            if not isinstance(intersection, MultiPoint):
+                return intersection
+            else:
+                # extract first point of multipoint
+                ## (this tends to happen when one half of the intersecting street is offset from the other half)
+                first_point = intersection.geoms[0]
+                return first_point
         else:
             return None
     except:
