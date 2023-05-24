@@ -49,12 +49,18 @@ def get_geometry_from_location(location):
                 return street_segment
 
             case afp.LocationFormat.STREET_SEGMENT_ADDRESS_INTERSECTION:
-                #handle_street_segment_address_intersection()
-                return None
+                (address, primary_street, cross_street) = afp.extract_segment_address_intersection_info(location)
+                point1 = geocoder.get_intersection_coordinates(primary_street, cross_street)
+                point2 = get_geometry_from_street_address(address)
+                street_segment = LineString([point1, point2])
+                return street_segment
 
             case afp.LocationFormat.STREET_SEGMENT_INTERSECTION_ADDRESS:
-                #handle_street_segment_intersection_address()
-                return None
+                (primary_street, cross_street, address) = afp.extract_segment_address_intersection_info(location)
+                point1 = geocoder.get_intersection_coordinates(primary_street, cross_street)
+                point2 = get_geometry_from_street_address(address)
+                street_segment = LineString([point1, point2])
+                return street_segment
 
             case afp.LocationFormat.ALLEY:
                 (street1, street2, street3, street4) = afp.extract_alley_street_names(location)

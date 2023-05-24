@@ -32,9 +32,9 @@ location_patterns = {
     # Pattern for format: ON N LEAVITT ST FROM W DIVISION ST (1200 N) TO W NORTH AVE (1600 N)
     LocationFormat.STREET_SEGMENT_INTERSECTIONS: rf"^ON\s+{street_pattern}\s+FROM\s+{street_pattern}\s*\(\d+\s+[NWES]\)\s*TO\s+{street_pattern}\s*\(\d+\s+[NWES]\)$",
     # Pattern for format: ON W 52ND PL FROM 322 W TO S PRINCETON AVE (300 W)
-    LocationFormat.STREET_SEGMENT_ADDRESS_INTERSECTION: rf"^ON\s+({street_pattern})\s+FROM\s+\d+\s+[NWES]\s+TO\s+{street_pattern}\s*\((\d+)\s+[NWES]\)$",
+    LocationFormat.STREET_SEGMENT_ADDRESS_INTERSECTION: rf"^ON\s+({street_pattern})\s+FROM\s+(\d+)\s+[NWES]\s+TO\s+{street_pattern}\s*\(\d+\s+[NWES]\)$",
     # Pattern for format: ON W 52ND PL FROM S PRINCETON AVE (300 W) TO 322 W
-    LocationFormat.STREET_SEGMENT_INTERSECTION_ADDRESS: rf"^ON\s+({street_pattern})\s+FROM\s+{street_pattern}\s*\((\d+)\s+[NWES]\)\s+TO\s+\d+\s+[NWES]$",
+    LocationFormat.STREET_SEGMENT_INTERSECTION_ADDRESS: rf"^ON\s+({street_pattern})\s+FROM\s+{street_pattern}\s*\(\d+\s+[NWES]\)\s+TO\s+(\d+)\s+[NWES]$",
 }
 
 
@@ -124,3 +124,27 @@ def extract_address_range_street_addresses(location):
     address2 = f"{number2} {street}"
 
     return(address1, address2)
+
+
+def extract_segment_address_intersection_info(location):
+    """Return a tuple of a street address and 2 street names for the STREET_SEGMENT_ADDRESS_INTERSECTION format"""
+    match = re.match(location_patterns[LocationFormat.STREET_SEGMENT_ADDRESS_INTERSECTION], location)
+    primary_street = match.group(1)
+    primary_street_name = match.group(2)
+    street_number = match.group(3)
+    cross_street_name = match.group(4)
+    address = f"{street_number} {primary_street}"
+
+    return (address, primary_street_name, cross_street_name)
+
+
+def extract_segment_intersection_address_info(location):
+    """Return a tuple of 2 street names and a street address for the STREET_SEGMENT_INTERSECTION_ADDRESS format"""
+    match = re.match(location_patterns[LocationFormat.STREET_SEGMENT_INTERSECTION_ADDRESS], location)
+    primary_street = match.group(1)
+    primary_street_name = match.group(2)
+    cross_street_name = match.group(3)
+    street_number = match.group(4)
+    address = f"{street_number} {primary_street}"
+
+    return (primary_street_name, cross_street_name, address)
