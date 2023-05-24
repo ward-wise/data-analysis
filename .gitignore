@@ -3,3 +3,4 @@ data/output/
 data/geocode/
 **/__pycache__/
 src/test_scripts/
+.vscode/settings.json

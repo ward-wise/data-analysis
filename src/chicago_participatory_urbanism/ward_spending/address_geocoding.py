@@ -30,27 +30,19 @@ def get_geometry_from_location(location):
                 return get_geometry_from_street_address(location)
 
             case afp.LocationFormat.STREET_ADDRESS_RANGE:
-                match = re.match(afp.location_patterns[afp.LocationFormat.STREET_ADDRESS_RANGE], location)
-                number1 = match.group(1)
-                number2 = match.group(2)
-                street = match.group(3)
-
-                address1 = f"{number1} {street}"
-                address2 = f"{number2} {street}"
+                (address1, address2) =afp.extract_address_range_street_addresses(location)
                 point1 = get_geometry_from_street_address(address1)
                 point2 = get_geometry_from_street_address(address2)
                 street_segment = LineString([point1, point2])
                 return street_segment
 
             case afp.LocationFormat.INTERSECTION:
-                match = re.match(afp.location_patterns[afp.LocationFormat.INTERSECTION], location)
-                street1 = match.group(1)
-                street2 = match.group(2)
+                (street1, street2) = afp.extract_intersection_street_names(location)
                 intersection = geocoder.get_intersection_coordinates(street1, street2)
                 return intersection
 
             case afp.LocationFormat.STREET_SEGMENT_INTERSECTIONS:
-                (primary_street, cross_street1, cross_street2) = afp.extract_street_names(location)
+                (primary_street, cross_street1, cross_street2) = afp.extract_segment_intersections_street_names(location)
                 point1 = geocoder.get_intersection_coordinates(primary_street, cross_street1)
                 point2 = geocoder.get_intersection_coordinates(primary_street, cross_street2)
                 street_segment = LineString([point1, point2])
@@ -65,12 +57,7 @@ def get_geometry_from_location(location):
                 return None
 
             case afp.LocationFormat.ALLEY:
-                match = re.match(afp.location_patterns[afp.LocationFormat.ALLEY], location)
-                street1 = match.group(1)
-                street2 = match.group(2)
-                street3 = match.group(3)
-                street4 = match.group(4)
-
+                (street1, street2, street3, street4) = afp.extract_alley_street_names(location)
                 point1 = geocoder.get_intersection_coordinates(street1, street2)
                 point2 = geocoder.get_intersection_coordinates(street2, street3)
                 point3 = geocoder.get_intersection_coordinates(street3, street4)

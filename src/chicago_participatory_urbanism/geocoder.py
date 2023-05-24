@@ -4,14 +4,14 @@ import geopandas as gpd
 from shapely.ops import unary_union
 from shapely.geometry import Point, MultiPoint
 
-# Get the current directory of the geocoder.py module
+# Construct the relative paths to the data files
 module_dir = os.path.dirname(os.path.abspath(__file__))
 root_dir = os.path.dirname(os.path.dirname(module_dir))
-
-# Construct the relative paths to the data files
 data_dir = os.path.join(root_dir, 'data', 'geocode')
 address_point_path = os.path.join(data_dir, "Address_Points.csv")
 streets_path = os.path.join(data_dir, "Street Center Lines.geojson")
+
+print("Loading geocoding data...")
 
 # address point csv from https://hub-cookcountyil.opendata.arcgis.com/datasets/5ec856ded93e4f85b3f6e1bc027a2472_0/about
 df = pd.read_csv(address_point_path)
