@@ -14,7 +14,7 @@ streets_path = os.path.join(data_dir, "Street Center Lines.geojson")
 print("Loading geocoding data...")
 
 # address point csv from https://hub-cookcountyil.opendata.arcgis.com/datasets/5ec856ded93e4f85b3f6e1bc027a2472_0/about
-df = pd.read_csv(address_point_path)
+df = pd.read_csv(address_point_path, low_memory=False)
 
 # street center lines GeoJSON from https://data.cityofchicago.org/Transportation/Street-Center-Lines/6imu-meau
 gdf = gpd.read_file(streets_path)
@@ -64,7 +64,7 @@ def get_street_address_coordinates(address_number: int, direction_abbr: str, str
                 (df['Add_Number'] <= address_number + fuzziness) &
                 (df['LSt_PreDir'] == direction_abbr.upper()) &
                 (df['St_Name'] == street_name.upper()) &
-                (df['LSt_Type'] == street_type_abbr.upper())]
+                (df['LSt_Type'] == street_type_abbr.upper())].copy()
     
     # print(results[['Add_Number', 'St_Name','Long','Lat']])
 
@@ -77,7 +77,7 @@ def get_street_address_coordinates(address_number: int, direction_abbr: str, str
             latitude = exact_address["Lat"].iloc[0]
         else:
             # find closest address
-            results['difference'] = abs(results.loc[:,'Add_Number'] - address_number)
+            results['difference'] = abs(results['Add_Number'] - address_number)
             closest_index = results['difference'].idxmin()
             longitude = results.loc[closest_index, "Long"]
             latitude = results.loc[closest_index, "Lat"]
