@@ -1,5 +1,6 @@
 from shapely.geometry import Point, MultiPoint, LineString, Polygon
 import re
+import math
 import chicago_participatory_urbanism.geocoder as geocoder
 import chicago_participatory_urbanism.ward_spending.address_format_processing as afp
 
@@ -23,6 +24,7 @@ def process_location_text(text):
 
 
 def get_geometry_from_location(location):
+    location = location.strip() #remove whitespace
     format = afp.get_location_format(location)
     try:
         match format:
@@ -56,7 +58,7 @@ def get_geometry_from_location(location):
                 return street_segment
 
             case afp.LocationFormat.STREET_SEGMENT_INTERSECTION_ADDRESS:
-                (primary_street, cross_street, address) = afp.extract_segment_address_intersection_info(location)
+                (primary_street, cross_street, address) = afp.extract_segment_intersection_address_info(location)
                 point1 = geocoder.get_intersection_coordinates(primary_street, cross_street)
                 point2 = get_geometry_from_street_address(address)
                 street_segment = LineString([point1, point2])
@@ -64,11 +66,22 @@ def get_geometry_from_location(location):
 
             case afp.LocationFormat.ALLEY:
                 (street1, street2, street3, street4) = afp.extract_alley_street_names(location)
-                point1 = geocoder.get_intersection_coordinates(street1, street2)
-                point2 = geocoder.get_intersection_coordinates(street2, street3)
-                point3 = geocoder.get_intersection_coordinates(street3, street4)
-                point4 = geocoder.get_intersection_coordinates(street4, street1)
-                alley_bounding_box = box = Polygon([point1, point2, point3, point4])
+                points = []
+
+                # get every possible intersection of points (streets aren't in any particular order)
+                points.append(geocoder.get_intersection_coordinates(street1, street2))
+                points.append(geocoder.get_intersection_coordinates(street1, street3))
+                points.append(geocoder.get_intersection_coordinates(street1, street4))
+                points.append(geocoder.get_intersection_coordinates(street2, street3))
+                points.append(geocoder.get_intersection_coordinates(street2, street4))
+                points.append(geocoder.get_intersection_coordinates(street3, street4))
+
+                # remove None values from the array and place points in clockwise order
+                points = [point for point in points if point is not None]
+                points = get_clockwise_sequence(points)
+            
+                coordinates = [(point.x, point.y) for point in points]
+                alley_bounding_box = box = Polygon(coordinates)
                 return alley_bounding_box
 
             case _ :
@@ -90,3 +103,17 @@ def get_geometry_from_street_address(street_address):
     street_type = address_parts [-1]
     geometry = geocoder.get_street_address_coordinates(number, direction, name, street_type, 20)
     return geometry
+
+def get_clockwise_sequence(points):
+    centroid = Point(sum(point.x for point in points) / len(points), sum(point.y for point in points) / len(points))
+
+    angles = []
+    for point in points:
+        dx = point.x - centroid.x
+        dy = point.y - centroid.y
+        angle = math.atan2(dy, dx)
+        angles.append(angle)
+
+    sorted_points = [p for _, p in sorted(zip(angles, points))]
+
+    return sorted_points
