@@ -11,15 +11,21 @@ def process_location_text(text):
     locations = text.split(";")
 
     geometry = None
-    for location in locations:
-        location_geometry = get_geometry_from_location(location)
-        # assign if geometry is empty, otherwise add to existing geometry
-        if geometry is None:
-            geometry = location_geometry
-        else:
-            geometry = geometry.union(location_geometry)
+    try:
+        for location in locations:
+            location_geometry = get_geometry_from_location(location)
+            # assign if geometry is empty, otherwise add to existing geometry
+            if geometry is None:
+                geometry = location_geometry
+            else:
+                geometry = geometry.union(location_geometry)
 
-    return geometry
+        return geometry
+    
+    except Exception as e:
+        print(f"Full location text: {text}")
+        print(f"An error occurred: {str(e)}\n")
+        return None
 
 
 

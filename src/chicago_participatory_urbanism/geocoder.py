@@ -2,7 +2,7 @@ import pandas as pd
 import os
 import geopandas as gpd
 from shapely.ops import unary_union
-from shapely.geometry import Point, MultiPoint
+from shapely.geometry import Point, MultiPoint, LineString, MultiLineString
 
 # Construct the relative paths to the data files
 module_dir = os.path.dirname(os.path.abspath(__file__))
@@ -99,6 +99,9 @@ def get_intersection_coordinates(street1: str, street2: str):
     Returns:
     - Point: A Shapely point with the GPS coordinates of the address (longitude, latitude).
     """
+    if(street1 == street2):
+        return None
+
     # select street shapes from data
     street1_data = gdf[gdf["street_nam"] == street1.upper()]
     street2_data = gdf[gdf["street_nam"] == street2.upper()]
@@ -111,13 +114,19 @@ def get_intersection_coordinates(street1: str, street2: str):
         intersection = street1_geometry.intersection(street2_geometry)
 
         if not intersection.is_empty:
-            if not isinstance(intersection, MultiPoint):
-                return intersection
-            else:
+            if isinstance(intersection, MultiPoint):
                 # extract first point of multipoint
                 ## (this tends to happen when one half of the intersecting street is offset from the other half)
                 first_point = intersection.geoms[0]
+                return 
+            if isinstance(intersection, LineString):
+                first_point = intersection.coords[0]
                 return first_point
+            if isinstance(intersection, MultiLineString):
+                first_point = intersection.geoms[0].coords[0]
+                return first_point
+            else:
+                return intersection
         else:
             return None
     except:
