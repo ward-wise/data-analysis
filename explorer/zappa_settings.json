@@ -14,8 +14,8 @@
         "project_name": "chi-pbx",
         "runtime": "python3.9",
         "s3_bucket": "chi-pbx-prod",
-        "certificate_arn": "",
-        "domain": "chi-pbx.org",
+        "certificate_arn": "arn:aws:acm:us-east-1:190217484878:certificate/052ef3be-f6c2-4a1a-97b1-9cbfb6976f41",
+        "domain": "wardwise.org",
         "route53_enabled": false,
     },
 }
