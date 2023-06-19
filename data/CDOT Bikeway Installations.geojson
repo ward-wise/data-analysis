@@ -12,7 +12,19 @@
                 "Status": "Installed",
                 "Planned Year": "2023"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.73421387981466,
+                        41.84065273262378
+                    ],
+                    [
+                        -87.70311556013684,
+                        41.84091631643173
+                    ]
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -75,7 +87,19 @@
                 "Status": "Installed",
                 "Planned Year": "2023"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.65867179144988,
+                        41.75604057527213
+                    ],
+                    [
+                        -87.65891750680798,
+                        41.764247358928166
+                    ]
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -163,7 +187,19 @@
                 "Status": "Underway",
                 "Planned Year": "2023"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.66098236448391,
+                        41.90003734010474
+                    ],
+                    [
+                        -87.6589132807627,
+                        41.89990169087513
+                    ]
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -176,7 +212,19 @@
                 "Status": "Underway",
                 "Planned Year": "2023"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.65863175963108,
+                        41.89984520597068
+                    ],
+                    [
+                        -87.65671497574206,
+                        41.89989854007303
+                    ]
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -189,7 +237,19 @@
                 "Status": "Underway",
                 "Planned Year": "2023"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.71252343869267,
+                        41.93928053063038
+                    ],
+                    [
+                        -87.68813125574097,
+                        41.93945120361448
+                    ]
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -202,7 +262,19 @@
                 "Status": "Underway",
                 "Planned Year": "2023"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.68807503103791,
+                        41.93947161559995
+                    ],
+                    [
+                        -87.6686132729141,
+                        41.9397254388913
+                    ]
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -215,7 +287,19 @@
                 "Status": "Underway",
                 "Planned Year": "2023"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.66915105100135,
+                        41.98525969893537
+                    ],
+                    [
+                        -87.67051856448902,
+                        41.998179053074075
+                    ]
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -257,7 +341,19 @@
                 "Status": "Underway",
                 "Planned Year": "2023"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.63327859244815,
+                        41.860113918493816
+                    ],
+                    [
+                        -87.6334521476443,
+                        41.86741375446255
+                    ]
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -270,7 +366,19 @@
                 "Status": "Underway",
                 "Planned Year": "2023"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.63349410227197,
+                        41.86741655226773
+                    ],
+                    [
+                        -87.63356299342368,
+                        41.8707427913876
+                    ]
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -283,7 +391,19 @@
                 "Status": "Underway",
                 "Planned Year": "2023"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.6318682068017,
+                        41.85790461736607
+                    ],
+                    [
+                        -87.63185768954563,
+                        41.85900959548904
+                    ]
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -296,7 +416,19 @@
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.63974449331366,
+                        41.68527434805206
+                    ],
+                    [
+                        -87.64547523554795,
+                        41.685047934779284
+                    ]
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -409,7 +541,19 @@
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.63285324915313,
+                        41.83836670628598
+                    ],
+                    [
+                        -87.63004321693619,
+                        41.838286307188795
+                    ]
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -422,7 +566,19 @@
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.61754003358351,
+                        41.83841640072448
+                    ],
+                    [
+                        -87.62341908686653,
+                        41.83839910410609
+                    ]
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -435,7 +591,19 @@
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.61752273215701,
+                        41.838446715915666
+                    ],
+                    [
+                        -87.60789142672557,
+                        41.83862641400276
+                    ]
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -448,7 +616,19 @@
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.59169053706461,
+                        41.795634598693375
+                    ],
+                    [
+                        -87.58901747432554,
+                        41.7952705211393
+                    ]
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -611,7 +791,31 @@
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.715913147647,
+                        41.88105446288249
+                    ],
+                    [
+                        -87.71526661816657,
+                        41.88287673632048
+                    ],
+                    [
+                        -87.71680597407236,
+                        41.88456143345402
+                    ],
+                    [
+                        -87.71652889000931,
+                        41.88632630661643
+                    ],
+                    [
+                        -87.71663664491547,
+                        41.88997050090247
+                    ]
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -774,7 +978,19 @@
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.71991840963969,
+                        41.862789336872936
+                    ],
+                    [
+                        -87.7020127524801,
+                        41.8630460550768
+                    ]
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -787,7 +1003,19 @@
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.71633332400839,
+                        41.88998698180991
+                    ],
+                    [
+                        -87.70239949628434,
+                        41.8901510371874
+                    ]
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -800,7 +1028,19 @@
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.6475185933065,
+                        41.886930308570584
+                    ],
+                    [
+                        -87.64762573751925,
+                        41.89008388683596
+                    ]
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -938,7 +1178,19 @@
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.72002969014225,
+                        41.86322155313427
+                    ],
+                    [
+                        -87.72039680683201,
+                        41.87459779806036
+                    ]
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -1009,12 +1261,12 @@
                         41.876414861726495
                     ],
                     [
-                        -87.76727,
-                        41.87710
-                    ],
-                    [
                         -87.77264,
                         41.87715
+                    ],
+                    [
+                        -87.76727,
+                        41.87710
                     ],
                     [
                         -87.764724991268054,
@@ -1109,7 +1361,19 @@
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.75533576086427,
+                        41.887366827765725
+                    ],
+                    [
+                        -87.76335161668123,
+                        41.88735324060169
+                    ]
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -1147,7 +1411,19 @@
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.75533357795175,
+                        41.88913866115457
+                    ],
+                    [
+                        -87.75591892213707,
+                        41.907840823245465
+                    ]
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -1356,7 +1632,7 @@
                 "coordinates": [
                     [
                         -87.62286,
-                       41.88443
+                        41.88443
                     ],
                     [
                         -87.61374,
@@ -1401,7 +1677,19 @@
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.61396762096224,
+                        41.712644207104994
+                    ],
+                    [
+                        -87.61399840817823,
+                        41.714103567767886
+                    ]
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -1414,7 +1702,19 @@
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.61399840817823,
+                        41.714103567767886
+                    ],
+                    [
+                        -87.61417818749669,
+                        41.72188097153249
+                    ]
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -1427,7 +1727,19 @@
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.67619049862947,
+                        41.871492738027165
+                    ],
+                    [
+                        -87.66663925097613,
+                        41.87164008914094
+                    ]
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -1465,7 +1777,13 @@
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [],
+                    []
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -1478,7 +1796,13 @@
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [],
+                    []
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -1541,7 +1865,13 @@
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [],
+                    []
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -1554,7 +1884,13 @@
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [],
+                    []
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -1592,7 +1928,13 @@
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [],
+                    []
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -1655,7 +1997,13 @@
                 "Status": "Installed",
                 "Planned Year": "2022"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [],
+                    []
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -1718,7 +2066,13 @@
                 "Status": "Installed",
                 "Planned Year": "2022"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [],
+                    []
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -1781,7 +2135,13 @@
                 "Status": "Upcoming",
                 "Planned Year": "2022"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [],
+                    []
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -1794,7 +2154,13 @@
                 "Status": "Upcoming",
                 "Planned Year": "2022"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [],
+                    []
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -1832,7 +2198,13 @@
                 "Status": "Upcoming",
                 "Planned Year": "2022"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [],
+                    []
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -1920,7 +2292,13 @@
                 "Status": "Upcoming",
                 "Planned Year": "2022"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [],
+                    []
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -1958,7 +2336,13 @@
                 "Status": "Upcoming",
                 "Planned Year": "2022"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [],
+                    []
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -2046,7 +2430,13 @@
                 "Status": "Upcoming",
                 "Planned Year": "2022"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [],
+                    []
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -2084,7 +2474,13 @@
                 "Status": "Installed",
                 "Planned Year": "2022"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [],
+                    []
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -2097,7 +2493,13 @@
                 "Status": "Installed",
                 "Planned Year": "2022"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [],
+                    []
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -2160,7 +2562,13 @@
                 "Status": "Installed",
                 "Planned Year": "2022"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [],
+                    []
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -2173,7 +2581,13 @@
                 "Status": "Installed",
                 "Planned Year": "2022"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [],
+                    []
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -2236,7 +2650,13 @@
                 "Status": "Installed",
                 "Planned Year": "2022"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [],
+                    []
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -2353,7 +2773,13 @@
                 "Status": "Installed",
                 "Planned Year": "2022"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [],
+                    []
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -2366,7 +2792,13 @@
                 "Status": "Installed",
                 "Planned Year": "2022"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [],
+                    []
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -2379,7 +2811,13 @@
                 "Status": "Upcoming",
                 "Planned Year": "2022"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [],
+                    []
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -2671,7 +3109,13 @@
                 "Status": "Installed",
                 "Planned Year": "2022"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [],
+                    []
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -2684,7 +3128,13 @@
                 "Status": "Upcoming",
                 "Planned Year": "2022"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [],
+                    []
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -2780,7 +3230,13 @@
                 "Status": "Upcoming",
                 "Planned Year": "2022"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [],
+                    []
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -2818,7 +3274,13 @@
                 "Status": "Installed",
                 "Planned Year": "2022"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [],
+                    []
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -2956,7 +3418,13 @@
                 "Status": "Installed",
                 "Planned Year": "2022"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [],
+                    []
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -3019,7 +3487,13 @@
                 "Status": "Installed",
                 "Planned Year": "2022"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [],
+                    []
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -3082,7 +3556,13 @@
                 "Status": "Upcoming",
                 "Planned Year": "2022"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [],
+                    []
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -3095,7 +3575,13 @@
                 "Status": "Installed",
                 "Planned Year": "2022"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [],
+                    []
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -3133,7 +3619,13 @@
                 "Status": "Installed",
                 "Planned Year": "2022"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [],
+                    []
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -3221,7 +3713,13 @@
                 "Status": "Underway",
                 "Planned Year": "2022"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [],
+                    []
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -3234,7 +3732,13 @@
                 "Status": "Upcoming",
                 "Planned Year": "2022"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [],
+                    []
+                ]
+            }
         },
         {
             "type": "Feature",
@@ -3272,7 +3776,13 @@
                 "Status": "Upcoming",
                 "Planned Year": "2022"
             },
-            "geometry": null
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [],
+                    []
+                ]
+            }
         }
     ]
 }
