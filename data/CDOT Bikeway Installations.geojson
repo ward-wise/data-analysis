@@ -58,7 +58,7 @@
                 "From": "Montrose",
                 "To": "Wilson",
                 "Length (miles)": "0.28",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Installed",
                 "Planned Year": "2023"
             },
@@ -83,7 +83,7 @@
                 "From": "76th",
                 "To": "71st",
                 "Length (miles)": "0.63",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Installed",
                 "Planned Year": "2023"
             },
@@ -108,7 +108,7 @@
                 "From": "Campbell",
                 "To": "Western",
                 "Length (miles)": "0.1",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Installed",
                 "Planned Year": "2023"
             },
@@ -283,7 +283,7 @@
                 "From": "Hollywood",
                 "To": "Devon",
                 "Length (miles)": "0.99",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Underway",
                 "Planned Year": "2023"
             },
@@ -416,7 +416,7 @@
                 "From": "Major Taylor Trail",
                 "To": "Union",
                 "Length (miles)": "0.3",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -425,7 +425,7 @@
                 "coordinates": [
                     [
                         -87.63974449331366,
-                        41.68527434805206
+                        41.68511
                     ],
                     [
                         -87.64547523554795,
@@ -441,7 +441,7 @@
                 "From": "Ashland",
                 "To": "Halsted",
                 "Length (miles)": "1.01",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -466,7 +466,7 @@
                 "From": "Central Park",
                 "To": "Homan",
                 "Length (miles)": "0.25",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -491,7 +491,7 @@
                 "From": "Spaulding",
                 "To": "Kedzie",
                 "Length (miles)": "0.13",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -516,7 +516,7 @@
                 "From": "Canal",
                 "To": "Wentworth",
                 "Length (miles)": "0.36",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -541,7 +541,7 @@
                 "From": "Wells",
                 "To": "LaSalle",
                 "Length (miles)": "0.15",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -566,7 +566,7 @@
                 "From": "Michigan",
                 "To": "Martin Luther King Jr",
                 "Length (miles)": "0.33",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -591,7 +591,7 @@
                 "From": "Martin Luther King Jr",
                 "To": "Fort Dearborn",
                 "Length (miles)": "0.48",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -616,7 +616,7 @@
                 "From": "55th",
                 "To": "Dorchester",
                 "Length (miles)": "0.09",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -741,7 +741,7 @@
                 "From": "Roosevelt",
                 "To": "Harrison",
                 "Length (miles)": "0.49",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -882,7 +882,7 @@
                 "From": "Harrison",
                 "To": "Fulton",
                 "Length (miles)": "0.86",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -932,7 +932,7 @@
                 "From": "Harrison",
                 "To": "Lake",
                 "Length (miles)": "0.79",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -982,7 +982,7 @@
                 "From": "Independence",
                 "To": "Sacramento",
                 "Length (miles)": "0.88",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -1007,7 +1007,7 @@
                 "From": "Central Park",
                 "To": "Sacramento",
                 "Length (miles)": "0.76",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -1032,7 +1032,7 @@
                 "From": "Fulton",
                 "To": "Hubbard",
                 "Length (miles)": "0.23",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -1057,7 +1057,7 @@
                 "From": "26th",
                 "To": "Lumber",
                 "Length (miles)": "0.34",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -1107,7 +1107,7 @@
                 "From": "Halsted",
                 "To": "Desplaines",
                 "Length (miles)": "0.17",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -1132,7 +1132,7 @@
                 "From": "Canal",
                 "To": "Franklin",
                 "Length (miles)": "0.23",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -1157,7 +1157,7 @@
                 "From": "Ashland",
                 "To": "Halsted",
                 "Length (miles)": "1",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -1182,7 +1182,7 @@
                 "From": "Douglas",
                 "To": "Congress",
                 "Length (miles)": "0.84",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -1207,7 +1207,7 @@
                 "From": "Oakley",
                 "To": "Hoyne",
                 "Length (miles)": "0.25",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -1232,7 +1232,7 @@
                 "From": "Damen",
                 "To": "Ogden",
                 "Length (miles)": "0.3",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -1257,7 +1257,7 @@
                 "From": "Austin",
                 "To": "Central",
                 "Length (miles)": "0.53",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -1315,7 +1315,7 @@
                 "From": "Harrison",
                 "To": "Congress",
                 "Length (miles)": "0.06",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -1340,7 +1340,7 @@
                 "From": "Laramie",
                 "To": "Pulaski",
                 "Length (miles)": "1.53",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -1365,7 +1365,7 @@
                 "From": "Pine",
                 "To": "Laramie",
                 "Length (miles)": "0.41",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -1390,7 +1390,7 @@
                 "From": "Kedzie",
                 "To": "Damen",
                 "Length (miles)": "1.52",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -1444,7 +1444,7 @@
                 "From": "Bloomingdale",
                 "To": "Grand",
                 "Length (miles)": "0.26",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -1581,7 +1581,7 @@
                 "From": "Eleanor",
                 "To": "Cermak",
                 "Length (miles)": "0.54",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -1635,7 +1635,7 @@
                 "From": "Upper Randolph",
                 "To": "Lake Shore",
                 "Length (miles)": "0.56",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -1660,7 +1660,7 @@
                 "From": "Kinzie",
                 "To": "Hubbard",
                 "Length (miles)": "0.11",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -1735,7 +1735,7 @@
                 "From": "Damen",
                 "To": "Ashland",
                 "Length (miles)": "0.51",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -1760,7 +1760,7 @@
                 "From": "Clinton",
                 "To": "Michigan",
                 "Length (miles)": "0.87",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -1785,7 +1785,7 @@
                 "From": "19th",
                 "To": "Ogden",
                 "Length (miles)": "0.31",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -1822,7 +1822,7 @@
                 "From": "26th",
                 "To": "Cullerton",
                 "Length (miles)": "0.68",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -1847,7 +1847,7 @@
                 "From": "Morgan",
                 "To": "Canal",
                 "Length (miles)": "0.61",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -1872,7 +1872,7 @@
                 "From": "103rd",
                 "To": "89th",
                 "Length (miles)": "1.84",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -1922,7 +1922,7 @@
                 "From": "Wacker",
                 "To": "Michigan",
                 "Length (miles)": "0.65",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -1972,7 +1972,7 @@
                 "From": "111th",
                 "To": "103rd",
                 "Length (miles)": "1.51",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -2009,7 +2009,7 @@
                 "From": "Keeler",
                 "To": "Pulaski",
                 "Length (miles)": "0.25",
-                "Facility": "Concrete Upgrade to Protected Bike Lane",
+                "Facility": "Concrete Upgrade",
                 "Status": "Upcoming",
                 "Planned Year": "2023"
             },
@@ -2423,6 +2423,10 @@
                     [
                         -87.662249961210307,
                         41.954378104457881
+                    ],
+                    [
+                        -87.66439,
+                        41.95781
                     ],
                     [
                         -87.665953563182669,
