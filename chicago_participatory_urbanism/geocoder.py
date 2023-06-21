@@ -1,21 +1,22 @@
 import pandas as pd
 import importlib.metadata
+import logging
 import os
 import geopandas as gpd
 from shapely.ops import unary_union
 from shapely.geometry import Point, MultiPoint, LineString, MultiLineString
 
-print("Loading geocoding data...")
-
 # address point csv from https://hub-cookcountyil.opendata.arcgis.com/datasets/5ec856ded93e4f85b3f6e1bc027a2472_0/about
 address_points_path = [p for p in importlib.metadata.files('chicago_participatory_urbanism')
-                       if 'Address_Points_reduced.csv' in str(p)]
-df = pd.read_csv(address_points_path)
+                       if 'Address_Points_reduced.csv' in str(p)][0]
+logging.info(f'Loading address points csv data from {address_points_path.locate()}')
+df = pd.read_csv(address_points_path.locate())
 
 # street center lines GeoJSON from https://data.cityofchicago.org/Transportation/Street-Center-Lines/6imu-meau
 street_center_lines_path = [p for p in importlib.metadata.files('chicago_participatory_urbanism')
-                       if 'Street Center Lines.geojson' in str(p)]
-gdf = gpd.read_file(street_center_lines_path)
+                       if 'Street Center Lines.geojson' in str(p)][0]
+logging.info(f'Loading street center lines csv from {street_center_lines_path.locate()}')
+gdf = gpd.read_file(street_center_lines_path.locate())
 
 print("Data loaded.")
 
