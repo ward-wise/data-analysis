@@ -1,0 +1,18 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "chicago_participatory_urbanism"
+authors = []
+readme = "README.md"
+home-page = "https://github.com/smacmullan/chicago-participatory-urbanism"
+dynamic = ["version", "description"]
+
+requires = [
+	"geopandas",
+	"shapely",
+	"PyPDF2",
+]
+
+requires-python=">=3.7"
