@@ -9,6 +9,9 @@ readme = "README.md"
 home-page = "https://github.com/smacmullan/chicago-participatory-urbanism"
 dynamic = ["version", "description"]
 
+[tool.flit.external-data]
+directory = "data"
+
 requires = [
 	"geopandas",
 	"shapely",
