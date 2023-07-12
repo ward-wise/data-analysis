@@ -1,6 +1,14 @@
 # Chicago Participatory Urbanism
 
-Hello! I'm still putting together this repo. Check out the GitHub issues for things to work on.
+Check out the GitHub issues for things to work on.
+
+## Getting Started/Installing the Repo
+1. Clone the repo.
+2. Run the following command in the terminal:
+```
+pip install .
+```
+
 
 ## Background
 Every year, Chicago alderpersons get $1.5 million to spend at their discretion on capital improvements on their ward. Some alderpersons do this through a **participatory budgeting** (PB) process, where residents can propose projects and vote to determine which ones receive funding.   
