@@ -1,0 +1,4147 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "28th",
+                "From": "Kostner",
+                "To": "Albany",
+                "Length (miles)": "1.64",
+                "Facility": "Neighborhood Bikeway",
+                "Status": "Installed",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.73421387981466,
+                        41.84065273262378
+                    ],
+                    [
+                        -87.70311556013684,
+                        41.84091631643173
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "30th",
+                "From": "Kostner",
+                "To": "Albany",
+                "Length (miles)": "1.63",
+                "Facility": "Neighborhood Bikeway",
+                "Status": "Installed",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.734123273043849,
+                        41.838608833361235
+                    ],
+                    [
+                        -87.702484842540528,
+                        41.839058867347241
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Broadway",
+                "From": "Montrose",
+                "To": "Wilson",
+                "Length (miles)": "0.28",
+                "Facility": "Concrete Upgrade",
+                "Status": "Installed",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.655144334057809,
+                        41.961773273912627
+                    ],
+                    [
+                        -87.657474481368851,
+                        41.965399840813802
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Loomis",
+                "From": "76th",
+                "To": "71st",
+                "Length (miles)": "0.63",
+                "Facility": "Concrete Upgrade",
+                "Status": "Installed",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.65867179144988,
+                        41.75604057527213
+                    ],
+                    [
+                        -87.65891750680798,
+                        41.764247358928166
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Roscoe",
+                "From": "Campbell",
+                "To": "Western",
+                "Length (miles)": "0.1",
+                "Facility": "Concrete Upgrade",
+                "Status": "Installed",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.690168728148933,
+                        41.943081621009789
+                    ],
+                    [
+                        -87.688153469461113,
+                        41.943097676298784
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "71st",
+                "From": "Langley",
+                "To": "Cottage Grove",
+                "Length (miles)": "0.16",
+                "Facility": "Protected Bike Lane",
+                "Status": "Underway",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.608610224042735,
+                        41.765823180031219
+                    ],
+                    [
+                        -87.605587164592933,
+                        41.765868563251466
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Augusta",
+                "From": "Western",
+                "To": "Milwaukee",
+                "Length (miles)": "1.34",
+                "Facility": "Protected Bike Lane",
+                "Status": "Underway",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.686936470499163,
+                        41.899379448876502
+                    ],
+                    [
+                        -87.660960877401266,
+                        41.899829173756764
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Augusta",
+                "From": "Milwaukee",
+                "To": "Throop",
+                "Length (miles)": "0.11",
+                "Facility": "Access Path",
+                "Status": "Underway",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.66098236448391,
+                        41.90003734010474
+                    ],
+                    [
+                        -87.6589132807627,
+                        41.89990169087513
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Augusta",
+                "From": "Throop",
+                "To": "Elston",
+                "Length (miles)": "0.12",
+                "Facility": "Shared Lane",
+                "Status": "Underway",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.65863175963108,
+                        41.89984520597068
+                    ],
+                    [
+                        -87.65671497574206,
+                        41.89989854007303
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Belmont",
+                "From": "Kimball",
+                "To": "Western",
+                "Length (miles)": "1.27",
+                "Facility": "Protected Bike Lane",
+                "Status": "Underway",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.71252343869267,
+                        41.93928053063038
+                    ],
+                    [
+                        -87.68813125574097,
+                        41.93945120361448
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Belmont",
+                "From": "Western",
+                "To": "Ashland",
+                "Length (miles)": "0.99",
+                "Facility": "Bike Lane",
+                "Status": "Underway",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.68807503103791,
+                        41.93947161559995
+                    ],
+                    [
+                        -87.6686132729141,
+                        41.9397254388913
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Clark",
+                "From": "Hollywood",
+                "To": "Devon",
+                "Length (miles)": "0.99",
+                "Facility": "Concrete Upgrade",
+                "Status": "Underway",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.66915105100135,
+                        41.98525969893537
+                    ],
+                    [
+                        -87.67014,
+                        41.98974
+                    ],
+                    [
+                        -87.67051856448902,
+                        41.998179053074075
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Grand",
+                "From": "Chicago",
+                "To": "Damen",
+                "Length (miles)": "1.27",
+                "Facility": "Protected Bike Lane",
+                "Status": "Underway",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.699911087183679,
+                        41.8956287375089
+                    ],
+                    [
+                        -87.68738,
+                        41.89063
+                    ],
+                    [
+                        -87.676908746611147,
+                        41.890823902213704
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Wells",
+                "From": "17th",
+                "To": "Roosevelt",
+                "Length (miles)": "0.59",
+                "Facility": "Protected Bike Lane",
+                "Status": "Underway",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.63327859244815,
+                        41.860113918493816
+                    ],
+                    [
+                        -87.6334521476443,
+                        41.86741375446255
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Wells",
+                "From": "Roosevelt",
+                "To": "9th",
+                "Length (miles)": "0.24",
+                "Facility": "Protected Bike Lane",
+                "Status": "Underway",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.63349410227197,
+                        41.86741655226773
+                    ],
+                    [
+                        -87.63356299342368,
+                        41.8707427913876
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Wentworth",
+                "From": "18th",
+                "To": "17th",
+                "Length (miles)": "0.08",
+                "Facility": "Protected Bike Lane",
+                "Status": "Underway",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.6318682068017,
+                        41.85790461736607
+                    ],
+                    [
+                        -87.63185768954563,
+                        41.85900959548904
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "115th",
+                "From": "Major Taylor Trail",
+                "To": "Union",
+                "Length (miles)": "0.3",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.63974449331366,
+                        41.68511
+                    ],
+                    [
+                        -87.64547523554795,
+                        41.685047934779284
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "119th",
+                "From": "Ashland",
+                "To": "Halsted",
+                "Length (miles)": "1.01",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.661365055645533,
+                        41.677544258964836
+                    ],
+                    [
+                        -87.641908522099456,
+                        41.677814666849528
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "16th",
+                "From": "Central Park",
+                "To": "Homan",
+                "Length (miles)": "0.25",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.71520645690552,
+                        41.858974469746421
+                    ],
+                    [
+                        -87.710333047173577,
+                        41.859025208022956
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "16th",
+                "From": "Spaulding",
+                "To": "Kedzie",
+                "Length (miles)": "0.13",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.707893640993575,
+                        41.859052663695572
+                    ],
+                    [
+                        -87.705456494328615,
+                        41.859083850784401
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "18th",
+                "From": "Canal",
+                "To": "Wentworth",
+                "Length (miles)": "0.36",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.638935723197918,
+                        41.857665474705335
+                    ],
+                    [
+                        -87.63189239658108,
+                        41.857752558874139
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "31st",
+                "From": "Wells",
+                "To": "LaSalle",
+                "Length (miles)": "0.15",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.63285324915313,
+                        41.83826
+                    ],
+                    [
+                        -87.63004321693619,
+                        41.83826
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "31st",
+                "From": "Michigan",
+                "To": "Martin Luther King Jr",
+                "Length (miles)": "0.33",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.61754003358351,
+                        41.83841640072448
+                    ],
+                    [
+                        -87.62341908686653,
+                        41.83839910410609
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "31st",
+                "From": "Martin Luther King Jr",
+                "To": "Fort Dearborn",
+                "Length (miles)": "0.48",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.61752273215701,
+                        41.838446715915666
+                    ],
+                    [
+                        -87.60789142672557,
+                        41.83862641400276
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "55th",
+                "From": "55th",
+                "To": "Dorchester",
+                "Length (miles)": "0.09",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.59169053706461,
+                        41.795634598693375
+                    ],
+                    [
+                        -87.58901747432554,
+                        41.7952705211393
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Armitage",
+                "From": "Kedzie",
+                "To": "Western",
+                "Length (miles)": "1",
+                "Facility": "Bike Lane",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.706967438712937,
+                        41.91740169931623
+                    ],
+                    [
+                        -87.687409990266104,
+                        41.917567739366618
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Berteau",
+                "From": "Western",
+                "To": "Lincoln",
+                "Length (miles)": "0.38",
+                "Facility": "Neighborhood Bikeway",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.688574041851922,
+                        41.957669412296752
+                    ],
+                    [
+                        -87.681290766935959,
+                        41.95776994890479
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Bloomingdale",
+                "From": "Narragansett",
+                "To": "Laramie",
+                "Length (miles)": "1.56",
+                "Facility": "Neighborhood Bikeway",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.785119047621109,
+                        41.912779571974312
+                    ],
+                    [
+                        -87.755796073466698,
+                        41.913156648636253
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Blue Island",
+                "From": "18th",
+                "To": "Roosevelt",
+                "Length (miles)": "0.75",
+                "Facility": "Protected Bike Lane",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.661151789469301,
+                        41.857878665044694
+                    ],
+                    [
+                        -87.653316829371249,
+                        41.867051776362395
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Canal",
+                "From": "Roosevelt",
+                "To": "Harrison",
+                "Length (miles)": "0.49",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.639217984197074,
+                        41.867252929312471
+                    ],
+                    [
+                        -87.63948808356642,
+                        41.874406369874123
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Central Park",
+                "From": "Armitage",
+                "To": "Fullerton",
+                "Length (miles)": "0.51",
+                "Facility": "Bike Lane",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.71677224478826,
+                        41.917282731314259
+                    ],
+                    [
+                        -87.716993946708598,
+                        41.924603391138838
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Central Park",
+                "From": "Madison",
+                "To": "Franklin",
+                "Length (miles)": "0.67",
+                "Facility": "Protected Bike Lane",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.715913147647,
+                        41.88105446288249
+                    ],
+                    [
+                        -87.71526661816657,
+                        41.88287673632048
+                    ],
+                    [
+                        -87.71680597407236,
+                        41.88456143345402
+                    ],
+                    [
+                        -87.71652889000931,
+                        41.88632630661643
+                    ],
+                    [
+                        -87.71663664491547,
+                        41.88997050090247
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Clark",
+                "From": "Irving Park",
+                "To": "Montrose",
+                "Length (miles)": "0.54",
+                "Facility": "Protected Bike Lane",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.662249961210307,
+                        41.954378104457881
+                    ],
+                    [
+                        -87.66439,
+                        41.95781
+                    ],
+                    [
+                        -87.665953563182669,
+                        41.961634626351092
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Clark",
+                "From": "Kinzie",
+                "To": "Oak",
+                "Length (miles)": "0.78",
+                "Facility": "Protected Bike Lane",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.631059696928972,
+                        41.889211911567209
+                    ],
+                    [
+                        -87.631350141228282,
+                        41.900552732437646
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Clinton",
+                "From": "Harrison",
+                "To": "Fulton",
+                "Length (miles)": "0.86",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.640955622601282,
+                        41.874389538078141
+                    ],
+                    [
+                        -87.641336152237614,
+                        41.886815434959956
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Dearborn",
+                "From": "Kinzie",
+                "To": "Chicago",
+                "Length (miles)": "0.74",
+                "Facility": "Protected Bike Lane",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.629586928202784,
+                        41.88923234663126
+                    ],
+                    [
+                        -87.629774639240949,
+                        41.896655523889414
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Desplaines",
+                "From": "Harrison",
+                "To": "Lake",
+                "Length (miles)": "0.79",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.643886841666699,
+                        41.874352836476888
+                    ],
+                    [
+                        -87.644243464788374,
+                        41.885696542277977
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Diversey",
+                "From": "Western",
+                "To": "Damen",
+                "Length (miles)": "0.5",
+                "Facility": "Protected Bike Lane",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.687882691120535,
+                        41.932179125823318
+                    ],
+                    [
+                        -87.678135286317158,
+                        41.932284680255421
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Douglas",
+                "From": "Independence",
+                "To": "Sacramento",
+                "Length (miles)": "0.88",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.71991840963969,
+                        41.862789336872936
+                    ],
+                    [
+                        -87.7020127524801,
+                        41.8630460550768
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Franklin",
+                "From": "Central Park",
+                "To": "Sacramento",
+                "Length (miles)": "0.76",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.71633332400839,
+                        41.88998698180991
+                    ],
+                    [
+                        -87.70239949628434,
+                        41.8901510371874
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Halsted",
+                "From": "Fulton",
+                "To": "Hubbard",
+                "Length (miles)": "0.23",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.6475185933065,
+                        41.886930308570584
+                    ],
+                    [
+                        -87.64762573751925,
+                        41.89008388683596
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Halsted",
+                "From": "26th",
+                "To": "Lumber",
+                "Length (miles)": "0.34",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.646448956991335,
+                        41.845327449191238
+                    ],
+                    [
+                        -87.646439630845833,
+                        41.85029392171888
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Hamlin",
+                "From": "33rd",
+                "To": "Cermak",
+                "Length (miles)": "1.26",
+                "Facility": "Neighborhood Bikeway",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.719388116897747,
+                        41.833358322157004
+                    ],
+                    [
+                        -87.719872144546528,
+                        41.851607391357867
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Harrison",
+                "From": "Halsted",
+                "To": "Desplaines",
+                "Length (miles)": "0.17",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.647126638125968,
+                        41.874339324217708
+                    ],
+                    [
+                        -87.643886841666699,
+                        41.874352836476888
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Harrison",
+                "From": "Canal",
+                "To": "Franklin",
+                "Length (miles)": "0.23",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.63948808356642,
+                        41.874406369874123
+                    ],
+                    [
+                        -87.635084652612079,
+                        41.874460499981232
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Harrison",
+                "From": "Ashland",
+                "To": "Halsted",
+                "Length (miles)": "1",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.666598930945526,
+                        41.874200433484944
+                    ],
+                    [
+                        -87.647126638125968,
+                        41.874339324217708
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Independence",
+                "From": "Douglas",
+                "To": "Congress",
+                "Length (miles)": "0.84",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.72002969014225,
+                        41.86322155313427
+                    ],
+                    [
+                        -87.72039680683201,
+                        41.87459779806036
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Jackson",
+                "From": "Oakley",
+                "To": "Hoyne",
+                "Length (miles)": "0.25",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.683870232497952,
+                        41.877575028587415
+                    ],
+                    [
+                        -87.678990401636312,
+                        41.877552538783519
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Jackson",
+                "From": "Damen",
+                "To": "Ogden",
+                "Length (miles)": "0.3",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.676545706752535,
+                        41.87747854283684
+                    ],
+                    [
+                        -87.670698502721848,
+                        41.877559882665572
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Jackson",
+                "From": "Austin",
+                "To": "Central",
+                "Length (miles)": "0.53",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.77452636660739,
+                        41.876414861726495
+                    ],
+                    [
+                        -87.77264,
+                        41.87715
+                    ],
+                    [
+                        -87.76727,
+                        41.87710
+                    ],
+                    [
+                        -87.764724991268054,
+                        41.876538417891737
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Kedzie",
+                "From": "Diversey",
+                "To": "Elston",
+                "Length (miles)": "0.96",
+                "Facility": "Protected Bike Lane",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.707427196231123,
+                        41.932029429268802
+                    ],
+                    [
+                        -87.707803529473793,
+                        41.945917882562227
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Keeler",
+                "From": "Harrison",
+                "To": "Congress",
+                "Length (miles)": "0.06",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.730312570593725,
+                        41.873386134348166
+                    ],
+                    [
+                        -87.730345927402851,
+                        41.874299638811358
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Lake",
+                "From": "Laramie",
+                "To": "Pulaski",
+                "Length (miles)": "1.53",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.755318632077234,
+                        41.887201602813171
+                    ],
+                    [
+                        -87.7258048383014,
+                        41.885466824205984
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Lake",
+                "From": "Pine",
+                "To": "Laramie",
+                "Length (miles)": "0.41",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.75533576086427,
+                        41.887366827765725
+                    ],
+                    [
+                        -87.76335161668123,
+                        41.88735324060169
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Lake",
+                "From": "Kedzie",
+                "To": "Damen",
+                "Length (miles)": "1.52",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.706219281742904,
+                        41.884352065435834
+                    ],
+                    [
+                        -87.70127,
+                        41.88408
+                    ],
+                    [
+                        -87.676739076171032,
+                        41.884982478742913
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Laramie",
+                "From": "Ferdinand",
+                "To": "Le Moyne",
+                "Length (miles)": "1.29",
+                "Facility": "Bike Lane",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.75533357795175,
+                        41.88913866115457
+                    ],
+                    [
+                        -87.75591892213707,
+                        41.907840823245465
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Laramie",
+                "From": "Bloomingdale",
+                "To": "Grand",
+                "Length (miles)": "0.26",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.755796073466698,
+                        41.913156648636253
+                    ],
+                    [
+                        -87.755937518660176,
+                        41.916934250336276
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Lavergne",
+                "From": "Harrison",
+                "To": "Le Moyne",
+                "Length (miles)": "2.4",
+                "Facility": "Neighborhood Bikeway",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.749145363087123,
+                        41.873027075819351
+                    ],
+                    [
+                        -87.74942,
+                        41.88040
+                    ],
+                    [
+                        -87.75018,
+                        41.88041
+                    ],
+                    [
+                        -87.750995472027071,
+                        41.907742845994932
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Leavitt",
+                "From": "Milwaukee",
+                "To": "Lyndale",
+                "Length (miles)": "0.63",
+                "Facility": "Neighborhood Bikeway",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.682419508081921,
+                        41.913582235852516
+                    ],
+                    [
+                        -87.682688184292772,
+                        41.922678793967826
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Leavitt",
+                "From": "Diversey",
+                "To": "Montrose",
+                "Length (miles)": "2.06",
+                "Facility": "Neighborhood Bikeway",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.680692310296351,
+                        41.932254784837149
+                    ],
+                    [
+                        -87.68308,
+                        41.93411
+                    ],
+                    [
+                        -87.683829912844772,
+                        41.961385359024696
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Leavitt",
+                "From": "Montrose",
+                "To": "Bowmanville",
+                "Length (miles)": "1.25",
+                "Facility": "Neighborhood Bikeway",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.683829912844772,
+                        41.961385359024696
+                    ],
+                    [
+                        -87.684413480254065,
+                        41.979508275949925
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Loomis",
+                "From": "Eleanor",
+                "To": "Cermak",
+                "Length (miles)": "0.54",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.660133106320998,
+                        41.844658630845437
+                    ],
+                    [
+                        -87.66101,
+                        41.84636
+                    ],
+                    [
+                        -87.661164428511427,
+                        41.852418396182912
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Menard",
+                "From": "Jackson",
+                "To": "Lake",
+                "Length (miles)": "0.75",
+                "Facility": "Neighborhood Bikeway",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.769638872421936,
+                        41.877027057611834
+                    ],
+                    [
+                        -87.769901236197484,
+                        41.887868751532878
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Lower Randolph",
+                "From": "Upper Randolph",
+                "To": "Lake Shore",
+                "Length (miles)": "0.56",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.62286,
+                        41.88443
+                    ],
+                    [
+                        -87.61374,
+                        41.88451
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Milwaukee",
+                "From": "Kinzie",
+                "To": "Hubbard",
+                "Length (miles)": "0.11",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.644333925633845,
+                        41.889033572641836
+                    ],
+                    [
+                        -87.645921770354974,
+                        41.890108158578478
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Martin Luther King Jr",
+                "From": "100th",
+                "To": "99th",
+                "Length (miles)": "0.15",
+                "Facility": "Protected Bike Lane",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.61396762096224,
+                        41.712644207104994
+                    ],
+                    [
+                        -87.61399840817823,
+                        41.714103567767886
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Martin Luther King Jr",
+                "From": "99th",
+                "To": "95th",
+                "Length (miles)": "0.5",
+                "Facility": "Bike Lane",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.61399840817823,
+                        41.714103567767886
+                    ],
+                    [
+                        -87.61417818749669,
+                        41.72188097153249
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Polk",
+                "From": "Damen",
+                "To": "Ashland",
+                "Length (miles)": "0.51",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.67619049862947,
+                        41.871492738027165
+                    ],
+                    [
+                        -87.66663925097613,
+                        41.87164008914094
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Randolph",
+                "From": "Clinton",
+                "To": "Michigan",
+                "Length (miles)": "0.87",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.641273152847958,
+                        41.884436922631501
+                    ],
+                    [
+                        -87.624451706897545,
+                        41.884471444064168
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Sacramento",
+                "From": "19th",
+                "To": "Ogden",
+                "Length (miles)": "0.31",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.6992283576948,
+                        41.85551667347543
+                    ],
+                    [
+                        -87.69941169752191,
+                        41.85617129795596
+                    ],
+                    [
+                        -87.70105859574089,
+                        41.85699423265431
+                    ],
+                    [
+                        -87.70105859574089,
+                        41.85818979815998
+                    ],
+                    [
+                        -87.70166315331495,
+                        41.85921455080407
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "State",
+                "From": "26th",
+                "To": "Cullerton",
+                "Length (miles)": "0.68",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.62695805472295,
+                        41.845590039921895
+                    ],
+                    [
+                        -87.62719517005569,
+                        41.85544693990441
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Taylor",
+                "From": "Morgan",
+                "To": "Canal",
+                "Length (miles)": "0.61",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.651124035663528,
+                        41.869507724914442
+                    ],
+                    [
+                        -87.639276723789521,
+                        41.869755916754166
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Vincennes",
+                "From": "103rd",
+                "To": "89th",
+                "Length (miles)": "1.84",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.656019245633786,
+                        41.706785498304953
+                    ],
+                    [
+                        -87.64651275538084,
+                        41.732526589942367
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Walton",
+                "From": "Clark",
+                "To": "Dearborn",
+                "Length (miles)": "0.08",
+                "Facility": "Buffered Bike Lane",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.63135183049012,
+                        41.89978392918678
+                    ],
+                    [
+                        -87.62990971922541,
+                        41.89982422509432
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Washington",
+                "From": "Wacker",
+                "To": "Michigan",
+                "Length (miles)": "0.65",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.63707625793272,
+                        41.88319562529082
+                    ],
+                    [
+                        -87.62452408046738,
+                        41.88321936371907
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Wellington",
+                "From": "Kimball",
+                "To": "Kedzie",
+                "Length (miles)": "0.25",
+                "Facility": "Neighborhood Bikeway",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.712378093501485,
+                        41.935652428068451
+                    ],
+                    [
+                        -87.707528755691484,
+                        41.935698497
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Woodlawn/Doty",
+                "From": "111th",
+                "To": "103rd",
+                "Length (miles)": "1.51",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.60060873165645,
+                        41.6928975483825
+                    ],
+                    [
+                        -87.60066237583473,
+                        41.6950285569635
+                    ],
+                    [
+                        -87.59722914842577,
+                        41.69522082494198
+                    ],
+                    [
+                        -87.59412332820473,
+                        41.70087526741147
+                    ],
+                    [
+                        -87.59419132754935,
+                        41.70759587418562
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Wrightwood",
+                "From": "Keeler",
+                "To": "Pulaski",
+                "Length (miles)": "0.25",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.731778014952084,
+                        41.928052389144646
+                    ],
+                    [
+                        -87.726875528895079,
+                        41.928131733219629
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "26th",
+                "From": "Pulaski",
+                "To": "Sacramento",
+                "Length (miles)": "1.26",
+                "Facility": "Bike Lane",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.724553250581621,
+                        41.84425516073388
+                    ],
+                    [
+                        -87.700148261808167,
+                        41.844613009645151
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "63rd",
+                "From": "Maryland",
+                "To": "Stony Island",
+                "Length (miles)": "0.94",
+                "Facility": "Bike Lane",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.60465124359477,
+                        41.78041888888032
+                    ],
+                    [
+                        -87.58643987398192,
+                        41.78063507277973
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "81st",
+                "From": "Wood",
+                "To": "Racine",
+                "Length (miles)": "0.75",
+                "Facility": "Neighborhood Bikeway",
+                "Status": "Upcoming",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.668201619143105,
+                        41.74665185873441
+                    ],
+                    [
+                        -87.653640159169754,
+                        41.746857641214426
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "82nd",
+                "From": "Ashland",
+                "To": "Loomis",
+                "Length (miles)": "0.25",
+                "Facility": "Neighborhood Bikeway",
+                "Status": "Upcoming",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.663302379476875,
+                        41.744894044889669
+                    ],
+                    [
+                        -87.658444856041967,
+                        41.744965683562953
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "100th",
+                "From": "Ewing",
+                "To": "Ave J",
+                "Length (miles)": "0.13",
+                "Facility": "Neighborhood Bikeway",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.53527390917445,
+                        41.713511856284576
+                    ],
+                    [
+                        -87.53405596085,
+                        41.7141146032374
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Armitage",
+                "From": "Kedzie",
+                "To": "Western",
+                "Length (miles)": "1",
+                "Facility": "Bike Lane",
+                "Status": "Upcoming",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.706967438712937,
+                        41.91740169931623
+                    ],
+                    [
+                        -87.687409990266104,
+                        41.917567739366618
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Augusta",
+                "From": "Western",
+                "To": "Milwaukee",
+                "Length (miles)": "1.34",
+                "Facility": "Protected Bike Lane",
+                "Status": "Upcoming",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.686936470499163,
+                        41.899379448876502
+                    ],
+                    [
+                        -87.660960877401266,
+                        41.899829173756764
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Augusta",
+                "From": "Milwaukee",
+                "To": "Throop",
+                "Length (miles)": "0.11",
+                "Facility": "Access Path",
+                "Status": "Upcoming",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.66098236448391,
+                        41.90003734010474
+                    ],
+                    [
+                        -87.6589132807627,
+                        41.89990169087513
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Augusta",
+                "From": "Throop",
+                "To": "Elston",
+                "Length (miles)": "0.12",
+                "Facility": "Shared Lane",
+                "Status": "Upcoming",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.65863175963108,
+                        41.89984520597068
+                    ],
+                    [
+                        -87.65671497574206,
+                        41.89989854007303
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Belmont",
+                "From": "Ashland",
+                "To": "Halsted",
+                "Length (miles)": "1",
+                "Facility": "Bike Lane",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.668661675145358,
+                        41.939696499929362
+                    ],
+                    [
+                        -87.649266613999885,
+                        41.939980934276612
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Belmont",
+                "From": "Kimball",
+                "To": "Western",
+                "Length (miles)": "1.27",
+                "Facility": "Protected Bike Lane",
+                "Status": "Upcoming",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.71252343869267,
+                        41.93928053063038
+                    ],
+                    [
+                        -87.68813125574097,
+                        41.93945120361448
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Berwyn",
+                "From": "Virginia",
+                "To": "Western",
+                "Length (miles)": "0.76",
+                "Facility": "Neighborhood Bikeway",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.703396382204303,
+                        41.97761286556036
+                    ],
+                    [
+                        -87.689221298352365,
+                        41.97770750760079
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Berwyn",
+                "From": "Western",
+                "To": "Damen",
+                "Length (miles)": "0.5",
+                "Facility": "Neighborhood Bikeway",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.689221298352365,
+                        41.97770750760079
+                    ],
+                    [
+                        -87.679458351780013,
+                        41.977850335675726
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Broadway",
+                "From": "Montrose",
+                "To": "Wilson",
+                "Length (miles)": "0.28",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.655144334057809,
+                        41.961773273912627
+                    ],
+                    [
+                        -87.657474481368851,
+                        41.965399840813802
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Clark",
+                "From": "Hollywood",
+                "To": "Devon",
+                "Length (miles)": "0.99",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.66915105100135,
+                        41.98525969893537
+                    ],
+                    [
+                        -87.67014,
+                        41.98974
+                    ],
+                    [
+                        -87.67051856448902,
+                        41.998179053074075
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Clark",
+                "From": "Irving Park",
+                "To": "Montrose",
+                "Length (miles)": "0.54",
+                "Facility": "Protected Bike Lane",
+                "Status": "Upcoming",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.662249961210307,
+                        41.954378104457881
+                    ],
+                    [
+                        -87.66439,
+                        41.95781
+                    ],
+                    [
+                        -87.665953563182669,
+                        41.961634626351092
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Central Park",
+                "From": "Madison",
+                "To": "Franklin",
+                "Length (miles)": "0.67",
+                "Facility": "Protected Bike Lane",
+                "Status": "Upcoming",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.715913147647,
+                        41.88105446288249
+                    ],
+                    [
+                        -87.71526661816657,
+                        41.88287673632048
+                    ],
+                    [
+                        -87.71680597407236,
+                        41.88456143345402
+                    ],
+                    [
+                        -87.71652889000931,
+                        41.88632630661643
+                    ],
+                    [
+                        -87.71663664491547,
+                        41.88997050090247
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Chicago",
+                "From": "Western",
+                "To": "Ashland",
+                "Length (miles)": "1",
+                "Facility": "Bike Lane",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.68684259799268,
+                        41.89574324577579
+                    ],
+                    [
+                        -87.667291516700672,
+                        41.89607363862347
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Commercial",
+                "From": "100th",
+                "To": "94th",
+                "Length (miles)": "0.76",
+                "Facility": "Buffered Bike Lane",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.55094749979142,
+                        41.713387077753978
+                    ],
+                    [
+                        -87.551109787610969,
+                        41.724022283064592
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Diversey",
+                "From": "Milwaukee",
+                "To": "California",
+                "Length (miles)": "0.75",
+                "Facility": "Buffered Bike Lane",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.712253097817282,
+                        41.93198308021713
+                    ],
+                    [
+                        -87.697617665667579,
+                        41.932095674548911
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Douglas",
+                "From": "Independence",
+                "To": "Sacramento",
+                "Length (miles)": "0.9",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.71991840963969,
+                        41.862789336872936
+                    ],
+                    [
+                        -87.7020127524801,
+                        41.8630460550768
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Erie",
+                "From": "Damen",
+                "To": "Noble",
+                "Length (miles)": "0.76",
+                "Facility": "Neighborhood Bikeway",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.676974140304324,
+                        41.893173127499409
+                    ],
+                    [
+                        -87.662327917669856,
+                        41.8934162096336
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Exchange",
+                "From": "83rd",
+                "To": "79th",
+                "Length (miles)": "0.5",
+                "Facility": "Bike Lane",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.5527771809513,
+                        41.744639024678044
+                    ],
+                    [
+                        -87.5529041506499,
+                        41.75189787974475
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Garfield/Morgan/Rainey",
+                "From": "Martin Luther King Jr",
+                "To": "Cottage Grove",
+                "Length (miles)": "0.52",
+                "Facility": "Protected Bike Lane",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.6159250778281,
+                        41.79446800636971
+                    ],
+                    [
+                        -87.61465286850334,
+                        41.794481852841244
+                    ],
+                    [
+                        -87.61290706300659,
+                        41.793602595961715
+                    ],
+                    [
+                        -87.61092910252358,
+                        41.79318719481547
+                    ],
+                    [
+                        -87.60903471783563,
+                        41.793561055968254
+                    ],
+                    [
+                        -87.60799466349714,
+                        41.79415645996891
+                    ],
+                    [
+                        -87.60740034673228,
+                        41.794952631094276
+                    ],
+                    [
+                        -87.6062117132026,
+                        41.7950010933652
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Grand",
+                "From": "Narragansett",
+                "To": "Meade",
+                "Length (miles)": "0.4",
+                "Facility": "Buffered Bike Lane",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.785411428854033,
+                        41.922630878400497
+                    ],
+                    [
+                        -87.778054783111372,
+                        41.921011017723828
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Grand",
+                "From": "Meade",
+                "To": "Austin",
+                "Length (miles)": "0.13",
+                "Facility": "Shared Lane",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.778054783111372,
+                        41.921011017723828
+                    ],
+                    [
+                        -87.775604016062232,
+                        41.920558792765192
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Grand",
+                "From": "Austin",
+                "To": "Central",
+                "Length (miles)": "0.52",
+                "Facility": "Buffered Bike Lane",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.77558388335267,
+                        41.920544875462866
+                    ],
+                    [
+                        -87.76575262023515,
+                        41.91875135012002
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Grand",
+                "From": "Central",
+                "To": "Long",
+                "Length (miles)": "0.26",
+                "Facility": "Protected Bike Lane",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.76575262023515,
+                        41.91875135012002
+                    ],
+                    [
+                        -87.7608648316482,
+                        41.917837787876834
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Grand",
+                "From": "Long",
+                "To": "Laramie",
+                "Length (miles)": "0.26",
+                "Facility": "Buffered Bike Lane",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.760871150427761,
+                        41.917847663342435
+                    ],
+                    [
+                        -87.755937518660176,
+                        41.916934250336276
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Grand",
+                "From": "Laramie",
+                "To": "Armitage",
+                "Length (miles)": "0.13",
+                "Facility": "Bike Lane",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.755937518660176,
+                        41.916934250336276
+                    ],
+                    [
+                        -87.7533751244207,
+                        41.916844234924113
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Hamlin",
+                "From": "Congress",
+                "To": "Madison",
+                "Length (miles)": "0.44",
+                "Facility": "Protected Bike Lane",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.72041826723192,
+                        41.87444997685107
+                    ],
+                    [
+                        -87.72052124852736,
+                        41.87533759589582
+                    ],
+                    [
+                        -87.72067913071756,
+                        41.87598248725352
+                    ],
+                    [
+                        -87.7208595675105,
+                        41.8807853797229
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Hamlin",
+                "From": "Madison",
+                "To": "Washington",
+                "Length (miles)": "0.08",
+                "Facility": "Bike Lane",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.720752983463129,
+                        41.880789615453239
+                    ],
+                    [
+                        -87.720820228864767,
+                        41.881896861027109
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Harrison",
+                "From": "Central",
+                "To": "Kostner",
+                "Length (miles)": "1.52",
+                "Facility": "Bike Lane",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.764587430904839,
+                        41.872826678410689
+                    ],
+                    [
+                        -87.73697,
+                        41.87331
+                    ],
+                    [
+                        -87.735229088854638,
+                        41.873918759936963
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Harrison",
+                "From": "Ogden",
+                "To": "Wood",
+                "Length (miles)": "0.17",
+                "Facility": "Protected Bike Lane",
+                "Status": "Upcoming",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.674858501158866,
+                        41.87406693979085
+                    ],
+                    [
+                        -87.671560897189494,
+                        41.874119837898618
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Hirsch",
+                "From": "Austin",
+                "To": "Lavergne",
+                "Length (miles)": "1.26",
+                "Facility": "Neighborhood Bikeway",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.775482305648339,
+                        41.905625240112556
+                    ],
+                    [
+                        -87.750955548807354,
+                        41.90593305383463
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Homan",
+                "From": "Cermak",
+                "To": "Ogden",
+                "Length (miles)": "0.32",
+                "Facility": "Shared Lane",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.71011135009627,
+                        41.85170964962364
+                    ],
+                    [
+                        -87.71026538930273,
+                        41.85608241578042
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Homan",
+                "From": "Ogden",
+                "To": "Roosevelt",
+                "Length (miles)": "0.71",
+                "Facility": "Bike Lane",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.71026538930273,
+                        41.85608241578042
+                    ],
+                    [
+                        -87.71053361016597,
+                        41.86635013731463
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Independence",
+                "From": "Congress",
+                "To": "Independence",
+                "Length (miles)": "0.84",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.72001621641591,
+                        41.86302520679142
+                    ],
+                    [
+                        -87.7204082669728,
+                        41.87444418786269
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Jackson",
+                "From": "Central",
+                "To": "Laramie",
+                "Length (miles)": "0.5",
+                "Facility": "Shared Lane",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.764724991268054,
+                        41.876538417891737
+                    ],
+                    [
+                        -87.754929406516098,
+                        41.876659415769311
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Kedzie",
+                "From": "Diversey",
+                "To": "Elston",
+                "Length (miles)": "0.96",
+                "Facility": "Protected Bike Lane",
+                "Status": "Upcoming",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.707427196231123,
+                        41.932029429268802
+                    ],
+                    [
+                        -87.707803529473793,
+                        41.945917882562227
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Kedzie",
+                "From": "Elston",
+                "To": "Foster",
+                "Length (miles)": "2.06",
+                "Facility": "Bike Lane",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.707803529473793,
+                        41.945917882562227
+                    ],
+                    [
+                        -87.708680946472938,
+                        41.975747764805419
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Keeler",
+                "From": "Cermak",
+                "To": "Lake",
+                "Length (miles)": "2.37",
+                "Facility": "Neighborhood Bikeway",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.729605618074956,
+                        41.851478435544891
+                    ],
+                    [
+                        -87.730725911777185,
+                        41.885741988603051
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Keeler",
+                "From": "33rd",
+                "To": "Cermak",
+                "Length (miles)": "1.26",
+                "Facility": "Neighborhood Bikeway",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.729106777438105,
+                        41.833241852945875
+                    ],
+                    [
+                        -87.729605618074956,
+                        41.851478435544891
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Kenmore",
+                "From": "Leland",
+                "To": "Argyle",
+                "Length (miles)": "0.42",
+                "Facility": "Neighborhood Bikeway",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.656205807980868,
+                        41.967244423566399
+                    ],
+                    [
+                        -87.656331181545127,
+                        41.973292742811779
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Kinzie",
+                "From": "Wells",
+                "To": "Dearborn",
+                "Length (miles)": "0.23",
+                "Facility": "Bike Lane",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.634006564199453,
+                        41.889165884186397
+                    ],
+                    [
+                        -87.629586928202784,
+                        41.88923234663126
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Kinzie",
+                "From": "Dearborn",
+                "To": "State",
+                "Length (miles)": "0.08",
+                "Facility": "Shared Lane",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.629586928202784,
+                        41.88923234663126
+                    ],
+                    [
+                        -87.628023417484584,
+                        41.889252486520498
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Kinzie",
+                "From": "Desplaines",
+                "To": "Wells",
+                "Length (miles)": "0.53",
+                "Facility": "Concrete Upgrade",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.644333925633845,
+                        41.889033572641836
+                    ],
+                    [
+                        -87.634006564199453,
+                        41.889165884186397
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Lake",
+                "From": "Pulaski",
+                "To": "Kedzie",
+                "Length (miles)": "1.01",
+                "Facility": "Concrete Upgrade",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.7258048383014,
+                        41.885466824205984
+                    ],
+                    [
+                        -87.706219281742904,
+                        41.884352065435834
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Lake",
+                "From": "Kedzie",
+                "To": "Damen",
+                "Length (miles)": "1.52",
+                "Facility": "Concrete Upgrade",
+                "Status": "Underway",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.706219281742904,
+                        41.884352065435834
+                    ],
+                    [
+                        -87.70127,
+                        41.88408
+                    ],
+                    [
+                        -87.676739076171032,
+                        41.884982478742913
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Laramie",
+                "From": "Harrison",
+                "To": "Ferdinand",
+                "Length (miles)": "1.13",
+                "Facility": "Bike Lane",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.75481537179316,
+                        41.87293553314004
+                    ],
+                    [
+                        -87.75537113164926,
+                        41.88893097124475
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Laramie",
+                "From": "Ferdinand",
+                "To": "Le Moyne",
+                "Length (miles)": "1.29",
+                "Facility": "Bike Lane",
+                "Status": "Upcoming",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.75533357795175,
+                        41.88913866115457
+                    ],
+                    [
+                        -87.75591892213707,
+                        41.907840823245465
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Laramie",
+                "From": "Le Moyne",
+                "To": "Bloomingdale",
+                "Length (miles)": "0.38",
+                "Facility": "Bike Lane",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.755902456789343,
+                        41.907686286270007
+                    ],
+                    [
+                        -87.75596,
+                        41.90904
+                    ],
+                    [
+                        -87.75569,
+                        41.90997
+                    ],
+                    [
+                        -87.755796073466698,
+                        41.913156648636253
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Laramie",
+                "From": "Bloomingdale",
+                "To": "Grand",
+                "Length (miles)": "0.26",
+                "Facility": "Protected Bike Lane",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.755796073466698,
+                        41.913156648636253
+                    ],
+                    [
+                        -87.755937518660176,
+                        41.916934250336276
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Lawrence",
+                "From": "Austin",
+                "To": "Central",
+                "Length (miles)": "0.5",
+                "Facility": "Bike Lane",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.777268311662638,
+                        41.967649466772265
+                    ],
+                    [
+                        -87.767476688610202,
+                        41.96778264140314
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Lawrence",
+                "From": "Central Park",
+                "To": "Chicago River",
+                "Length (miles)": "0.84",
+                "Facility": "Bike Lane",
+                "Status": "Upcoming",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.7182463233147,
+                        41.96834910225233
+                    ],
+                    [
+                        -87.70211563342126,
+                        41.96853035334474
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Le Moyne",
+                "From": "Austin",
+                "To": "Lavergne",
+                "Length (miles)": "1.27",
+                "Facility": "Neighborhood Bikeway",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.775542589489859,
+                        41.907439565141402
+                    ],
+                    [
+                        -87.750995472027071,
+                        41.907742845994932
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Logan",
+                "From": "Campbell",
+                "To": "Diversey",
+                "Length (miles)": "0.48",
+                "Facility": "Concrete Upgrade",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.69022424855592,
+                        41.92852220318103
+                    ],
+                    [
+                        -87.68925440081608,
+                        41.928347689402244
+                    ],
+                    [
+                        -87.68768008983372,
+                        41.9286530882018
+                    ],
+                    [
+                        -87.68397355327241,
+                        41.931687249562316
+                    ],
+                    [
+                        -87.68395209560111,
+                        41.93220206278514
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Loomis",
+                "From": "Roosevelt",
+                "To": "Harrison",
+                "Length (miles)": "0.5",
+                "Facility": "Bike Lane",
+                "Status": "Upcoming",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.661570856291533,
+                        41.866916459880436
+                    ],
+                    [
+                        -87.66178845727319,
+                        41.874203364123453
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Lyndale",
+                "From": "Rockwell",
+                "To": "Leavitt",
+                "Length (miles)": "0.53",
+                "Facility": "Neighborhood Bikeway",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.69277824750958,
+                        41.922431180535014
+                    ],
+                    [
+                        -87.682688184292772,
+                        41.922678793967826
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Milwaukee",
+                "From": "Addison",
+                "To": "Waveland",
+                "Length (miles)": "0.16",
+                "Facility": "Protected Bike Lane",
+                "Status": "Underway",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.735626891372377,
+                        41.94626749483583
+                    ],
+                    [
+                        -87.73744478969715,
+                        41.947375881591704
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Milwaukee",
+                "From": "Waveland",
+                "To": "Irving Park",
+                "Length (miles)": "0.62",
+                "Facility": "Concrete Upgrade",
+                "Status": "Underway",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.73744478969715,
+                        41.947375881591704
+                    ],
+                    [
+                        -87.747304872758505,
+                        41.953418375275788
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Milwaukee",
+                "From": "Augusta",
+                "To": "Division",
+                "Length (miles)": "0.37",
+                "Facility": "Protected Bike Lane",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.660960877401266,
+                        41.899829173756764
+                    ],
+                    [
+                        -87.666485150068539,
+                        41.90335838392194
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Milwaukee",
+                "From": "Chicago",
+                "To": "Elston",
+                "Length (miles)": "0.07",
+                "Facility": "Protected Bike Lane",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.65549029725784,
+                        41.89627321150301
+                    ],
+                    [
+                        -87.65656517484425,
+                        41.89698862319416
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Milwaukee",
+                "From": "Kinzie",
+                "To": "Hubbard",
+                "Length (miles)": "0.11",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.644333925633845,
+                        41.889033572641836
+                    ],
+                    [
+                        -87.645921770354974,
+                        41.890108158578478
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Milwaukee",
+                "From": "Hubbard",
+                "To": "Ohio",
+                "Length (miles)": "0.22",
+                "Facility": "Protected Bike Lane",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.645921770354974,
+                        41.890108158578478
+                    ],
+                    [
+                        -87.649177891223303,
+                        41.892229291994781
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Martin Luther King Jr",
+                "From": "76th",
+                "To": "67th",
+                "Length (miles)": "1.13",
+                "Facility": "Bike Lane",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.61545494949738,
+                        41.772965340974686
+                    ],
+                    [
+                        -87.6150861449882,
+                        41.75660020783682
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Montrose",
+                "From": "Damen",
+                "To": "Clark",
+                "Length (miles)": "0.67",
+                "Facility": "Bike Lane",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.678959149115556,
+                        41.961458245775695
+                    ],
+                    [
+                        -87.665953563182669,
+                        41.961634626351092
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Montrose",
+                "From": "California",
+                "To": "Western",
+                "Length (miles)": "0.5",
+                "Facility": "Bike Lane",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.698483053270436,
+                        41.961249162299644
+                    ],
+                    [
+                        -87.68868299356582,
+                        41.96131284713789
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Polk",
+                "From": "Damen",
+                "To": "Ashland",
+                "Length (miles)": "0.51",
+                "Facility": "Concrete Upgrade",
+                "Status": "Upcoming",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.67619049862947,
+                        41.871492738027165
+                    ],
+                    [
+                        -87.66663925097613,
+                        41.87164008914094
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Polk",
+                "From": "Pulaski",
+                "To": "California",
+                "Length (miles)": "1.51",
+                "Facility": "Neighborhood Bikeway",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.72534490658178,
+                        41.87073084786871
+                    ],
+                    [
+                        -87.69603218002541,
+                        41.871069031897854
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Racine",
+                "From": "Cortland",
+                "To": "Armitage",
+                "Length (miles)": "0.06",
+                "Facility": "Bike Lane",
+                "Status": "Upcoming",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.65828011998039,
+                        41.917193959699041
+                    ],
+                    [
+                        -87.658219106989122,
+                        41.91803416457806
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Rockwell",
+                "From": "Milwaukee",
+                "To": "Logan",
+                "Length (miles)": "0.81",
+                "Facility": "Neighborhood Bikeway",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.69269892815896,
+                        41.92008205741566
+                    ],
+                    [
+                        -87.69286551959543,
+                        41.924891553220995
+                    ],
+                    [
+                        -87.69254073337557,
+                        41.92489826566185
+                    ],
+                    [
+                        -87.69266759628252,
+                        41.92851174932564
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Stony Island",
+                "From": "59th",
+                "To": "56th",
+                "Length (miles)": "0.38",
+                "Facility": "Buffered Bike Lane",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.586634623709642,
+                        41.787901467460244
+                    ],
+                    [
+                        -87.586637570449739,
+                        41.7933838258799
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Sunnyside",
+                "From": "Maplewood",
+                "To": "Lincoln",
+                "Length (miles)": "0.38",
+                "Facility": "Neighborhood Bikeway",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.692409243260315,
+                        41.963115394344868
+                    ],
+                    [
+                        -87.685002331902297,
+                        41.963189997175604
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Winthrop",
+                "From": "Leland",
+                "To": "Argyle",
+                "Length (miles)": "0.42",
+                "Facility": "Neighborhood Bikeway",
+                "Status": "Installed",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.65754002669118,
+                        41.967226714460345
+                    ],
+                    [
+                        -87.657733670950975,
+                        41.973272590695572
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Wells",
+                "From": "17th",
+                "To": "Roosevelt",
+                "Length (miles)": "0.62",
+                "Facility": "Protected Bike Lane",
+                "Status": "Underway",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.63327859244815,
+                        41.860113918493816
+                    ],
+                    [
+                        -87.6334521476443,
+                        41.86741375446255
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Wells",
+                "From": "Roosevelt",
+                "To": "9th",
+                "Length (miles)": "0.23",
+                "Facility": "Buffered Bike Lane",
+                "Status": "Upcoming",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.63349410227197,
+                        41.86741655226773
+                    ],
+                    [
+                        -87.63356299342368,
+                        41.8707427913876
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Wells",
+                "From": "9th",
+                "To": "Harrison",
+                "Length (miles)": "0.26",
+                "Facility": "Shared Lane",
+                "Status": "Upcoming",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.633538754314003,
+                        41.870903501451977
+                    ],
+                    [
+                        -87.633628824244639,
+                        41.874481206533396
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Wentworth",
+                "From": "Cermak",
+                "To": "19th",
+                "Length (miles)": "0.26",
+                "Facility": "Buffered Bike Lane",
+                "Status": "Upcoming",
+                "Planned Year": "2022"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.63202493163747,
+                        41.8529110284024
+                    ],
+                    [
+                        -87.63202493163747,
+                        41.85332918225397
+                    ],
+                    [
+                        -87.63177613488745,
+                        41.85377109187604
+                    ],
+                    [
+                        -87.63187182591449,
+                        41.8566363028285
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "Street": "Leland",
+                "From": "Clark",
+                "To": "Rockwell",
+                "Length (miles)": "1.38",
+                "Facility": "Neighborhood Bikeway",
+                "Status": "Upcoming",
+                "Planned Year": "2023"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -87.66711917801426,
+                        41.9670545556003
+                    ],
+                    [
+                        -87.68667789056377,
+                        41.966813155835375
+                    ],
+                    [
+                        -87.68723867858333,
+                        41.96662296144307
+                    ],
+                    [
+                        -87.68744528469581,
+                        41.96684241646073
+                    ],
+                    [
+                        -87.68812413380454,
+                        41.966674167682065
+                    ],
+                    [
+                        -87.68888168955027,
+                        41.96682047099357
+                    ],
+                    [
+                        -87.69376152915908,
+                        41.96674731937982
+                    ]
+                ]
+            }
+        }
+    ]
+}
