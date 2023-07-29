@@ -6,7 +6,7 @@ from math import radians, sin, cos, sqrt, atan2
 from shapely.geometry import Point, Polygon, shape
 
 # determins how many points to split lines and polygons into
-POINT_RESOLUTION_DISTANCE = 0.010  # km
+POINT_RESOLUTION_DISTANCE = 0.050  # km
 
 
 def export_to_heatmap_csv(geojson_data, output_csv_path):
@@ -93,7 +93,7 @@ def interpolate_points_from_line_string(geometry):
         num_of_interpolated_points = 2
     points = linear_interpolation(line_points[0], line_points[1], num_of_interpolated_points)
 
-    # TODO handle lines with multiple segments
+    # TODO handle lines with multiple segments. Low priority; none of the data has multiple segments
 
     return points
 
@@ -170,38 +170,14 @@ def linear_interpolation(start_point, end_point, num_points):
 
     return interpolated_points
 
-def linear_interpolation2(points, num_points):
-    """ Returns an array of points through linear interpolation between the given points.
-
-    num_points = total number of interpolated points to return in the array (including input points).
-    """
-    if num_points < len(points):
-        raise ValueError("Number of points should be greater than or equal to the number of input points.")
-
-    if len(points) < 2:
-        raise ValueError("At least 2 points are required for interpolation.")
-
-    interpolated_points = []
-    step = (num_points - 1) / (len(points) - 1)
-
-    for i in range(len(points) - 1):
-        x0, y0 = points[i]
-        x1, y1 = points[i + 1]
-
-        for j in range(num_points):
-            ratio = j * step
-            x = x0 + (x1 - x0) * ratio
-            y = y0 + (y1 - y0) * ratio
-            interpolated_points.append((x, y))
-
-    return interpolated_points
-
 def linear_interpolation_by_distance(distance_along_line, data_points):
+    """Not implemented yet. Use to interpolate a point by distance on a multi-segment line."""
+    # TODO test and implement. Low priority; for use in multi-segment linestrings
     total_distance = 0.0
     for i in range(len(data_points) - 1):
         x1, y1 = data_points[i]
         x2, y2 = data_points[i + 1]
-        segment_distance = calculate_distance((x1, y1), (x2, y2))
+        segment_distance = haversine_distance((x1, y1), (x2, y2))
         total_distance += segment_distance
         if total_distance >= distance_along_line:
             remaining_distance = total_distance - distance_along_line
