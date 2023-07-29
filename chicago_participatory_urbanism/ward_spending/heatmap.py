@@ -120,11 +120,14 @@ def interpolate_points_from_polygon(geometry):
 # helper functions
 
 def haversine_distance(coord1, coord2):
-    # Approximate radius of Earth in km
-    R = 6371.0
+    """ Get distance between two GPS coordinates.
+    coord = (longitude, latitude)
+    """
+    # Approximate radius of Earth
+    R = 6371.0 #km
 
-    lat1, lon1 = map(radians, coord1)
-    lat2, lon2 = map(radians, coord2)
+    lon1, lat1 = map(radians, coord1)
+    lon2, lat2 = map(radians, coord2)
 
     dlat = lat2 - lat1
     dlon = lon2 - lon1
