@@ -1,10 +1,76 @@
-import geopandas as gpd
 import pandas as pd
 import re
 
+
+Standard_Cateogories = {
+    "pedestrian": "Pedestrian Infrastructure",
+    "bump outs": "Pedestrian Infrastructure",
+    "bicycle": "Bicycle Infrastructure",
+    "bike": "Bicycle Infrastructure",
+    "neighborhood greenway": "Bicycle Infrastructure",
+    "light": "Lighting",
+    "street resurfacing": "Street Resurfacing",
+    "street speed hump replacement": "Street Resurfacing",
+    "curb & gutter": "Street Resurfacing",
+    "alley": "Alleys",
+    "miscellaneous cdot projects": "Misc. CDOT",
+    "mural": "Beautification",
+    "public art": "Beautification",
+    "tree planting": "Beautification",
+    "turn arrow": "Street Redesign",
+    "street speed hump menu": "Street Redesign",
+    "pavement markings": "Street Redesign",
+    "traffic circle": "Street Redesign",
+    "cul-de-sac": "Street Redesign",
+    "diagnol parking": "Street Redesign",
+    "sidewalk": "Sidewalk Repair",
+    "pod camera": "Police Cameras",
+    "park": "Parks",
+    "playground": "Parks",
+    "garden": "Parks",
+    "viaduct": "Viaducts",
+}
+
+
+# load data in from different years and mark year
+data_2019 = pd.read_csv('explorer/data/menu-postings/2019.csv', index_col=None)
+data_2019['year'] = 2019
+data_2020 = pd.read_csv('explorer/data/menu-postings/2020.csv', index_col=None)
+data_2020['year'] = 2020
+data_2021 = pd.read_csv('explorer/data/menu-postings/2021.csv', index_col=None)
+data_2021['year'] = 2021
+data_2022 = pd.read_csv('explorer/data/menu-postings/2021.csv', index_col=None)
+data_2022['year'] = 2022
+
+# combine into one dataset
+data = pd.concat([data_2019, data_2020, data_2021, data_2022])
+data.reset_index()
+
+## clean up data
+# remove year from items and add as new column
+data['item'] = data['item'].str.replace(r'\s\(\d+\)', '', regex=True)
+# covnert texts to lower case
+data['item'] = data['item'].str.lower()
+# convert cost column to numeric
+data['cost'] = data['cost'].str.replace('[\$,]', '', regex=True).astype(float)
+# add category
+#data["category"] = data["item"].apply(get_menu_category)
+
+# map to standard categories
+data["category"] = data["item"].map(Standard_Cateogories)
+# remaining categories are "Misc."
+data['category'] = data['category'].fillna("Misc.")
+#data.to_csv('data/output/2019-2022 data v1.csv', index=False)
+
+# potential APIs
+# https://nominatim.openstreetmap.org/ui/search.html
+# https://wiki.openstreetmap.org/wiki/OSMPythonTools
+
+
+'''
 def get_menu_category(item):
     item = item.lower()
-    if ("pedestrian" in item 
+    if ("pedestrian" in item
         or "bump outs" in item):
         return "Pedestrian Infrastructure"
     elif ("bicycle" in item
@@ -13,8 +79,8 @@ def get_menu_category(item):
         return "Bicycle Infrastructure"
     elif "light" in item:
         return "Lighting"
-    elif("street resurfacing" in item 
-         or "street speed hump replacement" in item 
+    elif("street resurfacing" in item
+         or "street speed hump replacement" in item
          or "curb & gutter" in item):
         return "Street Resurfacing"
     elif "alley" in item:
@@ -25,10 +91,10 @@ def get_menu_category(item):
           or "public art" in item
           or "tree planting" in item):
         return "Beautification"
-    elif ("turn arrow" in item 
-          or "street speed hump menu" in item 
-          or "pavement markings" in item 
-          or "traffic circle" in item 
+    elif ("turn arrow" in item
+          or "street speed hump menu" in item
+          or "pavement markings" in item
+          or "traffic circle" in item
           or "cul-de-sac" in item
           or "diagnol parking" in item):
         return "Street Redesign"
@@ -44,27 +110,5 @@ def get_menu_category(item):
         return "Viaducts"
     else:
         return "Misc."
-    
 
-# load data in from different years and mark year
-data_2019 = gpd.read_file("data/output/2019 Menu Posting - 22-10-02.csv")
-data_2019['year'] = 2019
-data_2020 = gpd.read_file("data/output/2020 Menu Posting - 22-10-02.csv")
-data_2020['year'] = 2020
-data_2021 = gpd.read_file("data/output/2021 Menu Posting - 22-10-02.csv")
-data_2021['year'] = 2021
-data_2022 = gpd.read_file("data/output/2022 Menu - 2-9-23.csv")
-data_2022['year'] = 2022
-
-# combine into one dataset
-data = pd.concat([data_2019, data_2020, data_2021, data_2022])
-
-## clean up data
-# remove year from items and add as new column
-data['item'] = data['item'].str.replace(r'\s\(\d+\)', '', regex=True)
-# convert cost column to numeric
-data['cost'] = data['cost'].str.replace('[\$,]', '', regex=True).astype(float)
-# add category
-data["category"] = data["item"].apply(get_menu_category)
-
-data.to_csv('data/output/2019-2022 data v1.csv', index=False)
+'''

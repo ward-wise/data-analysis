@@ -1,29 +1,35 @@
+from typing import Optional
 import pandas as pd
-import os
 import geopandas as gpd
 from shapely.ops import unary_union
 from shapely.geometry import Point, MultiPoint, LineString, MultiLineString
 
 # Construct the relative paths to the data files
-module_dir = os.path.dirname(os.path.abspath(__file__))
-root_dir = os.path.dirname(os.path.dirname(module_dir))
-data_dir = os.path.join(root_dir, 'data', 'geocode')
-address_point_path = os.path.join(data_dir, "Address_Points.csv")
-streets_path = os.path.join(data_dir, "Street Center Lines.geojson")
+#module_dir = os.path.dirname(os.path.abspath(__file__))
+#root_dir = os.path.dirname(os.path.dirname(module_dir))
+#data_dir = os.path.join(root_dir, 'data', 'geocode')
+#address_point_path = os.path.join(data_dir, "Address_Points.csv")
+#streets_path = os.path.join(data_dir, "Street Center Lines.geojson")
+
 
 print("Loading geocoding data...")
 
 # address point csv from https://hub-cookcountyil.opendata.arcgis.com/datasets/5ec856ded93e4f85b3f6e1bc027a2472_0/about
-df = pd.read_csv(address_point_path, low_memory=False)
+df = pd.read_csv('data/geocode/Address_Points.csv',
+                 #low_memory=False,
+                 engine='pyarrow',
+                 )
+print('finished loading address points')
 
 # street center lines GeoJSON from https://data.cityofchicago.org/Transportation/Street-Center-Lines/6imu-meau
-gdf = gpd.read_file(streets_path)
+gdf = pd.read_csv('data/geocode/transportation.csv',
+                  engine='pyarrow',
+                  )
 
 print("Data loaded.")
 
 
-
-def get_street_address_coordinates_from_full_name(address: str):
+def get_street_address_coordinates_from_full_name(address: str) -> 'Point':
     """
     Return the GPS coordinates of a street address in Chicago.
 
@@ -44,8 +50,11 @@ def get_street_address_coordinates_from_full_name(address: str):
     return Point(longitude, latitude)
 
 
-
-def get_street_address_coordinates(address_number: int, direction_abbr: str, street_name: str, street_type_abbr: str, fuzziness: int = 10):
+def get_street_address_coordinates(address_number: int,
+                                   direction_abbr: str,
+                                   street_name: str,
+                                   street_type_abbr: str,
+                                   fuzziness: int = 10) -> Optional['Point']:
     """
     Return the GPS coordinates of a street address in Chicago.
 
@@ -88,7 +97,8 @@ def get_street_address_coordinates(address_number: int, direction_abbr: str, str
     return Point(longitude, latitude)
 
 
-def get_intersection_coordinates(street1: str, street2: str):
+def get_intersection_coordinates(street1: str,
+                                 street2: str)-> Optional['Point']:
     """
     Return the GPS coordinates of an intersection in Chicago.
 
@@ -132,3 +142,7 @@ def get_intersection_coordinates(street1: str, street2: str):
     except:
         print(f"Error getting intersection coordinates for {street1} & {street2}")
         return None
+
+
+if __name__ == '__main__':
+    None
