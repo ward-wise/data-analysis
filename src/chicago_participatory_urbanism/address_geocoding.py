@@ -1,11 +1,10 @@
 from shapely.geometry import Point, MultiPoint, LineString, Polygon
-import re
 import math
-import chicago_participatory_urbanism.geocoder as geocoder
-import chicago_participatory_urbanism.ward_spending.address_format_processing as afp
+import geocoder as geocoder
+import address_format_processing as afp
 
 
-def process_location_text(text):
+def process_location_text(text: str):
     """Take the location text from the ward spending data and return a geometry matching the GPS coordinates."""
 
     locations = text.split(";")
@@ -123,3 +122,9 @@ def get_clockwise_sequence(points):
     sorted_points = [p for _, p in sorted(zip(angles, points))]
 
     return sorted_points
+
+
+if __name__ == '__main__':
+    loc_text = 'W FULLERTON AVE &  N WESTERN AVE&N ARTESIAN AVE &  W ALTGELD ST; 2440 N WESTERN AVE'
+    
+    process_location_text(text=loc_text)

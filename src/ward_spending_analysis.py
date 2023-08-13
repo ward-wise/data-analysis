@@ -2,7 +2,7 @@ import pandas as pd
 import re
 
 
-Standard_Cateogories = {
+STANDARD_CATEGORY = {
     "pedestrian": "Pedestrian Infrastructure",
     "bump outs": "Pedestrian Infrastructure",
     "bicycle": "Bicycle Infrastructure",
@@ -57,10 +57,12 @@ data['cost'] = data['cost'].str.replace('[\$,]', '', regex=True).astype(float)
 #data["category"] = data["item"].apply(get_menu_category)
 
 # map to standard categories
-data["category"] = data["item"].map(Standard_Cateogories)
+data["category"] = data["item"].map(STANDARD_CATEGORY)
 # remaining categories are "Misc."
 data['category'] = data['category'].fillna("Misc.")
 #data.to_csv('data/output/2019-2022 data v1.csv', index=False)
+
+print(data.sample(10))
 
 # potential APIs
 # https://nominatim.openstreetmap.org/ui/search.html
@@ -69,6 +71,7 @@ data['category'] = data['category'].fillna("Misc.")
 
 '''
 def get_menu_category(item):
+    
     item = item.lower()
     if ("pedestrian" in item
         or "bump outs" in item):

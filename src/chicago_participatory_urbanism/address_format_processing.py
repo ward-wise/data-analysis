@@ -1,3 +1,6 @@
+''' This section is to break down loacation description text in
+    ward spend PDF report
+'''
 import re
 from enum import auto, Enum
 
@@ -38,14 +41,67 @@ location_patterns = {
 }
 
 
-def get_location_format(location):
-    """Detect and return the address format."""
-    for format, pattern in location_patterns.items():
-        if re.match(pattern, location.strip()):
-            return format
+class LocationStringProcessor:
 
-    print(location)
-    return None
+    def __init__(self, location_string: str) -> None:
+
+        self.loc_string = str(location_string).strip()
+        self.format = self.get_location_format(location=self.loc_string)
+
+    def get_location_format(self, location) -> 'LocationFormat':
+        """Detect and return the address format."""
+        for format, pattern in location_patterns.items():
+            if re.match(pattern, location.strip()):
+
+                return format
+
+        return None
+
+    def run(self):
+
+        match self.format:
+            case LocationFormat.STREET_ADDRESS:
+                return {'format': self.format,
+                        'proc_string': None}
+
+            case LocationFormat.STREET_ADDRESS_RANGE:
+                return {
+                    'format': self.format,
+                    'proc_string':extract_address_range_street_addresses(self.loc_string)
+                }
+
+            case LocationFormat.ALLEY:
+                return {
+                    'format': self.format,
+                    'proc_string': extract_alley_street_names(self.loc_string)
+                    }
+
+            case LocationFormat.INTERSECTION:
+                return {
+                    'format': self.format,
+                    'proc_string': extract_intersection_street_names(self.loc_string)
+                    }
+
+            case LocationFormat.STREET_SEGMENT_INTERSECTIONS:
+                return {
+                    'format': self.format,
+                    'proc_string': extract_segment_intersections_street_names(self.loc_string)
+                    }
+
+            case LocationFormat.STREET_SEGMENT_ADDRESS_INTERSECTION:
+                return {
+                    'format': self.format,
+                    'proc_string': extract_segment_address_intersection_info(self.loc_string)
+                    }
+
+            case LocationFormat.STREET_SEGMENT_INTERSECTION_ADDRESS:
+                return {
+                    'format': self.format,
+                    'proc_string': extract_segment_intersection_address_info(self.loc_string)
+                    }
+
+            case _ :
+                return 'no match'
 
 
 def extract_segment_intersections_address_range(street_segment_intersections):
@@ -79,7 +135,7 @@ def extract_segment_intersections_street_names(street_segment_intersections):
         return (primary_street, cross_street1, cross_street2)
     else:
         return None, None, None
-    
+
 
 def get_location_text_format(text):
     """Return a string of detected formats. Use this function to debug address format matching en masse."""
@@ -148,3 +204,11 @@ def extract_segment_intersection_address_info(location):
     address = f"{street_number} {primary_street}"
 
     return (primary_street_name, cross_street_name, address)
+
+if __name__ == '__main__':
+    loc_1 = 'W FULLERTON AVE &  N WESTERN AVE&N ARTESIAN AVE &  W ALTGELD ST; 2440 N WESTERN AVE'
+    loc_2 ='N MILWAUKEE AVE & N WASHTENAW AVE'
+    loc_3 = '5300-5330 S PRAIRIE AVE'
+    loc_4 = 'ON W 70TH ST FROM S GREEN ST (830 W) TO S PEORIA ST (900 W)'
+
+    print(LocationStringProcessor(location_string=loc_4).run())

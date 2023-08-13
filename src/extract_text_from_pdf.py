@@ -39,7 +39,7 @@ def get_table_data(text, cm, tm, fontDict, fontSize):
 
     x = tm[4]
     y = tm[5]
-    
+
     if (text != "" and text != "\n"):
 
         text = text.replace("\n", "").strip()
@@ -73,7 +73,7 @@ def get_table_data(text, cm, tm, fontDict, fontSize):
 
             elif(is_cost(x)):
                 current_row["cost"] += text
-            
+
 
             last_y = y
             last_x = x
@@ -89,12 +89,12 @@ with open(file_path, 'rb') as pdf_file:
 
     # Loop through each page in the PDF file
     for page_num in range(num_pages):
-        
+
         # reset last_x and last_y for new page
         # needed to prevent issue when item on next page matches coords of last item on previous page
         last_y = 0
         last_x = 0
-        
+
         page = pdf_reader.pages[page_num]
         page.extract_text(visitor_text=get_table_data)
 
@@ -110,7 +110,7 @@ with open(output_file_path, "w", newline="") as csvfile:
     writer.writerow(["ward","item", "location", "cost"])
 
     for row in data:
-        if ((row["item"] != "MENU BUDGET") 
+        if ((row["item"] != "MENU BUDGET")
             and not (re.search("WARD COMMITTED 20\d\d TOTAL", row["item"]))
             and not (re.search("WARD 20\d\d BALANCE", row["item"]))
             and row["ward"] != 0):

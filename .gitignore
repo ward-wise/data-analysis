@@ -14,3 +14,6 @@ lib64
 pyvenv.cfg
 share/
 include/
+
+# environment file
+.env
