@@ -1,59 +1,63 @@
-from typing import Type, Any
+'''
+This section is taking processed street addresses and
+return multi_string coordinates in maps coordinates
+'''
+from typing import Any, TypedDict
 import os
 import requests
-import pandas as pd
+import numpy as np
 from dotenv import load_dotenv
+from itertools import combinations
 from address_format_processing import LocationFormat, LocationStringProcessor
+import time
 
 
 load_dotenv()
 
 
-class StreetCenterline:
-# https://data.cityofchicago.org/Transportation/Street-Center-Lines/6imu-meau
-# address point csv from https://hub-cookcountyil.opendata.arcgis.com/datasets/5ec856ded93e4f85b3f6e1bc027a2472_0/about
-# headers to query socrata api
-# https://dev.socrata.com/foundry/data.cityofchicago.org/pr57-gg9e
+class GeoCoder:
+    # https://data.cityofchicago.org/Transportation/Street-Center-Lines/6imu-meau
+    # address point csv from https://hub-cookcountyil.opendata.arcgis.com/datasets/5ec856ded93e4f85b3f6e1bc027a2472_0/about
+    # https://dev.socrata.com/foundry/data.cityofchicago.org/pr57-gg9e
+    # https://datacatalog.cookcountyil.gov/GIS-Maps/Cook-County-Address-Points/78yw-iddh
+
+    'headers to query socrata api'
     api_header = {
         'Accept': 'application/json',
         'X-App-Token': os.getenv('app_token'),
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0'
     }
 
     def __init__(self,
                  add_string: str = None,
                  add_processor: Any = LocationStringProcessor,
                  ) -> None:
-
-        self.address_string = add_string
-        self.processor = add_processor
-
+        # location strings and text processor
+        self.address_string: str = add_string
+        self.processor: Any = add_processor
         # variable to track street names and format type return by processor
-        self.streets = None
-        self.format = None
-        # variable to keep multi_strings return by API
-        self.multiStrings = set()
+        self.streets: str = None
+        self.format: Any = None
+        # variable to keep track of coordinates return by API
+        self.coors: list = []
 
         if self.address_string is not None:
             self.run_processor()
 
-    def __repr__(self) -> str:
-        return repr(self.streets)
-
-    def run_processor(self):
+    def run_processor(self) -> 'GeoCoder':
         'run street text processor'
 
         processing = (
-            self.processor(location_string=self.address_string).run()
-        )
+            self.processor(location_string=self.address_string).run())
 
         self.streets = processing['proc_string']
         self.format = processing['format']
+        return self
 
-        return processing
-
-    def query_api(self,
-                  params: dict,
-                  sql_func: str = None) -> str:
+    def query_transport_api(
+            self,
+            params: dict,
+            sql_func: str = None) -> TypedDict:
         # https://data.cityofchicago.org/Transportation/Street-Center-Lines/6imu-meau
         # https://dev.socrata.com/foundry/data.cityofchicago.org/pr57-gg9e
         # dataset metadata : https://data.cityofchicago.org/dataset/transportation/pr57-gg9e
@@ -69,9 +73,10 @@ class StreetCenterline:
             "logiclf" left from street number
             "logiclt" to street number
         '''
+        time.sleep(0.1)
         base_link = "https://data.cityofchicago.org/resource/pr57-gg9e.json?$where="
         query_params = ' AND '.join(k + ' like ' + "'"+str(v).upper() + "'"
-                                for k, v in params.items())
+                                    for k, v in params.items())
 
         if sql_func is not None:
             '''
@@ -88,154 +93,251 @@ class StreetCenterline:
         resp = requests.get(link, headers=self.api_header)
         return resp.json()
 
-    def find_intersections(self,
-                           ):
+    def query_address_api(self,
+                          params: dict,
+                          sql_func: str = None) -> TypedDict:
+        '''
+        useful fields:
+        "Add_Number"-address number
+        "st_name"
+        "cmpaddabrv"
+        '''
+        time.sleep(0.1)
 
-        return None
-    
-    def find_alley(self):
-        
-        return None
-        
+        base_link = 'https://datacatalog.cookcountyil.gov/resource/78yw-iddh.json?$where='
+        query_params = ' AND '.join(k + ' like ' + "'"+str(v).upper() + "'"
+                                    for k, v in params.items())
 
-    def download_centerline_to_dataframe(self) -> pd.DataFrame:
-        'in case we need to download the entire file into dataframe'
-        download_link = 'https://data.cityofchicago.org/api/views/pr57-gg9e/rows.csv?accessType=DOWNLOAD'
+        if sql_func is not None:
+            sql_func_string = 'AND ' + sql_func
+            link = base_link + query_params + sql_func_string
+            resp = requests.get(link, headers=self.api_header)
+            return resp.json()
 
-        return pd.read_csv(download_link, index_col=None)
+        link = base_link + query_params
+        resp = requests.get(link, headers=self.api_header)
+
+        return resp.json()
+
+    def query_nominatim(self, query_string) -> TypedDict:
+        '''
+        rate limit of 1 request per second,
+        example - 200 E 40TH ST
+        https://nominatim.openstreetmap.org/search?q=200 E 40TH ST chicago il&format=jsonv2
+        '''
+        time.sleep(1)
+        user_header = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0'
+        }
+        query_string = query_string + ' chicago il'
+
+        query_link = f'https://nominatim.openstreetmap.org/search?q={query_string}&format=jsonv2'
+
+        resp = requests.get(query_link, headers=user_header)
+
+        return resp.json()
+
+    def find_intersections(self) -> 'GeoCoder':
+        '''
+        should be use for format type:
+        -LocationFormat.INTERSECTION
+        -LocationFormat.STREET_SEGMENT_INTERSECTIONS
+        '''
+        match len(self.streets):
+            case 2:
+                'in case of 2 streets, it is intersection'
+                street_1, street_2 = self.streets
+
+                results = self.query_transport_api(
+                                params={'street_nam': street_1},
+                                sql_func=f'f_cross like "%25{street_2}%25"')
+                # reshape nested lists
+                _coordinate = list(np.array(results[0]['the_geom']['coordinates']).reshape(-1, 2)[0])
+                self.coors.append(_coordinate)
+                return self
+
+            case 3:
+                'in case of 3, section between two streets, should be a line'
+                street_1, street_2, street_3 = self.streets
+
+                for st in street_2, street_3:
+                    try:
+                        results = self.query_transport_api(
+                                    params={'street_nam': street_1},
+                                    sql_func=f'f_cross like "%25{st}%25"')
+                        _coordinate = list(
+                            np.array(results[0]['the_geom']['coordinates']).reshape(-1, 2)[0]
+                        )
+                    except IndexError:
+                        'if returned results is empty'
+                        results = self.query_transport_api(
+                            params={'street_nam': street_1},
+                            sql_func=f't_cross like "%25{st}%25"'
+                        )
+                        # should be appending the last coordinate instead of first
+                        _coordinate = list(
+                            np.array(results[0]['the_geom']['coordinates']).reshape(-1, 2)[-1]
+                        )
+                    self.coors.append(_coordinate)
+                return self
+
+    def find_alley(self) -> 'GeoCoder':
+        'use for LocationFormat.ALLEY'
+        '''
+        example: ('WOOD', 'AUGUSTA', 'CORTEZ', 'HERMITAGE')
+        pairs ('WOOD', 'AUGUSTA'), ('WOOD', 'CORTEZ'),
+        ('HERMITAGE', 'AUGUSTA'), ('HERMITAGE', 'CORTEZ')
+        '''
+        if len(self.streets) < 4:
+            raise ValueError('need 4 streets for alley')
+
+        # make pairs of unique combinations
+        make_pairs = list(combinations(self.streets, 2))
+        corners = set()
+        for pair in make_pairs:
+            try:
+                results = self.query_transport_api(
+                    params={'street_nam': pair[0]},
+                    sql_func=f'f_cross like "%25{pair[1]}%25"')
+                _coordinate = tuple(
+                    np.array(results[0]['the_geom']['coordinates']).reshape(-1, 2)[0]
+                )
+                corners.add(_coordinate)
+            except IndexError:
+                "returned nothing from API, maybe streets don't cross"
+                continue
+
+        self.coors = list(corners)
+        return self
+
+    def find_address(self) -> 'GeoCoder':
+        # match type of self.streets
+        # single address -> type string of actual address
+        # more address -> type tuple with 2 address
+        match self.streets:
+
+            case str():
+                try:
+                    results = self.query_address_api(
+                        params={'cmpaddabrv': str(self.streets).upper()})
+
+                    _coordinate = list(
+                        np.array(results[0]['the_geom']['coordinates']).reshape(-1, 2)[0])
+                    self.coors.append(_coordinate)
+
+                except IndexError:
+                    'if API return empty'
+                    results = self.query_nominatim(
+                        query_string=str(self.streets).upper()
+                    )
+                    _coordinate = (float(results[0]['lon']), float(results[0]['lat']))
+                    self.coors.append(_coordinate)
+                return self
+
+            case tuple():
+                for st in self.streets:
+                    try:
+                        results = self.query_address_api(
+                            params={'cmpaddabrv': str(st).upper()})
+
+                        _coordinate = list(
+                            np.array(results[0]['the_geom']['coordinates']).reshape(-1, 2)[0])
+                        self.coors.append(_coordinate)
+
+                    except IndexError:
+                        'if API return empty'
+                        results = self.query_nominatim(
+                            query_string=str(st).upper()
+                        )
+                        _coordinate = (float(results[0]['lon']), float(results[0]['lat']))
+                        self.coors.append(_coordinate)
+                return self
+
+        return self
+
+    def find_address_to_intersection(self) -> 'GeoCoder':
+        '''
+        two parts:
+        1- find point address
+        2- find intersection
+        '''
+        # find point address
+        try:
+            results = self.query_address_api(
+                params={'cmpaddabrv': str(self.streets[0]).upper()})
+
+            _coordinate = list(
+                np.array(results[0]['the_geom']['coordinates']).reshape(-1, 2)[0])
+            self.coors.append(_coordinate)
+
+        except IndexError:
+            'if API return empty'
+            results = self.query_nominatim(
+                query_string=str(self.streets).upper()
+            )
+            _coordinate = (float(results[0]['lon']), float(results[0]['lat']))
+            self.coors.append(_coordinate)
+
+        'in case of 2 streets, it is intersection'
+        street_1, street_2 = (self.streets[1], self.streets[2])
+
+        results = self.query_transport_api(
+                        params={'street_nam': street_1},
+                        sql_func=f'f_cross like "%25{street_2}%25"')
+        # reshape nested lists
+        _coordinate = list(np.array(results[0]['the_geom']['coordinates']).reshape(-1, 2)[0])
+        self.coors.append(_coordinate)
+
+        return self
+
+    def run(self) -> list:
+        'run coordinate finder and return a list of coordinates'
+
+        if ((self.format == LocationFormat.INTERSECTION) or
+                (self.format == LocationFormat.STREET_SEGMENT_INTERSECTIONS)):
+
+            self.find_intersections()
+            return self.coors
+
+        elif self.format == LocationFormat.STREET_SEGMENT_ADDRESS_INTERSECTION:
+
+            self.find_address_to_intersection()
+            return self.coors
+
+        elif self.format == LocationFormat.ALLEY:
+
+            self.find_alley()
+            return self.coors
+
+        elif ((self.format == LocationFormat.STREET_ADDRESS) or
+                (self.format == LocationFormat.STREET_ADDRESS_RANGE)):
+
+            self.find_address()
+            return self.coors
 
 
 if __name__ == '__main__':
-    loc_1 = 'W FULLERTON AVE &  N WESTERN AVE&N ARTESIAN AVE &  W ALTGELD ST; 2440 N WESTERN AVE'
-    loc_2 ='N MILWAUKEE AVE & N WASHTENAW AVE'
+    loc_1 = 'ON N RIDGEWAY AVE FROM W SCHOOL ST (3300 N) TO W BELMONT AVE (3200 N)'
+    loc_2 = 'N MILWAUKEE AVE & N WASHTENAW AVE'
     loc_3 = '5300-5330 S PRAIRIE AVE'
     loc_4 = 'ON W 70TH ST FROM S GREEN ST (830 W) TO S PEORIA ST (900 W)'
-    loc_5 = '434-442 E 46TH PL'
-    loc_6 = 'E MADISON PARK & S DORCHESTER AVE & S WOODLAWN AVE & E 50TH ST'
+    loc_5 = '434-442 E 46TH PL'  # unable to find address in address API
+    loc_6 = 'S DORCHESTER AVE & E MADISON PARK  & S WOODLAWN AVE & E 50TH ST'  # shouldn't be intersection, should be alley
     loc_7 = 'ON N LEAVITT ST FROM W DIVISION ST (1200 N) TO W NORTH AVE (1600 N)'
     loc_8 = 'N WOOD ST & W AUGUSTA BLVD & W CORTEZ ST & N HERMITAGE AVE'
-    print(StreetCenterline(
-            loc_7,
-            ).format
+    loc_9 = 'ON W 52ND PL FROM 322 W TO S PRINCETON AVE (300 W)'  #
+    loc_10 = '3221 W ARMITAGE AVE'
+    loc_11 = 'ON N KOLMAR AVE FROM W CORNELIA AVE (3500 N) TO W ADDISON ST (3600 N)'
+    loc_12 = '200-250 E 40TH ST'  # unable to find addresss
+    loc_13 = 'N WHIPPLE ST & W BLOOMINGDALE AVE & N HUMBOLDT BLVD W & W CORTLAND ST'
+
+    test_case = loc_13
+    print(GeoCoder(
+            test_case,
+            ).format)
+    print(GeoCoder(
+            add_string=test_case
+            ).streets)
+    print(GeoCoder(
+        add_string=test_case).run()
     )
-    print(StreetCenterline(
-            add_string=loc_7
-            ).streets
-    )
-'''
-def get_street_address_coordinates_from_full_name(address: str) -> 'Point':
-    """
-    Return the GPS coordinates of a street address in Chicago.
-
-    Parameters:
-    - address (string): A street address in Chicago matching the following format: "1763 W BELMONT AVE"
-
-    Returns:
-    - Point: A Shapely point with the GPS coordinates of the address (longitude, latitude).
-    """
-    result = df[df['CMPADDABRV'] == address.upper()]
-
-    try:
-        longitude = result["Long"].iloc[0]
-        latitude = result["Lat"].iloc[0]
-    except:
-        (longitude, latitude) = (0,0)
-
-    return Point(longitude, latitude)
-
-
-def get_street_address_coordinates(address_number: int,
-                                   direction_abbr: str,
-                                   street_name: str,
-                                   street_type_abbr: str,
-                                   fuzziness: int = 10) -> Optional['Point']:
-    """
-    Return the GPS coordinates of a street address in Chicago.
-
-    Parameters:
-    - address_number (int): A street number in Chicago. Ex: 1736
-    - direction_abbrev (str): An abbreviated cardinal direction. Ex: "W"
-    - street_name (str): A street name in Chicago. Ex: "BELMONT"
-    - street_type_abbr (str): An abbreviated street type. Ex: "AVE"
-    - fuzziness (int): The number of addresses +/- the desired address number when searching for coordinates. The function will always return the closest address' coordinates.
-
-
-    Returns:
-    - Point: A Shapely point with the GPS coordinates of the address (longitude, latitude).
-    """
-    results = df[(address_number - fuzziness <= df['Add_Number']) &
-                (df['Add_Number'] <= address_number + fuzziness) &
-                (df['LSt_PreDir'] == direction_abbr.upper()) &
-                (df['St_Name'] == street_name.upper()) &
-                (df['LSt_Type'] == street_type_abbr.upper())].copy()
-
-    # print(results[['Add_Number', 'St_Name','Long','Lat']])
-
-    exact_address = results[results['Add_Number'] == address_number]
-
-    try:
-        if not exact_address.empty:
-            # use exact address
-            longitude = exact_address["Long"].iloc[0]
-            latitude = exact_address["Lat"].iloc[0]
-        else:
-            # find closest address
-            results['difference'] = abs(results['Add_Number'] - address_number)
-            closest_index = results['difference'].idxmin()
-            longitude = results.loc[closest_index, "Long"]
-            latitude = results.loc[closest_index, "Lat"]
-    except:
-        print(f"Error finding coordinates for street address {address_number} {direction_abbr} {street_name} {street_type_abbr}")
-        return None
-
-    return Point(longitude, latitude)
-
-
-def get_intersection_coordinates(street1: str,
-                                 street2: str)-> Optional['Point']:
-    """
-    Return the GPS coordinates of an intersection in Chicago.
-
-    Parameters:
-    - street1 (str): A street name in Chicago. Ex: "BELMONT"
-    - street2 (str): A street name in Chicago. Ex: "CLARK"
-
-    Returns:
-    - Point: A Shapely point with the GPS coordinates of the address (longitude, latitude).
-    """
-    if(street1 == street2):
-        return None
-
-    # select street shapes from data
-    street1_data = gdf[gdf["street_nam"] == street1.upper()]
-    street2_data = gdf[gdf["street_nam"] == street2.upper()]
-
-    try:
-        # join street shapes together
-        street1_geometry = unary_union(street1_data['geometry'])
-        street2_geometry = unary_union(street2_data['geometry'])
-
-        intersection = street1_geometry.intersection(street2_geometry)
-
-        if not intersection.is_empty:
-            if isinstance(intersection, MultiPoint):
-                # extract first point of multipoint
-                ## (this tends to happen when one half of the intersecting street is offset from the other half)
-                first_point = intersection.geoms[0]
-                return
-            if isinstance(intersection, LineString):
-                first_point = intersection.coords[0]
-                return first_point
-            if isinstance(intersection, MultiLineString):
-                first_point = intersection.geoms[0].coords[0]
-                return first_point
-            else:
-                return intersection
-        else:
-            return None
-    except:
-        print(f"Error getting intersection coordinates for {street1} & {street2}")
-        return None
-
-
-'''
