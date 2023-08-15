@@ -15,6 +15,7 @@ class LocationFormat(Enum):
     STREET_SEGMENT_ADDRESS_INTERSECTION = auto()
     STREET_SEGMENT_INTERSECTION_ADDRESS = auto()
     ALLEY = auto()
+    UNIDENTIFY = auto()
 
 
 street_suffixes = "(?:AVE|BLVD|CRES|CT|DR|ER|EXPY|HWY|LN|PKWY|PL|PLZ|RD|RL|ROW|SQ|SR|ST|TER|TOLL|WAY|XR)"
@@ -55,7 +56,7 @@ class LocationStringProcessor:
         for format, pattern in location_patterns.items():
             if re.match(pattern, location.strip()):
                 return format
-        return None
+        return LocationFormat.UNIDENTIFY
 
     def run(self) -> Dict[LocationFormat, str]:
         match self.format:
@@ -100,7 +101,10 @@ class LocationStringProcessor:
                 }
 
             case _:
-                return 'no match'
+                return {
+                    'format': self.format,
+                    'proc_string': None
+                }
 
 
 def extract_street_name_and_number(street_string):
@@ -219,10 +223,6 @@ def extract_segment_intersection_address_info(location):
 
 
 if __name__ == '__main__':
-    loc_1 = 'W FULLERTON AVE &  N WESTERN AVE&N ARTESIAN AVE &  W ALTGELD ST; 2440 N WESTERN AVE'
-    loc_2 = 'N MILWAUKEE AVE & N WASHTENAW AVE'
-    loc_3 = '5300-5330 S PRAIRIE AVE'
-    loc_4 = '200-250 E 40TH ST'
-
-    print(extract_street_name_and_number(loc_4))
-    print(LocationStringProcessor(location_string=loc_4).run())
+    loc_1 = '6754 S EUCLID AVE; ON W 68TH ST FROM S BENNETT AVE  (1900 E) TO S EUCLID AVE  (1930 E)'
+    print(extract_street_name_and_number(loc_1))
+    print(LocationStringProcessor(location_string=loc_1).run())

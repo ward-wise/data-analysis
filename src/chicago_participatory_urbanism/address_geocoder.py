@@ -147,12 +147,22 @@ class GeoCoder:
             case 2:
                 'in case of 2 streets, it is intersection'
                 street_1, street_2 = self.streets
+                try:
+                    results = self.query_transport_api(
+                                    params={'street_nam': street_1},
+                                    sql_func=f'f_cross like "%25{street_2}%25"')
+                    # reshape nested lists
 
-                results = self.query_transport_api(
-                                params={'street_nam': street_1},
-                                sql_func=f'f_cross like "%25{street_2}%25"')
-                # reshape nested lists
-                _coordinate = list(np.array(results[0]['the_geom']['coordinates']).reshape(-1, 2)[0])
+                    _coordinate = tuple(np.array(results[0]['the_geom']['coordinates']).reshape(-1, 2)[0])
+
+                except IndexError:
+                    results = self.query_transport_api(
+                                    params={'street_nam': street_1},
+                                    sql_func=f't_cross like "%25{street_2}%25"')
+                    # reshape nested lists
+
+                    _coordinate = tuple(np.array(results[0]['the_geom']['coordinates']).reshape(-1, 2)[0])
+
                 self.coors.append(_coordinate)
                 return self
 
@@ -165,7 +175,7 @@ class GeoCoder:
                         results = self.query_transport_api(
                                     params={'street_nam': street_1},
                                     sql_func=f'f_cross like "%25{st}%25"')
-                        _coordinate = list(
+                        _coordinate = tuple(
                             np.array(results[0]['the_geom']['coordinates']).reshape(-1, 2)[0]
                         )
                     except IndexError:
@@ -174,10 +184,14 @@ class GeoCoder:
                             params={'street_nam': street_1},
                             sql_func=f't_cross like "%25{st}%25"'
                         )
+                        if len(results) != 0:
                         # should be appending the last coordinate instead of first
-                        _coordinate = list(
-                            np.array(results[0]['the_geom']['coordinates']).reshape(-1, 2)[-1]
-                        )
+                            _coordinate = tuple(
+                                np.array(results[0]['the_geom']['coordinates']).reshape(-1, 2)[-1]
+                            )
+                        else:
+                            _coordinate = None
+
                     self.coors.append(_coordinate)
                 return self
 
@@ -220,10 +234,11 @@ class GeoCoder:
                 try:
                     results = self.query_address_api(
                         params={'cmpaddabrv': str(self.streets).upper()})
-
-                    _coordinate = list(
+                    _coordinate = tuple(
                         np.array(results[0]['the_geom']['coordinates']).reshape(-1, 2)[0])
                     self.coors.append(_coordinate)
+
+                    return self
 
                 except IndexError:
                     'if API return empty'
@@ -232,6 +247,12 @@ class GeoCoder:
                     )
                     _coordinate = (float(results[0]['lon']), float(results[0]['lat']))
                     self.coors.append(_coordinate)
+
+                    return self
+
+                except KeyError:
+                    self.coors = None
+
                 return self
 
             case tuple():
@@ -266,7 +287,7 @@ class GeoCoder:
             results = self.query_address_api(
                 params={'cmpaddabrv': str(self.streets[0]).upper()})
 
-            _coordinate = list(
+            _coordinate = tuple(
                 np.array(results[0]['the_geom']['coordinates']).reshape(-1, 2)[0])
             self.coors.append(_coordinate)
 
@@ -275,7 +296,7 @@ class GeoCoder:
             results = self.query_nominatim(
                 query_string=str(self.streets).upper()
             )
-            _coordinate = (float(results[0]['lon']), float(results[0]['lat']))
+            _coordinate = tuple(float(results[0]['lon']), float(results[0]['lat']))
             self.coors.append(_coordinate)
 
         'in case of 2 streets, it is intersection'
@@ -285,7 +306,7 @@ class GeoCoder:
                         params={'street_nam': street_1},
                         sql_func=f'f_cross like "%25{street_2}%25"')
         # reshape nested lists
-        _coordinate = list(np.array(results[0]['the_geom']['coordinates']).reshape(-1, 2)[0])
+        _coordinate = tuple(np.array(results[0]['the_geom']['coordinates']).reshape(-1, 2)[0])
         self.coors.append(_coordinate)
 
         return self
@@ -315,6 +336,15 @@ class GeoCoder:
             self.find_address()
             return self.coors
 
+        elif self.format == LocationFormat.UNIDENTIFY:
+
+            self.coors = None
+            return self.coors
+        else:
+
+            self.coors = None
+            return self.coors
+
 
 if __name__ == '__main__':
     loc_1 = 'ON N RIDGEWAY AVE FROM W SCHOOL ST (3300 N) TO W BELMONT AVE (3200 N)'
@@ -331,7 +361,11 @@ if __name__ == '__main__':
     loc_12 = '200-250 E 40TH ST'  # unable to find addresss
     loc_13 = 'N WHIPPLE ST & W BLOOMINGDALE AVE & N HUMBOLDT BLVD W & W CORTLAND ST'
 
-    test_case = loc_13
+    err_1 = '1400 N CAMPBELL AVE; N CAMPBELL AVE &  W LE MOYNE ST&W HIRSCH ST &  N MAPLEWOOD AVE'
+    err_2 = '6754 S EUCLID AVE; ON W 68TH ST FROM S BENNETT AVE  (1900 E) TO S EUCLID AVE  (1930 E)'
+    err_3 = '1110 N STATE ST; 1030 N STATE ST'
+    err_4 = 'ON W EVERGREEN AVE FROM N MILWAUKEE AVE  (1800 W) TO W SCHILLER ST  (1900 W)'
+    test_case = err_3
     print(GeoCoder(
             test_case,
             ).format)
@@ -341,3 +375,10 @@ if __name__ == '__main__':
     print(GeoCoder(
         add_string=test_case).run()
     )
+    print(GeoCoder(
+         add_string=test_case).query_transport_api(params={'street_nam': 'EVERGREEN'},
+                                                   sql_func='f_cross like "%25SCHILLER%25"')
+    )
+    print(GeoCoder(
+         add_string=test_case).query_nominatim(query_string='1110 N STATE ST')
+          )
