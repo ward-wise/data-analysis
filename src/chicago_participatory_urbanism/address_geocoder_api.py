@@ -29,30 +29,14 @@ class GeoCoder:
     }
 
     def __init__(self,
-                 add_string: str = None,
-                 add_processor: Any = LocationStringProcessor,
+                 address_string: str = None,
+                 address_format: Any = LocationFormat,
                  ) -> None:
         # location strings and text processor
-        self.address_string: str = add_string
-        self.processor: Any = add_processor
-        # variable to track street names and format type return by processor
-        self.streets: str = None
-        self.format: Any = None
+        self.address_string: str = address_string
+        self.address_format: Any = address_format
         # variable to keep track of coordinates return by API
         self.coors: list = []
-
-        if self.address_string is not None:
-            self.run_processor()
-
-    def run_processor(self) -> 'GeoCoder':
-        'run street text processor'
-
-        processing = (
-            self.processor(location_string=self.address_string).run())
-
-        self.streets = processing['proc_string']
-        self.format = processing['format']
-        return self
 
     def query_transport_api(
             self,
@@ -73,7 +57,6 @@ class GeoCoder:
             "logiclf" left from street number
             "logiclt" to street number
         '''
-        time.sleep(0.1)
         base_link = "https://data.cityofchicago.org/resource/pr57-gg9e.json?$where="
         query_params = ' AND '.join(k + ' like ' + "'"+str(v).upper() + "'"
                                     for k, v in params.items())
@@ -102,8 +85,6 @@ class GeoCoder:
         "st_name"
         "cmpaddabrv"
         '''
-        time.sleep(0.1)
-
         base_link = 'https://datacatalog.cookcountyil.gov/resource/78yw-iddh.json?$where='
         query_params = ' AND '.join(k + ' like ' + "'"+str(v).upper() + "'"
                                     for k, v in params.items())
@@ -126,14 +107,13 @@ class GeoCoder:
         https://nominatim.openstreetmap.org/search?q=200 E 40TH ST chicago il&format=jsonv2
         '''
         time.sleep(1)
-        user_header = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0'
-        }
+        nom_header = self.api_header.copy()
+        nom_header.pop('X-App-Token')
         query_string = query_string + ' chicago il'
 
         query_link = f'https://nominatim.openstreetmap.org/search?q={query_string}&format=jsonv2'
 
-        resp = requests.get(query_link, headers=user_header)
+        resp = requests.get(query_link, headers=nom_header)
 
         return resp.json()
 
@@ -143,10 +123,10 @@ class GeoCoder:
         -LocationFormat.INTERSECTION
         -LocationFormat.STREET_SEGMENT_INTERSECTIONS
         '''
-        match len(self.streets):
+        match len(self.address_string):
             case 2:
                 'in case of 2 streets, it is intersection'
-                street_1, street_2 = self.streets
+                street_1, street_2 = self.address_string
                 try:
                     results = self.query_transport_api(
                                     params={'street_nam': street_1},
@@ -168,7 +148,7 @@ class GeoCoder:
 
             case 3:
                 'in case of 3, section between two streets, should be a line'
-                street_1, street_2, street_3 = self.streets
+                street_1, street_2, street_3 = self.address_string
 
                 for st in street_2, street_3:
                     try:
@@ -185,7 +165,7 @@ class GeoCoder:
                             sql_func=f't_cross like "%25{st}%25"'
                         )
                         if len(results) != 0:
-                        # should be appending the last coordinate instead of first
+                            # should be appending the last coordinate instead of first
                             _coordinate = tuple(
                                 np.array(results[0]['the_geom']['coordinates']).reshape(-1, 2)[-1]
                             )
@@ -202,11 +182,11 @@ class GeoCoder:
         pairs ('WOOD', 'AUGUSTA'), ('WOOD', 'CORTEZ'),
         ('HERMITAGE', 'AUGUSTA'), ('HERMITAGE', 'CORTEZ')
         '''
-        if len(self.streets) < 4:
+        if len(self.address_string) < 4:
             raise ValueError('need 4 streets for alley')
 
         # make pairs of unique combinations
-        make_pairs = list(combinations(self.streets, 2))
+        make_pairs = list(combinations(self.address_string, 2))
         corners = set()
         for pair in make_pairs:
             try:
@@ -225,15 +205,15 @@ class GeoCoder:
         return self
 
     def find_address(self) -> 'GeoCoder':
-        # match type of self.streets
+        # match type of self.address_string
         # single address -> type string of actual address
         # more address -> type tuple with 2 address
-        match self.streets:
+        match self.address_string:
 
             case str():
                 try:
                     results = self.query_address_api(
-                        params={'cmpaddabrv': str(self.streets).upper()})
+                        params={'cmpaddabrv': str(self.address_string).upper()})
                     _coordinate = tuple(
                         np.array(results[0]['the_geom']['coordinates']).reshape(-1, 2)[0])
                     self.coors.append(_coordinate)
@@ -243,10 +223,13 @@ class GeoCoder:
                 except IndexError:
                     'if API return empty'
                     results = self.query_nominatim(
-                        query_string=str(self.streets).upper()
+                        query_string=str(self.address_string).upper()
                     )
-                    _coordinate = (float(results[0]['lon']), float(results[0]['lat']))
-                    self.coors.append(_coordinate)
+                    if results:
+                        _coordinate = (float(results[0]['lon']), float(results[0]['lat']))
+                        self.coors.append(_coordinate)
+                    else:
+                        self.coors = None
 
                     return self
 
@@ -256,7 +239,7 @@ class GeoCoder:
                 return self
 
             case tuple():
-                for st in self.streets:
+                for st in self.address_string:
                     try:
                         results = self.query_address_api(
                             params={'cmpaddabrv': str(st).upper()})
@@ -285,7 +268,7 @@ class GeoCoder:
         # find point address
         try:
             results = self.query_address_api(
-                params={'cmpaddabrv': str(self.streets[0]).upper()})
+                params={'cmpaddabrv': str(self.address_string[0]).upper()})
 
             _coordinate = tuple(
                 np.array(results[0]['the_geom']['coordinates']).reshape(-1, 2)[0])
@@ -294,13 +277,13 @@ class GeoCoder:
         except IndexError:
             'if API return empty'
             results = self.query_nominatim(
-                query_string=str(self.streets).upper()
+                query_string=str(self.address_string).upper()
             )
             _coordinate = tuple(float(results[0]['lon']), float(results[0]['lat']))
             self.coors.append(_coordinate)
 
         'in case of 2 streets, it is intersection'
-        street_1, street_2 = (self.streets[1], self.streets[2])
+        street_1, street_2 = (self.address_string[1], self.address_string[2])
 
         results = self.query_transport_api(
                         params={'street_nam': street_1},
@@ -314,29 +297,29 @@ class GeoCoder:
     def run(self) -> list:
         'run coordinate finder and return a list of coordinates'
 
-        if ((self.format == LocationFormat.INTERSECTION) or
-                (self.format == LocationFormat.STREET_SEGMENT_INTERSECTIONS)):
+        if ((self.address_format == LocationFormat.INTERSECTION) or
+                (self.address_format == LocationFormat.STREET_SEGMENT_INTERSECTIONS)):
 
             self.find_intersections()
             return self.coors
 
-        elif self.format == LocationFormat.STREET_SEGMENT_ADDRESS_INTERSECTION:
+        elif self.address_format == LocationFormat.STREET_SEGMENT_ADDRESS_INTERSECTION:
 
             self.find_address_to_intersection()
             return self.coors
 
-        elif self.format == LocationFormat.ALLEY:
+        elif self.address_format == LocationFormat.ALLEY:
 
             self.find_alley()
             return self.coors
 
-        elif ((self.format == LocationFormat.STREET_ADDRESS) or
-                (self.format == LocationFormat.STREET_ADDRESS_RANGE)):
+        elif ((self.address_format == LocationFormat.STREET_ADDRESS) or
+                (self.address_format == LocationFormat.STREET_ADDRESS_RANGE)):
 
             self.find_address()
             return self.coors
 
-        elif self.format == LocationFormat.UNIDENTIFY:
+        elif self.address_format == LocationFormat.UNIDENTIFY:
 
             self.coors = None
             return self.coors
@@ -346,39 +329,25 @@ class GeoCoder:
             return self.coors
 
 
-if __name__ == '__main__':
-    loc_1 = 'ON N RIDGEWAY AVE FROM W SCHOOL ST (3300 N) TO W BELMONT AVE (3200 N)'
-    loc_2 = 'N MILWAUKEE AVE & N WASHTENAW AVE'
-    loc_3 = '5300-5330 S PRAIRIE AVE'
-    loc_4 = 'ON W 70TH ST FROM S GREEN ST (830 W) TO S PEORIA ST (900 W)'
-    loc_5 = '434-442 E 46TH PL'  # unable to find address in address API
-    loc_6 = 'S DORCHESTER AVE & E MADISON PARK  & S WOODLAWN AVE & E 50TH ST'  # shouldn't be intersection, should be alley
-    loc_7 = 'ON N LEAVITT ST FROM W DIVISION ST (1200 N) TO W NORTH AVE (1600 N)'
-    loc_8 = 'N WOOD ST & W AUGUSTA BLVD & W CORTEZ ST & N HERMITAGE AVE'
-    loc_9 = 'ON W 52ND PL FROM 322 W TO S PRINCETON AVE (300 W)'  #
-    loc_10 = '3221 W ARMITAGE AVE'
-    loc_11 = 'ON N KOLMAR AVE FROM W CORNELIA AVE (3500 N) TO W ADDISON ST (3600 N)'
-    loc_12 = '200-250 E 40TH ST'  # unable to find addresss
-    loc_13 = 'N WHIPPLE ST & W BLOOMINGDALE AVE & N HUMBOLDT BLVD W & W CORTLAND ST'
+def run_geocoder(addresses):
 
-    err_1 = '1400 N CAMPBELL AVE; N CAMPBELL AVE &  W LE MOYNE ST&W HIRSCH ST &  N MAPLEWOOD AVE'
-    err_2 = '6754 S EUCLID AVE; ON W 68TH ST FROM S BENNETT AVE  (1900 E) TO S EUCLID AVE  (1930 E)'
-    err_3 = '1110 N STATE ST; 1030 N STATE ST'
-    err_4 = 'ON W EVERGREEN AVE FROM N MILWAUKEE AVE  (1800 W) TO W SCHILLER ST  (1900 W)'
-    test_case = err_3
-    print(GeoCoder(
-            test_case,
-            ).format)
-    print(GeoCoder(
-            add_string=test_case
-            ).streets)
-    print(GeoCoder(
-        add_string=test_case).run()
-    )
-    print(GeoCoder(
-         add_string=test_case).query_transport_api(params={'street_nam': 'EVERGREEN'},
-                                                   sql_func='f_cross like "%25SCHILLER%25"')
-    )
-    print(GeoCoder(
-         add_string=test_case).query_nominatim(query_string='1110 N STATE ST')
-          )
+    # return format: list[dict['format'], dict['proc_string']]
+    formatted_addresses = LocationStringProcessor(addresses).run()
+    coordinate = []
+    for address in formatted_addresses:
+        coord = GeoCoder(
+            address_string=address['proc_string'],
+            address_format=address['format']
+        ).run()
+        coordinate.append(coord)
+
+    return coordinate
+
+
+if __name__ == '__main__':
+    from tests.test_cases import add_tests
+
+    for test in add_tests():
+        print('---'*25)
+        print(test)
+        print(run_geocoder(test))

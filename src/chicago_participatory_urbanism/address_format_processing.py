@@ -4,7 +4,10 @@ ward spend PDF report
 '''
 import re
 from enum import auto, Enum
-from typing import Dict
+from typing import Dict, List
+import sys
+from pathlib import Path
+sys.path +=[str(Path(__file__).resolve().parents[1])]
 
 
 class LocationFormat(Enum):
@@ -20,6 +23,7 @@ class LocationFormat(Enum):
 
 street_suffixes = "(?:AVE|BLVD|CRES|CT|DR|ER|EXPY|HWY|LN|PKWY|PL|PLZ|RD|RL|ROW|SQ|SR|ST|TER|TOLL|WAY|XR)"
 street_pattern = rf"[NWES]\s(.*)\s{street_suffixes}(?:|\s+[NWES])"
+street_pattern_with_optional_suffix = rf"[NWES]\s(.*?)(?:\s{street_suffixes})?(?:|\s+[NWES])"
 # special_street_names = "(?:S (AVENUE [A-Z])|N (BROADWAY)|N (LINCOLN PARK) W|W (MIDWAY PARK)|W (FULTON MARKET))"
 # street_pattern = rf"(?:{street_pattern}|{special_street_names})"
 # TO DO: get special street names working without breaking match.group(#) code
@@ -32,15 +36,15 @@ location_patterns = {
     LocationFormat.STREET_ADDRESS_RANGE: rf"^(\d+)-(\d+)\s+({street_pattern})$",
     # Pattern for format: N WOOD ST & W AUGUSTA BLVD & W CORTEZ ST & N HERMITAGE AVE
     # ALLEY NEEDS TO COME BEFORE INTERSECTION
-    LocationFormat.ALLEY: rf"^{street_pattern}\s*&\s*{street_pattern}\s*&\s*{street_pattern}\s*&\s*{street_pattern}$",
-    # Pattern for format: N ASHLAND AVE & W CHESTNUT ST
-    LocationFormat.INTERSECTION: rf"^{street_pattern}\s*&\s*{street_pattern}$",
+    LocationFormat.ALLEY: rf"^{street_pattern_with_optional_suffix}\s*&\s*{street_pattern_with_optional_suffix}\s*&\s*{street_pattern_with_optional_suffix}\s*&\s*{street_pattern_with_optional_suffix}$",
     # Pattern for format: ON N LEAVITT ST FROM W DIVISION ST (1200 N) TO W NORTH AVE (1600 N)
     LocationFormat.STREET_SEGMENT_INTERSECTIONS: rf"^ON\s+{street_pattern}\s+FROM\s+{street_pattern}\s*\(\d+\s+[NWES]\)\s*TO\s+{street_pattern}\s*\(\d+\s+[NWES]\)$",
     # Pattern for format: ON W 52ND PL FROM 322 W TO S PRINCETON AVE (300 W)
     LocationFormat.STREET_SEGMENT_ADDRESS_INTERSECTION: rf"^ON\s+({street_pattern})\s+FROM\s+(\d+)\s+[NWES]\s+TO\s+{street_pattern}\s*\(\d+\s+[NWES]\)$",
     # Pattern for format: ON W 52ND PL FROM S PRINCETON AVE (300 W) TO 322 W
     LocationFormat.STREET_SEGMENT_INTERSECTION_ADDRESS: rf"^ON\s+({street_pattern})\s+FROM\s+{street_pattern}\s*\(\d+\s+[NWES]\)\s+TO\s+(\d+)\s+[NWES]$",
+    # Pattern for format: N ASHLAND AVE & W CHESTNUT ST
+    LocationFormat.INTERSECTION: rf"^{street_pattern}\s*&\s*{street_pattern}$",
 }
 
 
@@ -49,69 +53,86 @@ class LocationStringProcessor:
     def __init__(self, location_string: str) -> None:
 
         self.loc_string = str(location_string).strip()
+        self.loc_string = self.loc_string.split(';')  # list of strings
         self.format = self.get_location_format(location=self.loc_string)
 
-    def get_location_format(self, location) -> 'LocationFormat':
-        """Detect and return the address format."""
-        for format, pattern in location_patterns.items():
-            if re.match(pattern, location.strip()):
-                return format
-        return LocationFormat.UNIDENTIFY
+    def get_location_format(self, location: List[str]) -> List[Dict]:
+        """
+        Detect and return the address format.
+        """
+        address_formats = []
+        for address in location:
+            address = address.strip()  # watch out for extra spaces
+            for format, pattern in location_patterns.items():
+                if re.match(pattern, address.strip()):
+                    address_formats.append(
+                        {'address': address,
+                         'format': format}
+                    )
+                    break
+        return address_formats
 
-    def run(self) -> Dict[LocationFormat, str]:
-        match self.format:
-            case LocationFormat.STREET_ADDRESS:
-                return {'format': self.format,
-                        'proc_string': self.loc_string}
+    def run(self) -> List[Dict[LocationFormat, str]]:
+        addresses = []
 
-            case LocationFormat.STREET_ADDRESS_RANGE:
-                return {
-                    'format': self.format,
-                    'proc_string': extract_address_range_street_addresses(self.loc_string)
-                }
+        for f in self.format:
+            match f['format']:
 
-            case LocationFormat.ALLEY:
-                return {
-                    'format': self.format,
-                    'proc_string': extract_alley_street_names(self.loc_string)
-                }
+                case LocationFormat.STREET_ADDRESS:
+                    addresses.append(
+                        {'format': f['format'],
+                         'proc_string': extract_street_name_and_number(f['address'])}
+                    )
 
-            case LocationFormat.INTERSECTION:
-                return {
-                    'format': self.format,
-                    'proc_string': extract_intersection_street_names(self.loc_string)
-                }
+                case LocationFormat.STREET_ADDRESS_RANGE:
+                    addresses.append(
+                        {'format': f['format'],
+                         'proc_string': extract_address_range_street_addresses(f['address'])}
+                    )
 
-            case LocationFormat.STREET_SEGMENT_INTERSECTIONS:
-                return {
-                    'format': self.format,
-                    'proc_string': extract_segment_intersections_street_names(self.loc_string)
-                }
+                case LocationFormat.ALLEY:
+                    addresses.append(
+                        {'format': f['format'],
+                         'proc_string': extract_alley_street_names(f['address'])}
+                    )
 
-            case LocationFormat.STREET_SEGMENT_ADDRESS_INTERSECTION:
-                return {
-                    'format': self.format,
-                    'proc_string': extract_segment_address_intersection_info(self.loc_string)
-                }
+                case LocationFormat.INTERSECTION:
+                    addresses.append(
+                        {'format': f['format'],
+                         'proc_string': extract_intersection_street_names(f['address'])}
+                    )
 
-            case LocationFormat.STREET_SEGMENT_INTERSECTION_ADDRESS:
-                return {
-                    'format': self.format,
-                    'proc_string': extract_segment_intersection_address_info(self.loc_string)
-                }
+                case LocationFormat.STREET_SEGMENT_INTERSECTIONS:
+                    addresses.append(
+                        {'format': f['format'],
+                         'proc_string': extract_segment_intersections_street_names(f['address'])}
+                    )
 
-            case _:
-                return {
-                    'format': self.format,
-                    'proc_string': None
-                }
+                case LocationFormat.STREET_SEGMENT_ADDRESS_INTERSECTION:
+                    addresses.append(
+                        {'format': f['format'],
+                         'proc_string': extract_segment_address_intersection_info(f['address'])}
+                    )
+
+                case LocationFormat.STREET_SEGMENT_INTERSECTION_ADDRESS:
+                    addresses.append(
+                        {'format': f['format'],
+                         'proc_string': extract_segment_intersection_address_info(f['address'])}
+                    )
+
+                case _:
+                    addresses.append(
+                        {'format': f['format'],
+                         'proc_string': None}
+                    )
+
+        return addresses
 
 
 def extract_street_name_and_number(street_string):
     street_string = street_string.strip()
     pattern = location_patterns[LocationFormat.STREET_ADDRESS]
     match = re.match(pattern, street_string)
-    print(match)
     if match:
         add_num = match.group(0)
         return add_num
@@ -165,8 +186,8 @@ def get_location_text_format(text):
 
 def extract_alley_street_names(location):
     """Return a tuple of 4 street names for the ALLEY location format"""
-
     match = re.match(location_patterns[LocationFormat.ALLEY], location)
+
     street1 = match.group(1)
     street2 = match.group(2)
     street3 = match.group(3)
@@ -223,6 +244,13 @@ def extract_segment_intersection_address_info(location):
 
 
 if __name__ == '__main__':
-    loc_1 = '6754 S EUCLID AVE; ON W 68TH ST FROM S BENNETT AVE  (1900 E) TO S EUCLID AVE  (1930 E)'
-    print(extract_street_name_and_number(loc_1))
-    print(LocationStringProcessor(location_string=loc_1).run())
+    from tests.test_cases import add_tests
+    loc_1 = 'ON N RIDGEWAY AVE FROM W SCHOOL ST (3300 N) TO W BELMONT AVE (3200 N)'
+    #print(LocationStringProcessor(location_string=loc_1).format)
+
+    for test in add_tests():
+        print('---'*20)
+        print(LocationStringProcessor(location_string=test).format)
+        print(LocationStringProcessor(location_string=test).run(), '\n',
+              len(LocationStringProcessor(location_string=test).run())
+        )
