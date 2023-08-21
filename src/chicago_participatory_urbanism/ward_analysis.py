@@ -5,16 +5,16 @@ and provide geo-code coordinates
 
 import pandas as pd
 from shapely.geometry import Point, MultiPoint, LineString, Polygon
-from address_geocoder import GeoCoder
+from address_geocoder_api import run_geocoder
 
 #print(GeoCoder('N WHIPPLE ST & W BLOOMINGDALE AVE & N HUMBOLDT BLVD W & W CORTLAND ST').run())
 
-df = pd.read_csv('tests/2020.csv', index_col=None)
+df = pd.read_csv('src/tests/2020.csv', index_col=None)
 
 for index, row in df.loc[:].iterrows():
     print(row['location'])
-    i = GeoCoder(add_string=row['location'])
-    print(i.format, '\n', i.run())
+    i = run_geocoder(addresses=row['location'])
+    print(i)
 
 """
 def process_location_text(text: str):
@@ -74,7 +74,7 @@ def get_geometry_from_location(location):
                 point2 = get_geometry_from_street_address(address)
                 street_segment = LineString([point1, point2])
                 return street_segment
-
+ 
             case afp.LocationFormat.STREET_SEGMENT_INTERSECTION_ADDRESS:
                 (primary_street, cross_street, address) = afp.extract_segment_intersection_address_info(location)
                 point1 = geocoder.get_intersection_coordinates(primary_street, cross_street)

@@ -33,6 +33,7 @@ def add_tests():
         "ON W SURF ST FROM N PINE GROVE AVE (510 W) TO N SHERIDAN RD (400 W)",
         "ON W WELLINGTON AVE FROM N BROADWAY ST (599 W) TO N CLARK ST (730 W)",
         "ON W WELLINGTON ST FROM N BROADWAY ST (599 W) TO N CLARK ST (730 W)",
+        "ON W 125TH PL FROM 50  W TO S STATE ST  (0 E)",
         # intentional wrong locations
         '1400 N WRONG AVE',
         'jkdfhgjkoahfiea',

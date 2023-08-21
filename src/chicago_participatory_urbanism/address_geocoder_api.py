@@ -205,9 +205,7 @@ class GeoCoder:
         return self
 
     def find_address(self) -> 'GeoCoder':
-        # match type of self.address_string
-        # single address -> type string of actual address
-        # more address -> type tuple with 2 address
+
         match self.address_string:
 
             case str():
@@ -277,10 +275,15 @@ class GeoCoder:
         except IndexError:
             'if API return empty'
             results = self.query_nominatim(
-                query_string=str(self.address_string).upper()
+                query_string=str(self.address_string[0]).upper()
             )
-            _coordinate = tuple(float(results[0]['lon']), float(results[0]['lat']))
-            self.coors.append(_coordinate)
+            if results:
+                _coordinate = (float(results[0]['lon']), float(results[0]['lat']))
+                self.coors.append(_coordinate)
+            else:
+                self.coors = None
+            
+            return self
 
         'in case of 2 streets, it is intersection'
         street_1, street_2 = (self.address_string[1], self.address_string[2])
@@ -333,13 +336,14 @@ def run_geocoder(addresses):
 
     # return format: list[dict['format'], dict['proc_string']]
     formatted_addresses = LocationStringProcessor(addresses).run()
+    print(formatted_addresses)
     coordinate = []
     for address in formatted_addresses:
         coord = GeoCoder(
             address_string=address['proc_string'],
             address_format=address['format']
-        ).run()
-        coordinate.append(coord)
+        )
+        coordinate.append(coord.run())
 
     return coordinate
 
