@@ -1,45 +1,41 @@
 # Chicago Participatory Urbanism
 
+Every year, Chicago alders get $1.5 million to spend at their discretion on capital improvements on their ward through the city's Aldermanic Menu Program. Their spending is publicly available in PDF format in the [Chicago Capital Improvement Archive](https://www.chicago.gov/city/en/depts/obm/provdrs/cap_improve/svcs/cip-archive.html). We are in the process of extracting and geocoding this data. 
+
 Check out the GitHub issues for things to work on.
 
-## Getting Started/Installing the Repo
+# Getting Started/Installing the Repo
 1. Clone the repo.
 2. Run the following command in the terminal:
 ```
 pip install .
 ```
 
-### PDF data extraction
+# Work Flow
+* Extract data from PDFs
+* Post-process data (name cleanup, field seperation, categorization)
+* Geocode location data
+    * Identify location format
+    * Parse location into collection of street numbers or street intersections
+    * Get GPS coordinates from street numbers and street interesections
+    * Combine coordinates into point(s), lines, or polygons
+* Post-process geo-data 
+    * Interpolate lines and polygons into point clouds for heatmapping
 
-You can use the `chicago_participatory_urbanism\extract_text_from_pdf.py` script to extract data from the ward spending reports on the [Chicago Capital Improvement Archive](https://www.chicago.gov/city/en/depts/obm/provdrs/cap_improve/svcs/cip-archive.html). This script is currently designed for the 2019-2022 reports format. It needs to be modified to extract data from earlier formats.
+# Code Overview
+## Scripts
+* extract_text_from_pdf - converts CIP aldermanic menu spending PDFs into CSVs
+* ward_spending_analysis - post-processes PDF data, making fixes to columns and categorizing items
+* ward_spending_geocoding script - gecodes the CSV data, outputtinga geoJSON
+### Upcoming Bike Lanes
+* bike_geocoding_script - one-off, uses the ward wise libraries to geocode CDOT upcoming bike lane data
 
-### Geocoding
-
-Run the `src\ward_spending_geocoding_script.py` to geocode ward spending data.
-
-
-## Background
-Every year, Chicago alderpersons get $1.5 million to spend at their discretion on capital improvements on their ward. Some alderpersons do this through a **participatory budgeting** (PB) process, where residents can propose projects and vote to determine which ones receive funding.   
-
-[Chicago Participatory Budgeting Overview](https://www.participatepbchicago.org/pages/pbgeneralinfo)
-
-This project has two goals:
-1. **Assist UIC's Great Cities Institute in performing data analysis to determine the effectiveness of the current PB process.**
-2. **Collect data and create tools to incorporate more urban planning and community engagement into the PB process.** See [problems with the current PB process](https://docs.google.com/document/d/1CA4asPvf4NSn9hnGfhxsvhL78I6Dgi45OHBlkLVlgKA/edit?usp=sharing).
-
-## Ideas
-[Brainstorming Doc](https://docs.google.com/document/d/1vKIF3epFqXw7eDmwkk1lHWOB95OQjqQNfs-ehjCkP7E/edit?usp=sharing)
+## Chicago Participatory Urbanism libraries
+* ward_spending.address_geocoding - use to convert location text into geo-coded geometry data
+    * ward_spending.address_format_processing - use to parse location text into street numbers and street intersections
+    * geocoder - use to geocode street numbers and street intersections
 
 
 
-## Background
-Every year, Chicago alderpersons get $1.5 million to spend at their discretion on capital improvements on their ward. Some alderpersons do this through a **participatory budgeting** (PB) process, where residents can propose projects and vote to determine which ones receive funding.   
-
-[Chicago Participatory Budgeting Overview](https://www.participatepbchicago.org/pages/pbgeneralinfo)
-
-This project has two goals:
-1. **Assist UIC's Great Cities Institute in performing data analysis to determine the effectiveness of the current PB process.**
-2. **Collect data and create tools to incorporate more urban planning and community engagement into the PB process.** See [problems with the current PB process](https://docs.google.com/document/d/1CA4asPvf4NSn9hnGfhxsvhL78I6Dgi45OHBlkLVlgKA/edit?usp=sharing).
-
-## Ideas
+# Ideas
 [Brainstorming Doc](https://docs.google.com/document/d/1vKIF3epFqXw7eDmwkk1lHWOB95OQjqQNfs-ehjCkP7E/edit?usp=sharing)
