@@ -5,7 +5,7 @@ and provide geo-code coordinates
 
 import pandas as pd
 from shapely.geometry import Point, MultiPoint, LineString, Polygon
-from address_geocoder_api import run_geocoder
+from geocoder_api import run_geocoder
 
 #print(GeoCoder('N WHIPPLE ST & W BLOOMINGDALE AVE & N HUMBOLDT BLVD W & W CORTLAND ST').run())
 
