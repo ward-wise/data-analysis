@@ -40,7 +40,7 @@ def get_street_address_coordinates_from_full_name(address: str):
         latitude = result["Lat"].iloc[0]
     except:
         (longitude, latitude) = (0,0)
-    
+
     return Point(longitude, latitude)
 
 
@@ -55,7 +55,7 @@ def get_street_address_coordinates(address_number: int, direction_abbr: str, str
     - street_name (str): A street name in Chicago. Ex: "BELMONT"
     - street_type_abbr (str): An abbreviated street type. Ex: "AVE"
     - fuzziness (int): The number of addresses +/- the desired address number when searching for coordinates. The function will always return the closest address' coordinates.
-        
+
 
     Returns:
     - Point: A Shapely point with the GPS coordinates of the address (longitude, latitude).
@@ -65,7 +65,7 @@ def get_street_address_coordinates(address_number: int, direction_abbr: str, str
                 (df['LSt_PreDir'] == direction_abbr.upper()) &
                 (df['St_Name'] == street_name.upper()) &
                 (df['LSt_Type'] == street_type_abbr.upper())].copy()
-    
+
     # print(results[['Add_Number', 'St_Name','Long','Lat']])
 
     exact_address = results[results['Add_Number'] == address_number]
@@ -84,7 +84,7 @@ def get_street_address_coordinates(address_number: int, direction_abbr: str, str
     except:
         print(f"Error finding coordinates for street address {address_number} {direction_abbr} {street_name} {street_type_abbr}")
         return None
-    
+
     return Point(longitude, latitude)
 
 
@@ -118,7 +118,7 @@ def get_intersection_coordinates(street1: str, street2: str):
                 # extract first point of multipoint
                 ## (this tends to happen when one half of the intersecting street is offset from the other half)
                 first_point = intersection.geoms[0]
-                return 
+                return
             if isinstance(intersection, LineString):
                 first_point = intersection.coords[0]
                 return first_point

@@ -34,10 +34,12 @@ def add_tests():
         "ON W WELLINGTON AVE FROM N BROADWAY ST (599 W) TO N CLARK ST (730 W)",
         "ON W WELLINGTON ST FROM N BROADWAY ST (599 W) TO N CLARK ST (730 W)",
         "ON W 125TH PL FROM 50  W TO S STATE ST  (0 E)",
+        "ON S MANISTEE AVE FROM 10300 S TO E 104TH ST  (10400 S)",
+        'W 43RD ST &  S HALSTED ST; S LOCK ST &  S LYMAN ST',
         # intentional wrong locations
         '1400 N WRONG AVE',
         'jkdfhgjkoahfiea',
-        'N NOPE AVE & W HGFYHREAS ST & W OFFLIMIT ST & N GHTUEIFGHUS AVE'
+        'N NOPE AVE & W HGFYHREAS ST & W OFFLIMIT ST & N GHTUEIFGHUS AVE',
     ]
 
     return test_case

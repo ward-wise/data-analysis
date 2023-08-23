@@ -124,26 +124,41 @@ class GeoCoder:
         -LocationFormat.STREET_SEGMENT_INTERSECTIONS
         '''
         match len(self.address_string):
+
             case 2:
-                'in case of 2 streets, it is intersection'
+                '''
+                in case of 2 streets, it is intersection,
+                need to make two pairs (a,b) & (b,a)
+                '''
                 street_1, street_2 = self.address_string
-                try:
-                    results = self.query_transport_api(
-                                    params={'street_nam': street_1},
-                                    sql_func=f'f_cross like "%25{street_2}%25"')
-                    # reshape nested lists
-
-                    _coordinate = tuple(np.array(results[0]['the_geom']['coordinates']).reshape(-1, 2)[0])
-
-                except IndexError:
-                    results = self.query_transport_api(
-                                    params={'street_nam': street_1},
-                                    sql_func=f't_cross like "%25{street_2}%25"')
-                    # reshape nested lists
-
-                    _coordinate = tuple(np.array(results[0]['the_geom']['coordinates']).reshape(-1, 2)[0])
-
-                self.coors.append(_coordinate)
+                pairs = [(street_1, street_2), (street_2, street_1)]
+                corner = set()
+                for pair in pairs:
+                    try:
+                        result = self.query_transport_api(
+                            params={'street_nam': pair[0]},
+                            sql_func=f'f_cross like "%25{pair[1]}%25"'
+                        )
+                        _coordinate = tuple(
+                            np.array(result[0]['the_geom']['coordinates']).reshape(-1, 2)[0]
+                        )
+                        if result:
+                            corner.add(_coordinate)
+                            # break loop at first corner
+                            break
+                    except IndexError:
+                        result = self.query_transport_api(
+                            params={'street_nam': pair[0]},
+                            sql_func=f't_cross like "%25{pair[1]}%25"'
+                        )
+                        if result:
+                            _coordinate = tuple(
+                                np.array(result[0]['the_geom']['coordinates']).reshape(-1, 2)[0]
+                            )
+                            corner.add(_coordinate)
+                            # break loop at first corner
+                            break
+                self.coors = list(corner)
                 return self
 
             case 3:
@@ -200,7 +215,6 @@ class GeoCoder:
             except IndexError:
                 "returned nothing from API, maybe streets don't cross"
                 continue
-
         self.coors = list(corners)
         return self
 
@@ -227,16 +241,19 @@ class GeoCoder:
                         _coordinate = (float(results[0]['lon']), float(results[0]['lat']))
                         self.coors.append(_coordinate)
                     else:
-                        self.coors = None
-
+                        self.coors.append(None)
                     return self
 
                 except KeyError:
-                    self.coors = None
+                    self.coors.append(None)
 
                 return self
 
             case tuple():
+                '''
+                this block shouldn't activate anymore with change in breaking
+                down streets strings by ;
+                '''
                 for st in self.address_string:
                     try:
                         results = self.query_address_api(
@@ -266,10 +283,11 @@ class GeoCoder:
         # find point address
         try:
             results = self.query_address_api(
-                params={'cmpaddabrv': str(self.address_string[0]).upper()})
-
+                params={'cmpaddabrv': str(self.address_string[0]).upper()}
+            )
             _coordinate = tuple(
-                np.array(results[0]['the_geom']['coordinates']).reshape(-1, 2)[0])
+                np.array(results[0]['the_geom']['coordinates']).reshape(-1, 2)[0]
+            )
             self.coors.append(_coordinate)
 
         except IndexError:
@@ -281,19 +299,45 @@ class GeoCoder:
                 _coordinate = (float(results[0]['lon']), float(results[0]['lat']))
                 self.coors.append(_coordinate)
             else:
-                self.coors = None
-            
+                self.coors.append(None)
             return self
 
         'in case of 2 streets, it is intersection'
         street_1, street_2 = (self.address_string[1], self.address_string[2])
+        try:
+            results_1 = self.query_transport_api(
+                            params={'street_nam': street_1},
+                            sql_func=f'f_cross like "%25{street_2}%25"'
+            )
+            results_2 = self.query_transport_api(
+                            params={'street_nam': street_2},
+                            sql_func=f'f_cross like "%25{street_1}%25"'
+            )
+            if results_1:
+            # reshape nested lists
+                _coordinate = tuple(np.array(results_1[0]['the_geom']['coordinates']).reshape(-1, 2)[0])
+            elif results_2:
+                # flip the order of streets
+                _coordinate = tuple(np.array(results_2[0]['the_geom']['coordinates']).reshape(-1, 2)[0])
+            self.coors.append(_coordinate)
 
-        results = self.query_transport_api(
-                        params={'street_nam': street_1},
-                        sql_func=f'f_cross like "%25{street_2}%25"')
-        # reshape nested lists
-        _coordinate = tuple(np.array(results[0]['the_geom']['coordinates']).reshape(-1, 2)[0])
-        self.coors.append(_coordinate)
+        except IndexError:
+            results_1 = self.query_transport_api(
+                params={'street_nam': street_1},
+                sql_func=f't_cross like "%25{street_2}%25"'
+            )
+            results_2 = self.query_transport_api(
+                params={'street_nam': street_2},
+                sql_func=f't_cross like "%25{street_1}%25"'
+            )
+            if results_1:
+                _coordinate = tuple(np.array(results_1[0]['the_geom']['coordinates']).reshape(-1, 2)[0])
+            elif results_2:
+                _coordinate = tuple(np.array(results_2[0]['the_geom']['coordinates']).reshape(-1, 2)[0])
+            else:
+                _coordinate = None
+            self.coors.append(_coordinate)
+            return self
 
         return self
 
@@ -336,9 +380,9 @@ def run_geocoder(addresses):
 
     # return format: list[dict['format'], dict['proc_string']]
     formatted_addresses = LocationStringProcessor(addresses).run()
-    print(formatted_addresses)
     coordinate = []
     for address in formatted_addresses:
+        print(address)
         coord = GeoCoder(
             address_string=address['proc_string'],
             address_format=address['format']
