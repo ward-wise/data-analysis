@@ -366,7 +366,7 @@ class GeoCoder:
             self.find_address()
             return self.coors
 
-        elif self.address_format == LocationFormat.UNIDENTIFY:
+        elif self.address_format == LocationFormat.UNIDENTIFIED:
 
             self.coors = None
             return self.coors
