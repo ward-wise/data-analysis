@@ -2,7 +2,7 @@ from shapely.geometry import Point, MultiPoint, LineString, Polygon
 import re
 import math
 import geocoder as geocoder
-import address_format_processing as afp
+import location_format_processing as lfp
 
 
 def process_location_text(text):
@@ -30,47 +30,47 @@ def process_location_text(text):
 
 def get_geometry_from_location(location):
     location = location.strip() #remove whitespace
-    format = afp.get_location_format(location)
+    format = lfp.get_location_format(location)
     try:
         match format:
-            case afp.LocationFormat.STREET_ADDRESS:
+            case lfp.LocationFormat.STREET_ADDRESS:
                 return geocoder.get_street_address_coordinates(location)
 
-            case afp.LocationFormat.STREET_ADDRESS_RANGE:
-                (address1, address2) =afp.extract_address_range_street_addresses(location)
+            case lfp.LocationFormat.STREET_ADDRESS_RANGE:
+                (address1, address2) =lfp.extract_address_range_street_addresses(location)
                 point1 = geocoder.get_street_address_coordinates(address1)
                 point2 = geocoder.get_street_address_coordinates(address2)
                 street_segment = LineString([point1, point2])
                 return street_segment
 
-            case afp.LocationFormat.INTERSECTION:
-                (street1, street2) = afp.extract_intersection_street_names(location)
+            case lfp.LocationFormat.INTERSECTION:
+                (street1, street2) = lfp.extract_intersection_street_names(location)
                 intersection = geocoder.get_intersection_coordinates(street1, street2)
                 return intersection
 
-            case afp.LocationFormat.STREET_SEGMENT_INTERSECTIONS:
-                (intersection1, intersection2) = afp.extract_segment_intersections(location)
+            case lfp.LocationFormat.STREET_SEGMENT_INTERSECTIONS:
+                (intersection1, intersection2) = lfp.extract_segment_intersections(location)
                 point1 = geocoder.get_intersection_coordinates(intersection1)
                 point2 = geocoder.get_intersection_coordinates(intersection2)
                 street_segment = LineString([point1, point2])
                 return street_segment
 
-            case afp.LocationFormat.STREET_SEGMENT_ADDRESS_INTERSECTION:
-                (address, intersection) = afp.extract_segment_address_intersection_info(location)
+            case lfp.LocationFormat.STREET_SEGMENT_ADDRESS_INTERSECTION:
+                (address, intersection) = lfp.extract_segment_address_intersection_info(location)
                 point1 = geocoder.get_intersection_coordinates(intersection)
                 point2 = geocoder.get_street_address_coordinates(address)
                 street_segment = LineString([point1, point2])
                 return street_segment
 
-            case afp.LocationFormat.STREET_SEGMENT_INTERSECTION_ADDRESS:
-                (intersection, address) = afp.extract_segment_intersection_address_info(location)
+            case lfp.LocationFormat.STREET_SEGMENT_INTERSECTION_ADDRESS:
+                (intersection, address) = lfp.extract_segment_intersection_address_info(location)
                 point1 = geocoder.get_intersection_coordinates(intersection)
                 point2 = geocoder.get_street_address_coordinates(address)
                 street_segment = LineString([point1, point2])
                 return street_segment
 
-            case afp.LocationFormat.ALLEY:
-                intersections = afp.extract_alley_intersections(location)
+            case lfp.LocationFormat.ALLEY:
+                intersections = lfp.extract_alley_intersections(location)
                 
                 points = []
                 for intersection in intersections:

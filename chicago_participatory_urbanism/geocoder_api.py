@@ -8,7 +8,7 @@ import requests
 import numpy as np
 from dotenv import load_dotenv
 from itertools import combinations
-from ward_spending.address_format_processing import LocationFormat, LocationStringProcessor
+from ward_spending.location_format_processing import LocationFormat, LocationStringProcessor
 import time
 
 

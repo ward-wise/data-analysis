@@ -24,9 +24,9 @@ pip install .
 
 # Code Overview
 ## Scripts
-* extract_text_from_pdf - converts CIP aldermanic menu spending PDFs into CSVs
-* ward_spending_analysis - post-processes PDF data, making fixes to columns and categorizing items
-* ward_spending_geocoding script - gecodes the CSV data, outputtinga geoJSON
+* ward_spending_pdf_data_extraction - converts CIP aldermanic menu spending PDFs into CSVs
+* ward_spending_post_processing - post-processes PDF data, making fixes to columns and categorizing items
+* ward_spending_geocoding - gecodes the CSV data, outputtinga geoJSON
 ### Upcoming Bike Lanes
 * bike_geocoding_script - one-off, uses the ward wise libraries to geocode CDOT upcoming bike lane data
 
