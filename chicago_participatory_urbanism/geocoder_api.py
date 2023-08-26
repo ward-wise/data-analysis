@@ -8,6 +8,8 @@ import requests
 import numpy as np
 from dotenv import load_dotenv
 from itertools import combinations
+from shapely.geometry import Point, MultiPoint, LineString, MultiLineString
+from location_structures import Street, StreetAddress, Intersection
 import time
 
 
@@ -37,7 +39,7 @@ class GeoCoder:
         # variable to keep track of coordinates return by API
         self.coors: list = []
 
-    def query_transport_api(
+    def _query_transport_api(
             self,
             params: dict,
             sql_func: str = None) -> TypedDict:
@@ -75,7 +77,7 @@ class GeoCoder:
         resp = requests.get(link, headers=self.api_header)
         return resp.json()
 
-    def query_address_api(self,
+    def _query_address_api(self,
                           params: dict,
                           sql_func: str = None) -> TypedDict:
         '''
@@ -99,7 +101,7 @@ class GeoCoder:
 
         return resp.json()
 
-    def query_nominatim(self, query_string) -> TypedDict:
+    def _query_nominatim(self, query_string) -> TypedDict:
         '''
         rate limit of 1 request per second,
         example - 200 E 40TH ST
@@ -116,6 +118,34 @@ class GeoCoder:
 
         return resp.json()
 
+    def get_street_address_coordinates(self, address: StreetAddress, fuzziness: int = 10) -> Point:
+        """
+        Return the GPS coordinates of a street address in Chicago.
+
+        Parameters:
+        - StreetAddress
+
+        Returns:
+        - Point: A Shapely point with the GPS coordinates of the address (longitude, latitude).
+        """
+        # TODO
+        return None
+
+    def get_intersection_coordinates(self, intersection: Intersection) -> Point:
+        """
+        Return the GPS coordinates of an intersection in Chicago.
+
+        Parameters:
+        - Intersection
+
+        Returns:
+        - Point: A Shapely point with the GPS coordinates of the address (longitude, latitude).
+        """
+        # TODO
+        return None
+
+
+    """
     def find_intersections(self) -> 'GeoCoder':
         '''
         should be use for format type:
@@ -134,7 +164,7 @@ class GeoCoder:
                 corner = set()
                 for pair in pairs:
                     try:
-                        result = self.query_transport_api(
+                        result = self._query_transport_api(
                             params={'street_nam': pair[0]},
                             sql_func=f'f_cross like "%25{pair[1]}%25"'
                         )
@@ -146,7 +176,7 @@ class GeoCoder:
                             # break loop at first corner
                             break
                     except IndexError:
-                        result = self.query_transport_api(
+                        result = self._query_transport_api(
                             params={'street_nam': pair[0]},
                             sql_func=f't_cross like "%25{pair[1]}%25"'
                         )
@@ -166,7 +196,7 @@ class GeoCoder:
 
                 for st in street_2, street_3:
                     try:
-                        results = self.query_transport_api(
+                        results = self._query_transport_api(
                                     params={'street_nam': street_1},
                                     sql_func=f'f_cross like "%25{st}%25"')
                         _coordinate = tuple(
@@ -174,7 +204,7 @@ class GeoCoder:
                         )
                     except IndexError:
                         'if returned results is empty'
-                        results = self.query_transport_api(
+                        results = self._query_transport_api(
                             params={'street_nam': street_1},
                             sql_func=f't_cross like "%25{st}%25"'
                         )
@@ -204,7 +234,7 @@ class GeoCoder:
         corners = set()
         for pair in make_pairs:
             try:
-                results = self.query_transport_api(
+                results = self._query_transport_api(
                     params={'street_nam': pair[0]},
                     sql_func=f'f_cross like "%25{pair[1]}%25"')
                 _coordinate = tuple(
@@ -223,7 +253,7 @@ class GeoCoder:
 
             case str():
                 try:
-                    results = self.query_address_api(
+                    results = self._query_address_api(
                         params={'cmpaddabrv': str(self.address_string).upper()})
                     _coordinate = tuple(
                         np.array(results[0]['the_geom']['coordinates']).reshape(-1, 2)[0])
@@ -233,7 +263,7 @@ class GeoCoder:
 
                 except IndexError:
                     'if API return empty'
-                    results = self.query_nominatim(
+                    results = self._query_nominatim(
                         query_string=str(self.address_string).upper()
                     )
                     if results:
@@ -255,7 +285,7 @@ class GeoCoder:
                 '''
                 for st in self.address_string:
                     try:
-                        results = self.query_address_api(
+                        results = self._query_address_api(
                             params={'cmpaddabrv': str(st).upper()})
 
                         _coordinate = list(
@@ -264,7 +294,7 @@ class GeoCoder:
 
                     except IndexError:
                         'if API return empty'
-                        results = self.query_nominatim(
+                        results = self._query_nominatim(
                             query_string=str(st).upper()
                         )
                         _coordinate = (float(results[0]['lon']), float(results[0]['lat']))
@@ -281,7 +311,7 @@ class GeoCoder:
         '''
         # find point address
         try:
-            results = self.query_address_api(
+            results = self._query_address_api(
                 params={'cmpaddabrv': str(self.address_string[0]).upper()}
             )
             _coordinate = tuple(
@@ -291,7 +321,7 @@ class GeoCoder:
 
         except IndexError:
             'if API return empty'
-            results = self.query_nominatim(
+            results = self._query_nominatim(
                 query_string=str(self.address_string[0]).upper()
             )
             if results:
@@ -304,11 +334,11 @@ class GeoCoder:
         'in case of 2 streets, it is intersection'
         street_1, street_2 = (self.address_string[1], self.address_string[2])
         try:
-            results_1 = self.query_transport_api(
+            results_1 = self._query_transport_api(
                             params={'street_nam': street_1},
                             sql_func=f'f_cross like "%25{street_2}%25"'
             )
-            results_2 = self.query_transport_api(
+            results_2 = self._query_transport_api(
                             params={'street_nam': street_2},
                             sql_func=f'f_cross like "%25{street_1}%25"'
             )
@@ -321,11 +351,11 @@ class GeoCoder:
             self.coors.append(_coordinate)
 
         except IndexError:
-            results_1 = self.query_transport_api(
+            results_1 = self._query_transport_api(
                 params={'street_nam': street_1},
                 sql_func=f't_cross like "%25{street_2}%25"'
             )
-            results_2 = self.query_transport_api(
+            results_2 = self._query_transport_api(
                 params={'street_nam': street_2},
                 sql_func=f't_cross like "%25{street_1}%25"'
             )
@@ -389,7 +419,7 @@ def run_geocoder(addresses):
         coordinate.append(coord.run())
 
     return coordinate
-
+"""
 
 if __name__ == '__main__':
     from tests.test_cases import add_tests

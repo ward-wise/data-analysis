@@ -47,17 +47,12 @@ class Geocoder:
 
 
 
-    def get_street_address_coordinates(self, address: StreetAddress, fuzziness: int = 10):
+    def get_street_address_coordinates(self, address: StreetAddress, fuzziness: int = 10) -> Point:
         """
         Return the GPS coordinates of a street address in Chicago.
 
         Parameters:
-        - address_number (int): A street number in Chicago. Ex: 1736
-        - direction_abbrev (str): An abbreviated cardinal direction. Ex: "W"
-        - street_name (str): A street name in Chicago. Ex: "BELMONT"
-        - street_type_abbr (str): An abbreviated street type. Ex: "AVE"
-        - fuzziness (int): The number of addresses +/- the desired address number when searching for coordinates. The function will always return the closest address' coordinates.
-            
+        - StreetAddress
 
         Returns:
         - Point: A Shapely point with the GPS coordinates of the address (longitude, latitude).
@@ -90,13 +85,12 @@ class Geocoder:
         return Point(longitude, latitude)
 
 
-    def get_intersection_coordinates(self, intersection: Intersection):
+    def get_intersection_coordinates(self, intersection: Intersection) -> Point:
         """
         Return the GPS coordinates of an intersection in Chicago.
 
         Parameters:
-        - street1 (str): A street name in Chicago. Ex: "BELMONT"
-        - street2 (str): A street name in Chicago. Ex: "CLARK"
+        - Intersection
 
         Returns:
         - Point: A Shapely point with the GPS coordinates of the address (longitude, latitude).
