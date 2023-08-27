@@ -1,5 +1,5 @@
 
-def add_tests():
+def address_tests():
     test_case = [
         'ON N RIDGEWAY AVE FROM W SCHOOL ST (3300 N) TO W BELMONT AVE (3200 N)',
         'N MILWAUKEE AVE & N WASHTENAW AVE',

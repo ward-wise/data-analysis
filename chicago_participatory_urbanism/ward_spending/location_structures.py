@@ -25,5 +25,3 @@ class StreetAddress:
 
     def __str__(self):
         return f"{self.number} {self.street}"
-
-    

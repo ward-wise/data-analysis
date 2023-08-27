@@ -1,14 +1,23 @@
-from shapely.geometry import Point, MultiPoint, LineString, Polygon
-import re
+import sys
+from pathlib import Path
+sys.path += [str(Path(__file__).resolve().parents[2])]
+from shapely.geometry import Point, LineString, Polygon
 import math
 import location_format_processing as lfp
+from geocoder_api import GeoCoderAPI
+from src.tests.test_cases import address_tests
+
 
 class LocationGeocoder:
+
     def __init__(self, geocoder):
         self.geocoder = geocoder
 
     def process_location_text(self, text):
-        """Take the location text from the ward spending data and return a geometry matching the GPS coordinates."""
+        """
+        Take the location text from the ward spending data and 
+        return a geometry matching the GPS coordinates.
+        """
 
         locations = text.split(";")
 
@@ -73,7 +82,7 @@ class LocationGeocoder:
 
                 case lfp.LocationFormat.ALLEY:
                     intersections = lfp.extract_alley_intersections(location)
-                    
+
                     points = []
                     for intersection in intersections:
                         points.append(self.geocoder.get_intersection_coordinates(intersection))
@@ -83,7 +92,7 @@ class LocationGeocoder:
                     points = get_clockwise_sequence(points)
 
                     coordinates = [(point.x, point.y) for point in points]
-                    alley_bounding_box = box = Polygon(coordinates)
+                    alley_bounding_box = Polygon(coordinates)
                     return alley_bounding_box
 
                 case _ :
@@ -111,3 +120,14 @@ def get_clockwise_sequence(points):
     sorted_points = [p for _, p in sorted(zip(angles, points))]
 
     return sorted_points
+
+
+if __name__ == '__main__':
+    
+    geo_coder = GeoCoderAPI()
+    for test in address_tests():
+        print('---'*30)
+        print(test)
+        print(LocationGeocoder(geocoder=GeoCoderAPI()).process_location_text(
+                text=test)
+        )

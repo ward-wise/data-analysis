@@ -1,7 +1,6 @@
 import pandas as pd
 import importlib.metadata
 import logging
-import os
 import geopandas as gpd
 from shapely.ops import unary_union
 from shapely.geometry import Point, MultiPoint, LineString, MultiLineString
@@ -20,7 +19,6 @@ logging.info(f'Loading street center lines csv from {street_center_lines_path.lo
 gdf = gpd.read_file(street_center_lines_path.locate())
 
 print("Data loaded.")
-
 
 
 class Geocoder:
@@ -42,12 +40,13 @@ class Geocoder:
             latitude = result["Lat"].iloc[0]
         except:
             (longitude, latitude) = (0,0)
-        
+
         return Point(longitude, latitude)
 
-
-
-    def get_street_address_coordinates(self, address: StreetAddress, fuzziness: int = 10) -> Point:
+    def get_street_address_coordinates(
+            self,
+            address: StreetAddress,
+            fuzziness: int = 10) -> Point:
         """
         Return the GPS coordinates of a street address in Chicago.
 
@@ -62,7 +61,7 @@ class Geocoder:
                     (df['LSt_PreDir'] == address.street.direction.upper()) &
                     (df['St_Name'] == address.street.name.upper()) &
                     (df['LSt_Type'] == address.street.street_type.upper())].copy()
-        
+
         # print(results[['Add_Number', 'St_Name','Long','Lat']])
 
         exact_address = results[results['Add_Number'] == address.number]
@@ -81,9 +80,8 @@ class Geocoder:
         except:
             print(f"Error finding coordinates for street address {address}")
             return None
-        
-        return Point(longitude, latitude)
 
+        return Point(longitude, latitude)
 
     def get_intersection_coordinates(self, intersection: Intersection) -> Point:
         """
@@ -114,7 +112,7 @@ class Geocoder:
                     # extract first point of multipoint
                     ## (this tends to happen when one half of the intersecting street is offset from the other half)
                     first_point = intersection_geometry.geoms[0]
-                    return 
+                    return
                 if isinstance(intersection_geometry, LineString):
                     first_point = intersection_geometry.coords[0]
                     return first_point

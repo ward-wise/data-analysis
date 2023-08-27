@@ -7,8 +7,9 @@ from enum import auto, Enum
 from typing import Dict, List
 import sys
 from pathlib import Path
+sys.path += [str(Path(__file__).resolve().parents[2])]
 from location_structures import Street, StreetAddress, Intersection
-sys.path +=[str(Path(__file__).resolve().parents[1])]
+from src.tests.test_cases import address_tests
 
 
 class LocationFormat(Enum):
@@ -128,7 +129,6 @@ class LocationStringProcessor:
                     )
 
         return addresses
-    
 
     def _get_location_text_format(self, text):
         """Return a string of detected formats. Use this function to debug address format matching en masse."""
@@ -146,14 +146,16 @@ def extract_street_address(street_address_text: str) -> StreetAddress:
     address_parts = street_address_text.strip().split(" ")
     number = int(address_parts[0])
     direction = address_parts[1]
-    name = " ".join(address_parts[2:-1]) #capture multi-word names
-    street_type = address_parts [-1]
+    # capture multi-word names
+    name = " ".join(address_parts[2:-1])  
+    street_type = address_parts[-1]
 
     street = Street(direction, name, street_type)
     return StreetAddress(number, street)
 
 
-def extract_segment_intersections_address_range(location_text: str) -> tuple[StreetAddress,StreetAddress]:
+def extract_segment_intersections_address_range(
+        location_text: str) -> tuple[StreetAddress, StreetAddress]:
     """Return location data structures for the STREET_SEGMENT_INTERSECTIONS format."""
     # Format: ON N LEAVITT ST FROM W DIVISION ST (1200 N) TO W NORTH AVE (1600 N)
     pattern = r"^ON\s+([NWES]\s+\w+\s+\w+)\s+FROM\s+[NWES]\s+\w+\s+\w+\s+\((\d+)\s+[NWES]\)\s+TO\s+[NWES]\s+\w+\s+\w+\s+\((\d+)\s+[NWES]\)$"
@@ -171,7 +173,8 @@ def extract_segment_intersections_address_range(location_text: str) -> tuple[Str
         return None, None
 
 
-def extract_segment_intersections(location_text: str) -> tuple[Intersection, Intersection]:
+def extract_segment_intersections(
+        location_text: str) -> tuple[Intersection, Intersection]:
     """Return location data structures for the STREET_SEGMENT_INTERSECTIONS format."""
     # Format: ON N LEAVITT ST FROM W DIVISION ST (1200 N) TO W NORTH AVE (1600 N)
     pattern = location_patterns[LocationFormat.STREET_SEGMENT_INTERSECTIONS]
@@ -182,9 +185,9 @@ def extract_segment_intersections(location_text: str) -> tuple[Intersection, Int
         cross_street1_name = match.group(2)
         cross_street2_name = match.group(3)
 
-        primary_street = Street(direction="", name=primary_street_name, type="")
-        cross_street1 = Street(direction="", name=cross_street1_name, type="")
-        cross_street2 = Street(direction="", name=cross_street2_name, type="")
+        primary_street = Street(direction="", name=primary_street_name, street_type="")
+        cross_street1 = Street(direction="", name=cross_street1_name, street_type="")
+        cross_street2 = Street(direction="", name=cross_street2_name, street_type="")
 
         intersection1 = Intersection(primary_street, cross_street1)
         intersection2 = Intersection(primary_street, cross_street2)
@@ -203,10 +206,10 @@ def extract_alley_intersections(location_text: str) -> List[Intersection]:
     street_name3 = match.group(3)
     street_name4 = match.group(4)
 
-    street1 = Street(direction="", name=street_name1, type="")
-    street2 = Street(direction="", name=street_name2, type="")
-    street3 = Street(direction="", name=street_name3, type="")
-    street4 = Street(direction="", name=street_name4, type="")
+    street1 = Street(direction="", name=street_name1, street_type="")
+    street2 = Street(direction="", name=street_name2, street_type="")
+    street3 = Street(direction="", name=street_name3, street_type="")
+    street4 = Street(direction="", name=street_name4, street_type="")
 
     # get every possible intersection (streets aren't in any particular order)
     intersections = []
@@ -228,14 +231,15 @@ def extract_intersection_street_names(location_text: str) -> Intersection:
     street_name1 = match.group(1)
     street_name2 = match.group(2)
 
-    street1 = Street(direction="", name=street_name1, type="")
-    street2 = Street(direction="", name=street_name2, type="")
+    street1 = Street(direction="", name=street_name1, street_type="")
+    street2 = Street(direction="", name=street_name2, street_type="")
     intersection = Intersection(street1, street2)
 
     return intersection
 
 
-def extract_address_range_street_addresses(location_text: str) -> tuple[StreetAddress, StreetAddress]:
+def extract_address_range_street_addresses(
+        location_text: str) -> tuple[StreetAddress, StreetAddress]:
     """Return location data structures for the STREET_ADDRESS_RANGE format"""
     match = re.match(location_patterns[LocationFormat.STREET_ADDRESS_RANGE], location_text)
     number1 = match.group(1)
@@ -248,16 +252,17 @@ def extract_address_range_street_addresses(location_text: str) -> tuple[StreetAd
     return (address1, address2)
 
 
-def extract_segment_address_intersection_info(location_text: str) -> tuple [StreetAddress, Intersection]:
+def extract_segment_address_intersection_info(
+        location_text: str) -> tuple[StreetAddress, Intersection]:
     """Return location data structures for the STREET_SEGMENT_ADDRESS_INTERSECTION format"""
     match = re.match(location_patterns[LocationFormat.STREET_SEGMENT_ADDRESS_INTERSECTION], location_text)
     primary_street = match.group(1)
     primary_street_name = match.group(2)
     street_number = match.group(3)
     cross_street_name = match.group(4)
-    
-    street1 = Street(direction="", name=primary_street_name, type="")
-    street2 = Street(direction="", name=cross_street_name, type="")
+
+    street1 = Street(direction="", name=primary_street_name, street_type="")
+    street2 = Street(direction="", name=cross_street_name, street_type="")
     intersection = Intersection(street1, street2)
 
     address = extract_street_address(f"{street_number} {primary_street}")
@@ -265,7 +270,8 @@ def extract_segment_address_intersection_info(location_text: str) -> tuple [Stre
     return (address, intersection)
 
 
-def extract_segment_intersection_address_info(location_text: str) -> tuple[Intersection, StreetAddress]:
+def extract_segment_intersection_address_info(
+        location_text: str) -> tuple[Intersection, StreetAddress]:
     """Return location data structures for the STREET_SEGMENT_INTERSECTION_ADDRESS format"""
     match = re.match(location_patterns[LocationFormat.STREET_SEGMENT_INTERSECTION_ADDRESS], location_text)
     primary_street = match.group(1)
@@ -273,8 +279,8 @@ def extract_segment_intersection_address_info(location_text: str) -> tuple[Inter
     cross_street_name = match.group(3)
     street_number = match.group(4)
 
-    street1 = Street(direction="", name=primary_street_name, type="")
-    street2 = Street(direction="", name=cross_street_name, type="")
+    street1 = Street(direction="", name=primary_street_name, street_type="")
+    street2 = Street(direction="", name=cross_street_name, street_type="")
     intersection = Intersection(street1, street2)
 
     address = extract_street_address(f"{street_number} {primary_street}")
@@ -282,15 +288,19 @@ def extract_segment_intersection_address_info(location_text: str) -> tuple[Inter
     return (intersection, address)
 
 
+def get_location_format(location):
+    """Detect and return the address format."""
+    for format, pattern in location_patterns.items():
+        if re.match(pattern, location.strip()):
+            return format
+
+    return None
+
+
 # TODO implement unittest and move this code to test specific files
 if __name__ == '__main__':
-    from tests.test_cases import add_tests
-    loc_1 = 'ON N RIDGEWAY AVE FROM W SCHOOL ST (3300 N) TO W BELMONT AVE (3200 N)'
-    #print(LocationStringProcessor(location_string=loc_1).format)
-
-    for test in add_tests():
-        print('---'*20)
-        print(LocationStringProcessor(location_string=test).format)
-        print(LocationStringProcessor(location_string=test).run(), '\n',
-              len(LocationStringProcessor(location_string=test).run())
-        )
+    
+    for test in address_tests():
+        print('---'*25)
+        print(test)
+        print(LocationStringProcessor(location_string=test).run())
