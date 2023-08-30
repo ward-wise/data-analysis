@@ -300,7 +300,10 @@ def get_location_format(location):
 # TODO implement unittest and move this code to test specific files
 if __name__ == '__main__':
     
-    for test in address_tests():
-        print('---'*25)
-        print(test)
-        print(LocationStringProcessor(location_string=test).run())
+    # for test in address_tests()[:4]:
+    #     print('---'*25)
+    #     print(test)
+    #     print(LocationStringProcessor(location_string=test).run())
+    loc_1 = 'N MILWAUKEE AVE & N WASHTENAW AVE'
+    print(get_location_format(loc_1))
+    print(extract_intersection_street_names(loc_1).street1)

@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 from shapely.geometry import Point
 from location_structures import Street, StreetAddress, Intersection
 import time
+from location_format_processing import LocationStringProcessor
 
 
 load_dotenv()
@@ -27,10 +28,6 @@ class GeoCoderAPI:
         'X-App-Token': os.getenv('app_token'),
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0'
     }
-
-    def __init__(self) -> None:
-        # variable to keep track of coordinates return by API
-        self.coors: list = []
 
     def _query_transport_api(
             self,
@@ -115,12 +112,13 @@ class GeoCoderAPI:
     def get_street_address_coordinates_from_full_name(
             self,
             address: str) -> Point:
+        coors = []
         try:
             results = self._query_address_api(
                 params={'cmpaddabrv': str(address).upper()})
             _coordinate = tuple(
                 np.array(results[0]['the_geom']['coordinates']).reshape(-1, 2)[0])
-            self.coors.append(_coordinate)
+            coors.append(_coordinate)
 
         except IndexError:
             'if API return empty'
@@ -129,14 +127,14 @@ class GeoCoderAPI:
             )
             if results:
                 _coordinate = (float(results[0]['lon']), float(results[0]['lat']))
-                self.coors.append(_coordinate)
+                coors.append(_coordinate)
             else:
-                self.coors.append(None)
+                return None
 
         except KeyError:
-            self.coors.append(None)
+            return None
 
-        return Point(self.coors)
+        return Point(coors)
 
     def get_street_address_coordinates(
             self,
@@ -152,13 +150,14 @@ class GeoCoderAPI:
         :Returns:
         - Point: A Shapely point with the GPS coordinates of the address (longitude, latitude).
         """
+        coors = []
         try:
             results = self._query_address_api(
                 params={'cmpaddabrv': str(address).upper()}
             )
             _coordinate = tuple(
                 np.array(results[0]['the_geom']['coordinates']).reshape(-1, 2)[0])
-            self.coors.append(_coordinate)
+            coors.append(_coordinate)
 
         except IndexError:
             'if API return empty'
@@ -167,14 +166,14 @@ class GeoCoderAPI:
             )
             if results:
                 _coordinate = (float(results[0]['lon']), float(results[0]['lat']))
-                self.coors.append(_coordinate)
+                coors.append(_coordinate)
             else:
-                self.coors.append(None)
+                return None
 
         except KeyError:
-            self.coors.append(None)
+            return None
 
-        return Point(self.coors)
+        return Point(coors)
 
     def get_intersection_coordinates(
             self,
@@ -189,39 +188,37 @@ class GeoCoderAPI:
         Returns:
         - Point: A Shapely point with the GPS coordinates of the address (longitude, latitude).
         """
-        pairs = [(intersection.street1.name, intersection.street2.name),
-                 (intersection.street2.name, intersection.street1.name)
-                 ]
-        corner = set()
-        for pair in pairs:
-            try:
-                result = self._query_transport_api(
-                    params={'street_nam': pair[0]},
-                    sql_func=f'f_cross like "%25{pair[1]}%25"'
-                )
+        street_1 = intersection.street1.name
+        street_2 = intersection.street2.name
+        corner = ()
+        try:
+            result = self._query_transport_api(
+                params={'street_nam': street_1},
+                sql_func=f'f_cross like "%25{street_2}%25"'
+            )
+            _coordinate = tuple(
+                np.array(result[0]['the_geom']['coordinates']).reshape(-1, 2)[0]
+            )
+            if result:
+                corner = _coordinate
+
+        except IndexError:
+            result = self._query_transport_api(
+                params={'street_nam': street_2},
+                sql_func=f't_cross like "%25{street_1}%25"'
+            )
+            if result:
                 _coordinate = tuple(
                     np.array(result[0]['the_geom']['coordinates']).reshape(-1, 2)[0]
                 )
-                if result:
-                    corner.add(_coordinate)
-                    # break loop at first corner
-                    break
-            except IndexError:
-                result = self._query_transport_api(
-                    params={'street_nam': pair[0]},
-                    sql_func=f't_cross like "%25{pair[1]}%25"'
-                )
-                if result:
-                    _coordinate = tuple(
-                        np.array(result[0]['the_geom']['coordinates']).reshape(-1, 2)[0]
-                    )
-                    corner.add(_coordinate)
-                    # break loop at first corner
-                    break
-        self.coors = list(corner)
-        return Point(self.coors)
+                corner = _coordinate
+            else:
+                return None
+
+        return Point(corner)
 
 if __name__ == '__main__':
-    st = StreetAddress(number=200, street=Street(direction='E', name='40TH', street_type='ST'))
-    intersec = Intersection(street1=Street(direction='', name='43RD', street_type=''), street2=Street(direction='', name='HALSTED', street_type=''))
-    print(GeoCoderAPI().get_intersection_coordinates(intersection=intersec))
+    loc_1 = 'S DORCHESTER AVE & E MADISON PARK  & S WOODLAWN AVE & E 50TH ST'
+    i = LocationStringProcessor(location_string=loc_1).run()
+    print(i[0]['location_text_data'])
+    #print(GeoCoderAPI.get_street_address_coordinates()))
