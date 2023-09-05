@@ -304,6 +304,6 @@ if __name__ == '__main__':
     #     print('---'*25)
     #     print(test)
     #     print(LocationStringProcessor(location_string=test).run())
-    loc_1 = 'N MILWAUKEE AVE & N WASHTENAW AVE'
+    loc_1 = 'ON W EVERGREEN AVE FROM N MILWAUKEE AVE  (1800 W) TO W SCHILLER ST  (1900 W)'
     print(get_location_format(loc_1))
-    print(extract_intersection_street_names(loc_1).street1)
+    print(extract_segment_intersections(loc_1))

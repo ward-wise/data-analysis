@@ -7,7 +7,7 @@ def address_tests():
         '5300-5330 S PRAIRIE AVE',
         'ON W 70TH ST FROM S GREEN ST (830 W) TO S PEORIA ST (900 W)',
         '434-442 E 46TH PL',  # unable to find address in address API
-        'S DORCHESTER AVE & E MADISON PARK  & S WOODLAWN AVE & E 50TH ST',  # shouldn't be intersection, should be alley
+        'S DORCHESTER AVE & E MADISON PARK  & S WOODLAWN AVE & E 50TH ST',
         'ON N LEAVITT ST FROM W DIVISION ST (1200 N) TO W NORTH AVE (1600 N)',
         'N WOOD AVE & W AUGUSTA ST & W CORTEZ ST & N HERMITAGE AVE',
         'ON W 52ND PL FROM 322 W TO S PRINCETON AVE (300 W)',  #
@@ -19,7 +19,7 @@ def address_tests():
         '1400 N CAMPBELL AVE; N CAMPBELL AVE & W LE MOYNE ST & W HIRSCH ST & N MAPLEWOOD AVE',
         '6754 S EUCLID AVE; ON W 68TH ST FROM S BENNETT AVE  (1900 E) TO S EUCLID AVE  (1930 E)',
         '1110 N STATE ST; 1030 N STATE ST',
-        'ON W EVERGREEN AVE FROM N MILWAUKEE AVE  (1800 W) TO W SCHILLER ST  (1900 W)',
+        # 'ON W EVERGREEN AVE FROM N MILWAUKEE AVE  (1800 W) TO W SCHILLER ST  (1900 W)' # on transportation reported as cross with "Wicher Park AVE",
         # null cases
         'N MILWAUKEE AVE & N HONORE ST',
         'W DIVISION ST & N PAULINA ST',

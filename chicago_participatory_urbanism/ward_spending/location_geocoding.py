@@ -15,7 +15,7 @@ class LocationGeocoder:
 
     def process_location_text(self, text):
         """
-        Take the location text from the ward spending data and 
+        Take the location text from the ward spending data and
         return a geometry matching the GPS coordinates.
         """
 
@@ -42,70 +42,75 @@ class LocationGeocoder:
     def get_geometry_from_location(self, location):
         location = location.strip() #remove whitespace
         format = lfp.get_location_format(location)
-        print(format)
+        try:
+            match format:
+                case lfp.LocationFormat.STREET_ADDRESS:
+                    return self.geocoder.get_street_address_coordinates(location)
 
-        match format:
-            case lfp.LocationFormat.STREET_ADDRESS:
-                return self.geocoder.get_street_address_coordinates(location)
+                case lfp.LocationFormat.STREET_ADDRESS_RANGE:
+                    (address1, address2) =lfp.extract_address_range_street_addresses(location)
+                    point1 = self.geocoder.get_street_address_coordinates(address1)
+                    point2 = self.geocoder.get_street_address_coordinates(address2)
 
-            case lfp.LocationFormat.STREET_ADDRESS_RANGE:
-                (address1, address2) =lfp.extract_address_range_street_addresses(location)
-                point1 = self.geocoder.get_street_address_coordinates(address1)
-                point2 = self.geocoder.get_street_address_coordinates(address2)
-                street_segment = LineString([point1, point2])
-                return street_segment
+                    street_segment = LineString([point1, point2])
+                    return street_segment
 
-            case lfp.LocationFormat.INTERSECTION:
-                intersect = lfp.extract_intersection_street_names(location)
-                intersection = self.geocoder.get_intersection_coordinates(intersect)
-                return intersection
+                case lfp.LocationFormat.INTERSECTION:
+                    intersect = lfp.extract_intersection_street_names(location)
+                    intersection = self.geocoder.get_intersection_coordinates(intersect)
+                    return intersection
 
-            case lfp.LocationFormat.STREET_SEGMENT_INTERSECTIONS:
-                (intersection1, intersection2) = lfp.extract_segment_intersections(location)
-                point1 = self.geocoder.get_intersection_coordinates(intersection1)
-                point2 = self.geocoder.get_intersection_coordinates(intersection2)
-                street_segment = LineString([point1, point2])
-                return street_segment
+                case lfp.LocationFormat.STREET_SEGMENT_INTERSECTIONS:
+                    (intersection1, intersection2) = lfp.extract_segment_intersections(location)
+                    point1 = self.geocoder.get_intersection_coordinates(intersection1)
+                    point2 = self.geocoder.get_intersection_coordinates(intersection2)
 
-            case lfp.LocationFormat.STREET_SEGMENT_ADDRESS_INTERSECTION:
-                (address, intersection) = lfp.extract_segment_address_intersection_info(location)
-                point1 = self.geocoder.get_intersection_coordinates(intersection)
-                point2 = self.geocoder.get_street_address_coordinates(address)
-                street_segment = LineString([point1, point2])
-                return street_segment
+                    street_segment = LineString([point1, point2])
+                    return street_segment
 
-            case lfp.LocationFormat.STREET_SEGMENT_INTERSECTION_ADDRESS:
-                (intersection, address) = lfp.extract_segment_intersection_address_info(location)
-                point1 = self.geocoder.get_intersection_coordinates(intersection)
-                point2 = self.geocoder.get_street_address_coordinates(address)
-                street_segment = LineString([point1, point2])
-                return street_segment
+                case lfp.LocationFormat.STREET_SEGMENT_ADDRESS_INTERSECTION:
+                    (address, intersection) = lfp.extract_segment_address_intersection_info(location)
+                    point1 = self.geocoder.get_intersection_coordinates(intersection)
+                    point2 = self.geocoder.get_street_address_coordinates(address)
 
-            case lfp.LocationFormat.ALLEY:
+                    street_segment = LineString([point1, point2])
+                    return street_segment
 
-                intersections = lfp.extract_alley_intersections(location)
+                case lfp.LocationFormat.STREET_SEGMENT_INTERSECTION_ADDRESS:
+                    (intersection, address) = lfp.extract_segment_intersection_address_info(location)
+                    point1 = self.geocoder.get_intersection_coordinates(intersection)
+                    point2 = self.geocoder.get_street_address_coordinates(address)
+                    # check for returned None for point 1 & point 2
 
-                points = []
-                for intersection in intersections:
-                    points.append(self.geocoder.get_intersection_coordinates(intersection))
+                    street_segment = LineString([point1, point2])
+                    return street_segment
 
-                # remove None values from the array and place points in clockwise order
-                points = [point for point in points if point is not None]
-                points = get_clockwise_sequence(points)
+                case lfp.LocationFormat.ALLEY:
 
-                coordinates = [(point.x, point.y) for point in points]
-                alley_bounding_box = Polygon(coordinates)
-                return alley_bounding_box
+                    intersections = lfp.extract_alley_intersections(location)
 
-            case _ :
-                print(f"Location text: {location}")
-                print(f"No format match found.\n")
-                return None
+                    points = []
+                    for intersection in intersections:
+                        points.append(self.geocoder.get_intersection_coordinates(intersection))
 
-        # except Exception as e:
-        #     print(f"Location text: {location}")
-        #     print(f"An error occurred: {str(e)}\n")
-        #     return None
+                    # remove None values from the array and place points in clockwise order
+                    points = [point for point in points if point is not None]
+
+                    points = get_clockwise_sequence(points)
+
+                    coordinates = [(point.x, point.y) for point in points]
+                    alley_bounding_box = Polygon(coordinates)
+                    return alley_bounding_box
+
+                case _ :
+                    print(f"Location text: {location}")
+                    print(f"No format match found.\n")
+                    return None
+
+        except Exception as e:
+            print(f"Location text: {location}")
+            print(f"An error occurred: {str(e)}\n")
+            return None
 
 
 
@@ -125,9 +130,9 @@ def get_clockwise_sequence(points):
 
 
 if __name__ == '__main__':
-    
+
     geo_coder = GeoCoderAPI()
-    for test in address_tests()[6:]:
+    for test in address_tests():
         print('---'*30)
         print(test)
         print(LocationGeocoder(geocoder=GeoCoderAPI()).process_location_text(

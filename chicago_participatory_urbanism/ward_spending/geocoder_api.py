@@ -101,7 +101,7 @@ class GeoCoderAPI:
         time.sleep(1)
         nom_header = self.api_header.copy()
         nom_header.pop('X-App-Token')
-        query_string = query_string + ' chicago il'
+        query_string = query_string + ', chicago il'
 
         query_link = f'https://nominatim.openstreetmap.org/search?q={query_string}&format=jsonv2'
 
@@ -218,7 +218,9 @@ class GeoCoderAPI:
         return Point(corner)
 
 if __name__ == '__main__':
-    loc_1 = 'S DORCHESTER AVE & E MADISON PARK  & S WOODLAWN AVE & E 50TH ST'
+    loc_1 = 'ON W EVERGREEN AVE FROM N MILWAUKEE AVE  (1800 W) TO W SCHILLER ST  (1900 W)'
     i = LocationStringProcessor(location_string=loc_1).run()
-    print(i[0]['location_text_data'])
-    #print(GeoCoderAPI.get_street_address_coordinates()))
+    to_test = i[0]['location_text_data']
+    print(to_test[1])
+    print(GeoCoderAPI().get_intersection_coordinates(intersection=to_test[1]))
+    print(GeoCoderAPI()._query_transport_api(params={'street_nam': 'EVERGREEN'}, sql_func='t_cross like "%25SCHILLER%25"'))
