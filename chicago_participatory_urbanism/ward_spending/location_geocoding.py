@@ -56,7 +56,7 @@ class LocationGeocoder:
                     return street_segment
 
                 case lfp.LocationFormat.INTERSECTION:
-                    intersect = lfp.extract_intersection_street_names(location)
+                    intersect = lfp.extract_intersection(location)
                     intersection = self.geocoder.get_intersection_coordinates(intersect)
                     return intersection
 

@@ -8,7 +8,7 @@ from typing import Dict, List
 import sys
 from pathlib import Path
 sys.path += [str(Path(__file__).resolve().parents[2])]
-from location_structures import Street, StreetAddress, Intersection
+from chicago_participatory_urbanism.ward_spending.location_structures import Street, StreetAddress, Intersection
 from src.tests.test_cases import address_tests
 
 
@@ -101,7 +101,7 @@ class LocationStringProcessor:
                 case LocationFormat.INTERSECTION:
                     addresses.append(
                         {'format': f['format'],
-                         'location_text_data': extract_intersection_street_names(f['address'])}
+                         'location_text_data': extract_intersection(f['address'])}
                     )
 
                 case LocationFormat.STREET_SEGMENT_INTERSECTIONS:
@@ -224,7 +224,7 @@ def extract_alley_intersections(location_text: str) -> List[Intersection]:
     return intersections
 
 
-def extract_intersection_street_names(location_text: str) -> Intersection:
+def extract_intersection(location_text: str) -> Intersection:
     """Return an Intersection for the INTERSECTION location format"""
 
     match = re.match(location_patterns[LocationFormat.INTERSECTION], location_text)
