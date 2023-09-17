@@ -160,7 +160,7 @@ class GeoCoderAPI:
             coors.append(_coordinate)
 
         except IndexError:
-            'if API return empty'
+            "if API return empty"
             results = self._query_nominatim(
                 query_string=str(address).upper()
             )

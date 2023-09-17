@@ -33,12 +33,6 @@ class LocationGeocoder:
 
         return geometry
 
-        # except Exception as e:
-        #     print(f"Full location text: {text}")
-        #     print(f"An error occurred: {str(e)}\n")
-        #     return None
-
-
     def get_geometry_from_location(self, location):
         location = location.strip() #remove whitespace
         format = lfp.get_location_format(location)
@@ -111,7 +105,6 @@ class LocationGeocoder:
             print(f"Location text: {location}")
             print(f"An error occurred: {str(e)}\n")
             return None
-
 
 
 def get_clockwise_sequence(points):

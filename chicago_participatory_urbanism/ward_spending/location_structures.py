@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+
 @dataclass
 class Street:
     direction: str
@@ -8,6 +9,7 @@ class Street:
 
     def __str__(self):
         return f"{self.direction} {self.name} {self.street_type}"
+
 
 @dataclass
 class Intersection:
