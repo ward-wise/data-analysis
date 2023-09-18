@@ -1,7 +1,7 @@
 import pandas as pd
-#from categorization import STANDARD_CATEGORY
-from location_geocoding import LocationGeocoder
-from geocoder_api import GeoCoderAPI
+# from categorization import STANDARD_CATEGORY
+# from location_geocoding import LocationGeocoder
+# from geocoder_api import GeoCoderAPI
 import multiprocessing as mp
 
 
@@ -34,16 +34,15 @@ STANDARD_CATEGORY = {
     "viaduct": "Viaducts",
 }
 
-def post_process_data(file_name: str):
+def post_process_data(file_name: str, year: int):
     # load in data and mark year
     data = pd.read_csv(file_name, index_col=None)
-    # data['year'] = year
     # remove year from items and add as new column
     data['item'] = data['item'].str.replace(r'\s\(\d+\)', '', regex=True)
-    # convert texts to lower case
-    data['item'] = data['item'].str.lower()
+    data['year'] = year
     # convert cost column to numeric
-    #data['cost'] = data['cost'].str.replace('[\$,]', '', regex=True).astype(float)
+    data['cost'] = data['cost'].str.replace('[\$,]', '', regex=True).astype(float)
+    
     # add category
     #data["category"] = data["item"].apply(get_menu_category)
 

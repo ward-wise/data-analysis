@@ -1,13 +1,14 @@
 import pandas as pd
 from chicago_participatory_urbanism.ward_spending.post_processor import post_process_data
 import re
+import os
 
-files = ['data/output/2019.csv', 
-         'data/output/2020.csv',
-         'data/output/2021.csv', 
-         'data/output/2021.csv']
+files = ['2019 Menu Posting - 22-10-02.csv', 
+         '2020 Menu Posting - 22-10-02.csv',
+         '2021 Menu Posting - 22-10-02.csv',
+         '2022 Menu - 2-9-23.csv']
 
-year_pattern = r"20\d{2}$"
+year_pattern = r"20\d{2}"
 dataframes = []
 for file in files:
     match = re.search(year_pattern, file)
@@ -15,7 +16,8 @@ for file in files:
         year = match.group()
     else:
         year = 0
-    dataframes.append(post_process_data(file, year))
+    file_path = os.path.join(os.getcwd(), 'data', 'output', file)
+    dataframes.append(post_process_data(file_path, year))
 
 # combine into one dataset
 data = pd.concat(dataframes)
