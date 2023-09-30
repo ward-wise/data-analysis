@@ -4,27 +4,27 @@ import csv
 import re
 
 # Parameters
-file_name = '2020 Menu Posting - 22-10-02.pdf'
+file_name = '2018 Menu Posting.pdf'
 #file_name = '2022 Menu - 2-9-23.pdf'
 
-# below numbers work for 2019+ format of menu posting PDFs
+# below numbers work for 2017-18 format of menu posting PDFs
 
 # Functions
 
 def is_menu_package_item(x):
-    return x > 14 and x < 17
+    return x > 50 and x < 54
 
 def is_location(x):
-    return x > 283 and x < 288
+    return x > 259 and x < 280
 
 def is_cost(x):
-    return x > 830 and x < 890
+    return x > 655 and x < 695
 
 def is_in_table(y):
-    return y > 30 and y < 460
+    return y > 40 and y < 520
 
 def is_ward(x,y):
-    return (x > 14 and x < 17) and (y > 490 and y < 510)
+    return is_menu_package_item(x) and (y > 538 and y < 560)
 
 def extract_ward_number(text):
     return text.split(':')[-1].strip()
@@ -50,7 +50,7 @@ def get_table_data(text, cm, tm, fontDict, fontSize):
         elif (is_in_table(y)):
 
             y_diff = last_y - y
-            if(y_diff> 15 or y_diff<-50):
+            if(y_diff>12 or y_diff<-50):
                 # new item!
                 data.append(current_row)
                 current_row = {"ward": ward, "item": "", "loc": "", "cost":""}
