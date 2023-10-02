@@ -51,8 +51,17 @@ def get_table_data(text, cm, tm, fontDict, fontSize):
 
             y_diff = last_y - y
             if(y_diff>12 or y_diff<-50):
-                # new item!
-                data.append(current_row)
+                # continued lines and new lines have the same difference in this format
+                if (current_row["item"] == ""):
+                    # roll-over lines for previous item
+                    active_entry["location"] += " " + current_row["location"]
+                    active_entry["cost"] += current_row["cost"]
+                else:
+                    # new item, add old item to list
+                    data.append(active_entry)
+                    # make current row into active entry (saving to list lags one behind)
+                    active_entry = current_row
+                
                 current_row = {"ward": ward, "item": "", "loc": "", "cost":""}
 
             if(is_menu_package_item(x)):
@@ -65,6 +74,7 @@ def get_table_data(text, cm, tm, fontDict, fontSize):
 
             elif(is_location(x)):
                 loc_text = text
+                loc_text = loc_text.replace(":",";")
                 if (x == last_x and y == last_y):
                     # second line of same loc, need to add a space
                     loc_text = " " + loc_text
