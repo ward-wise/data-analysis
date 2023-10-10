@@ -23,7 +23,7 @@ class LocationFormat(Enum):
     UNIDENTIFIED = auto()
 
 
-street_suffixes = "(?:AVE|BLVD|CRES|CT|DR|ER|EXPY|HWY|LN|PKWY|PL|PLZ|RD|RL|ROW|SQ|SR|ST|TER|TOLL|WAY|XR)"
+street_suffixes = "(?:AVE|BLVD|CRES|CT|DR|ER|EXPY|HWY|LN|PKWY|PL|PLZ|RD|RL|ROW|SQ|SR|ST|TER|TOLL|WAY|XR|[A-Z])"
 street_pattern = rf"[NWES]\s(.*)\s{street_suffixes}(?:|\s+[NWES])"
 street_pattern_with_optional_suffix = rf"[NWES]\s(.*?)(?:\s{street_suffixes})?(?:|\s+[NWES])"
 # special_street_names = "(?:S (AVENUE [A-Z])|N (BROADWAY)|N (LINCOLN PARK) W|W (MIDWAY PARK)|W (FULTON MARKET))"
@@ -35,7 +35,7 @@ location_patterns = {
     # Pattern for format: 1640 N MAPLEWOOD AVE
     LocationFormat.STREET_ADDRESS: rf"^\d+\s+{street_pattern}$",
     # Pattern for format: 434-442 E 46TH PL
-    LocationFormat.STREET_ADDRESS_RANGE: rf"^(\d+)-(\d+)\s+({street_pattern})$",
+    LocationFormat.STREET_ADDRESS_RANGE: rf"^(\d+)-(\d+)\s+({street_pattern})",
     # Pattern for format: N WOOD ST & W AUGUSTA BLVD & W CORTEZ ST & N HERMITAGE AVE
     # ALLEY NEEDS TO COME BEFORE INTERSECTION
     LocationFormat.ALLEY: rf"^{street_pattern_with_optional_suffix}\s*&\s*{street_pattern_with_optional_suffix}\s*&\s*{street_pattern_with_optional_suffix}\s*&\s*{street_pattern_with_optional_suffix}$",
@@ -147,7 +147,7 @@ def extract_street_address(street_address_text: str) -> StreetAddress:
     number = int(address_parts[0])
     direction = address_parts[1]
     # capture multi-word names
-    name = " ".join(address_parts[2:-1])  
+    name = " ".join(address_parts[2:-1])
     street_type = address_parts[-1]
 
     street = Street(direction, name, street_type)
@@ -299,11 +299,4 @@ def get_location_format(location):
 
 # TODO implement unittest and move this code to test specific files
 if __name__ == '__main__':
-    
-    # for test in address_tests()[:4]:
-    #     print('---'*25)
-    #     print(test)
-    #     print(LocationStringProcessor(location_string=test).run())
-    loc_1 = 'ON W EVERGREEN AVE FROM N MILWAUKEE AVE  (1800 W) TO W SCHILLER ST  (1900 W)'
-    print(get_location_format(loc_1))
-    print(extract_segment_intersections(loc_1))
+    None
