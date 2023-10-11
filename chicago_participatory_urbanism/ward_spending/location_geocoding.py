@@ -34,10 +34,10 @@ class LocationGeocoder:
         return geometry
 
     def get_geometry_from_location(self, location):
-        location = location.strip() #remove whitespace
-        format = lfp.get_location_format(location)
+        location = location.strip()
+        str_format = lfp.get_location_format(location)
         try:
-            match format:
+            match str_format:
                 case lfp.LocationFormat.STREET_ADDRESS:
                     return self.geocoder.get_street_address_coordinates(location)
 
