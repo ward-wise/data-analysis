@@ -2,7 +2,6 @@ data/pdf/
 data/output/
 **/__pycache__/
 src/test_scripts/
-.vscode/settings.json
 *.DS_Store
 
 # python environments
