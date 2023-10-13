@@ -16,12 +16,16 @@ for file in files:
         year = match.group()
     else:
         year = 0
+    print(f"Processing {year} data...")
     file_path = os.path.join(os.getcwd(), 'data', 'output', file)
     dataframes.append(post_process_data(file_path, year))
 
 # combine into one dataset
+print(f"Joining data...")
 data = pd.concat(dataframes)
 data.reset_index()
 
 # export data
-data.to_csv('data/output/2019-2022.csv', index=False)
+output_file_path = 'data/output/2019-2022.csv'
+data.to_csv(output_file_path, index=False)
+print(f"Post-processing complete. Data saved to {output_file_path}.")

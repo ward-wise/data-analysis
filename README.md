@@ -10,8 +10,12 @@ Check out the GitHub issues for things to work on.
 ```
 pip install .
 ```
+> **Note:** When doing development work on the package, you need to re-run this command to use the latest package changes in external scripts.
 
-# Work Flow
+The repo has two main parts: the data processing Python package and a library of scripts that use the package. If you're a newcomer, we recommend familiarizing yourself with the project by using the scripts to follow the data processing work flow outlined below.
+
+# Data Processing Work Flow
+Using the repo scripts, the data processing involves the following steps:
 * Extract data from PDFs
 * Post-process data (name cleanup, field seperation, categorization)
 * Geocode location data
