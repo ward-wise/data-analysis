@@ -40,7 +40,6 @@ def _get_table_data(text, cm, tm, fontDict, fontSize):
 
         if(_is_ward(x,y)):
             ward = _extract_ward_number(text)
-            print("ward: " + ward)
         elif (_is_in_table(y)):
 
             y_diff = last_y - y

@@ -1,12 +1,6 @@
-import sys
-from pathlib import Path
-sys.path += [str(Path(__file__).resolve().parents[2])]
 from shapely.geometry import Point, LineString, Polygon
 import math
-import location_format_processing as lfp
-from geocoder_api import GeoCoderAPI
-from src.tests.test_cases import address_tests
-
+import chicago_participatory_urbanism.ward_spending.location_format_processing as lfp
 
 class LocationGeocoder:
 
@@ -121,13 +115,3 @@ def get_clockwise_sequence(points):
 
     return sorted_points
 
-
-if __name__ == '__main__':
-
-    geo_coder = GeoCoderAPI()
-    for test in address_tests():
-        print('---'*30)
-        print(test)
-        print(LocationGeocoder(geocoder=GeoCoderAPI()).process_location_text(
-                text=test)
-        )

@@ -5,11 +5,7 @@ street address or street intersection
 import re
 from enum import auto, Enum
 from typing import Dict, List
-import sys
-from pathlib import Path
-sys.path += [str(Path(__file__).resolve().parents[2])]
-from chicago_participatory_urbanism.ward_spending.location_structures import Street, StreetAddress, Intersection
-from src.tests.test_cases import address_tests
+from chicago_participatory_urbanism.location_structures import Street, StreetAddress, Intersection
 
 
 class LocationFormat(Enum):
@@ -295,8 +291,3 @@ def get_location_format(location):
             return format
 
     return None
-
-
-# TODO implement unittest and move this code to test specific files
-if __name__ == '__main__':
-    None

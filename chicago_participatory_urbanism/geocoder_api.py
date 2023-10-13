@@ -8,9 +8,8 @@ import requests
 import numpy as np
 from dotenv import load_dotenv
 from shapely.geometry import Point
-from location_structures import Street, StreetAddress, Intersection
+from chicago_participatory_urbanism.location_structures import Street, StreetAddress, Intersection
 import time
-from location_format_processing import LocationStringProcessor
 
 
 load_dotenv()
@@ -216,8 +215,3 @@ class GeoCoderAPI:
                 return None
 
         return Point(corner)
-
-if __name__ == '__main__':
-    loc_1 = '10458 S AVENUE H'
-    i = LocationStringProcessor(location_string=loc_1).run()
-    print(i)
