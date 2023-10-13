@@ -26,6 +26,6 @@ data = pd.concat(dataframes)
 data.reset_index()
 
 # export data
-output_file_path = 'data/output/2019-2022.csv'
+output_file_path = 'data/output/2019-2022 data.csv'
 data.to_csv(output_file_path, index=False)
 print(f"Post-processing complete. Data saved to {output_file_path}.")

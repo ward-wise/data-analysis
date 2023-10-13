@@ -3,7 +3,7 @@ from chicago_participatory_urbanism.geocoder_api import GeoCoderAPI
 from chicago_participatory_urbanism.ward_spending.location_geocoding import LocationGeocoder
 from cases import address_tests
 
-class TestGeocoding(unittest.TestCase):
+class TestGeocoderAPI(unittest.TestCase):
 
     # TODO make generic and add more cases
     def test_geocoder_API_initialization(self):

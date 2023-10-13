@@ -24,7 +24,7 @@ class LocationGeocoder:
                 geometry = location_geometry
             else:
                 geometry = geometry.union(location_geometry)
-
+         
         return geometry
 
     def get_geometry_from_location(self, location):
@@ -33,7 +33,8 @@ class LocationGeocoder:
         try:
             match str_format:
                 case lfp.LocationFormat.STREET_ADDRESS:
-                    return self.geocoder.get_street_address_coordinates(location)
+                    address = lfp.extract_street_address(location)
+                    return self.geocoder.get_street_address_coordinates(address)
 
                 case lfp.LocationFormat.STREET_ADDRESS_RANGE:
                     (address1, address2) =lfp.extract_address_range_street_addresses(location)

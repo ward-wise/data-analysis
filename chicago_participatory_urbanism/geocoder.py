@@ -4,7 +4,7 @@ import logging
 import geopandas as gpd
 from shapely.ops import unary_union
 from shapely.geometry import Point, MultiPoint, LineString, MultiLineString
-from location_structures import Street, StreetAddress, Intersection
+from chicago_participatory_urbanism.location_structures import Street, StreetAddress, Intersection
 
 # address point csv from https://hub-cookcountyil.opendata.arcgis.com/datasets/5ec856ded93e4f85b3f6e1bc027a2472_0/about
 address_points_path = [p for p in importlib.metadata.files('chicago_participatory_urbanism')
