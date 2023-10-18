@@ -10,8 +10,12 @@ Check out the GitHub issues for things to work on.
 ```
 pip install .
 ```
+> **Note:** When doing development work on the package, you need to re-run this command to use the latest package changes in external scripts.
 
-# Work Flow
+The repo has two main parts: the data processing Python package and a library of scripts that use the package. If you're a newcomer, we recommend familiarizing yourself with the project by using the scripts to follow the data processing work flow outlined below.
+
+# Data Processing Work Flow
+Using the repo scripts, the data processing involves the following steps:
 * Extract data from PDFs
 * Post-process data (name cleanup, field seperation, categorization)
 * Geocode location data
@@ -24,9 +28,9 @@ pip install .
 
 # Code Overview
 ## Scripts
-* extract_text_from_pdf - converts CIP aldermanic menu spending PDFs into CSVs
-* ward_spending_analysis - post-processes PDF data, making fixes to columns and categorizing items
-* ward_spending_geocoding script - gecodes the CSV data, outputtinga geoJSON
+* ward_spending_pdf_data_extraction - converts CIP aldermanic menu spending PDFs into CSVs
+* ward_spending_post_processing - post-processes PDF data, making fixes to columns and categorizing items
+* ward_spending_geocoding - gecodes the CSV data, outputtinga geoJSON
 ### Upcoming Bike Lanes
 * bike_geocoding_script - one-off, uses the ward wise libraries to geocode CDOT upcoming bike lane data
 

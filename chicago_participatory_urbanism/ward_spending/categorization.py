@@ -1,6 +1,31 @@
-import geopandas as gpd
-import pandas as pd
-import re
+STANDARD_CATEGORY = {
+    "pedestrian": "Pedestrian Infrastructure",
+    "bump outs": "Pedestrian Infrastructure",
+    "bicycle": "Bicycle Infrastructure",
+    "bike": "Bicycle Infrastructure",
+    "neighborhood greenway": "Bicycle Infrastructure",
+    "light": "Lighting",
+    "street resurfacing": "Street Resurfacing",
+    "street speed hump replacement": "Street Resurfacing",
+    "curb & gutter": "Street Resurfacing",
+    "alley": "Alleys",
+    "miscellaneous cdot projects": "Misc. CDOT",
+    "mural": "Beautification",
+    "public art": "Beautification",
+    "tree planting": "Beautification",
+    "turn arrow": "Street Redesign",
+    "street speed hump menu": "Street Redesign",
+    "pavement markings": "Street Redesign",
+    "traffic circle": "Street Redesign",
+    "cul-de-sac": "Street Redesign",
+    "diagnol parking": "Street Redesign",
+    "sidewalk": "Sidewalk Repair",
+    "pod camera": "Police Cameras",
+    "park": "Parks",
+    "playground": "Parks",
+    "garden": "Parks",
+    "viaduct": "Viaducts",
+}
 
 def get_menu_category(item):
     item = item.lower()
@@ -44,27 +69,3 @@ def get_menu_category(item):
         return "Viaducts"
     else:
         return "Misc."
-    
-
-# load data in from different years and mark year
-data_2019 = gpd.read_file("data/output/2019 Menu Posting - 22-10-02.csv")
-data_2019['year'] = 2019
-data_2020 = gpd.read_file("data/output/2020 Menu Posting - 22-10-02.csv")
-data_2020['year'] = 2020
-data_2021 = gpd.read_file("data/output/2021 Menu Posting - 22-10-02.csv")
-data_2021['year'] = 2021
-data_2022 = gpd.read_file("data/output/2022 Menu - 2-9-23.csv")
-data_2022['year'] = 2022
-
-# combine into one dataset
-data = pd.concat([data_2019, data_2020, data_2021, data_2022])
-
-## clean up data
-# remove year from items and add as new column
-data['item'] = data['item'].str.replace(r'\s\(\d+\)', '', regex=True)
-# convert cost column to numeric
-data['cost'] = data['cost'].str.replace('[\$,]', '', regex=True).astype(float)
-# add category
-data["category"] = data["item"].apply(get_menu_category)
-
-data.to_csv('data/output/2019-2022 data v1.csv', index=False)
