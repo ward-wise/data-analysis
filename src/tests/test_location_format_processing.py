@@ -1,5 +1,12 @@
+# add path to use local module files 
+import sys
+import os
+FILE_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_DIR = os.path.dirname(os.path.dirname(FILE_DIR))
+sys.path.append(PROJECT_DIR)
+
 import unittest
-import chicago_participatory_urbanism.ward_spending.location_format_processing as lfp
+from chicago_participatory_urbanism.ward_spending import location_format_processing as lfp
 
 class TestLocationFunctions(unittest.TestCase):
 

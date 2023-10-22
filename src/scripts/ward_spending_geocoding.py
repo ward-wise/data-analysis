@@ -4,7 +4,7 @@ import os
 from chicago_participatory_urbanism.ward_spending.location_geocoding import LocationGeocoder
 
 ## use local geocoder
-# from chicago_participatory_urbanism.geocoder import Geocoder
+# from chicago_participatory_urbanism.geocoder_local import Geocoder
 # geocoder = Geocoder()
 
 # use geocoder APIs
