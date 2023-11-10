@@ -29,7 +29,8 @@ STANDARD_CATEGORY = {
 
 def get_menu_category(item):
     item = item.lower()
-    if ("pedestrian" in item 
+    if ("pedestrian" in item
+        or "crosswalk" in item 
         or "bump outs" in item):
         return "Pedestrian Infrastructure"
     elif ("bicycle" in item
@@ -40,6 +41,7 @@ def get_menu_category(item):
         return "Lighting"
     elif("street resurfacing" in item 
          or "street speed hump replacement" in item 
+         or "resurfacing street speed" in item 
          or "curb & gutter" in item):
         return "Street Resurfacing"
     elif "alley" in item:
@@ -55,14 +57,20 @@ def get_menu_category(item):
           or "pavement markings" in item 
           or "traffic circle" in item 
           or "cul-de-sac" in item
-          or "diagnol parking" in item):
+          or "diagnol parking" in item
+          or "bus pad" in item
+          or "traffic signal" in item
+          or "bollard menu" in item):
         return "Street Redesign"
     elif "sidewalk" in item:
         return "Sidewalk Repair"
-    elif "pod camera" in item:
+    elif ("pod camera" in item
+          or "high definition camera" in item):
         return "Police Cameras"
     elif ("park" in item
           or "playground" in item
+          or "turf" in item
+          or "plaza" in item
           or "garden" in item):
         return "Parks"
     elif ("viaduct" in item):
