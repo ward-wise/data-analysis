@@ -32,12 +32,28 @@ print("Data loaded.")
 
 
 
+def nonzero_min_f_add(row):
+    # some streets have no addresses on one side, which is a 0 from-address in the data
+    if row['r_f_add'] == 0:
+        return row['l_f_add']
+    elif row['l_f_add'] == 0:
+        return row['r_f_add']
+    else:
+        return min(row['r_f_add'], row['l_f_add'])
+
+# column conversions
+gdf['l_t_add'] = gdf['l_t_add'].astype(int)
+gdf['r_t_add'] = gdf['r_t_add'].astype(int)
+gdf['l_f_add'] = gdf['l_f_add'].astype(int)
+gdf['r_f_add'] = gdf['r_f_add'].astype(int)
 # street data has left(l) and right(r) designations for to(t) and from(t) street addresses
 # convert to t_add and f_add
-gdf['f_add'] = gdf[['r_f_add', 'l_f_add']].min(axis=1)
-gdf['t_add'] = gdf[['r_t_add', 'l_t_add']].max(axis=1)
+gdf['f_add'] = gdf.apply(nonzero_min_f_add, axis=1).astype(int)
+gdf['t_add'] = gdf[['r_t_add', 'l_t_add']].max(axis=1).astype(int)
 # remove unnecessary fields
 gdf = gdf[['pre_dir','street_nam', 'street_typ', 'suf_dir', 'class','f_add','t_add', 'geometry']]
+# drop unnamed streets
+gdf = gdf.dropna(subset=['street_nam'])
 # add new fields
 gdf["last_resurf"] = '01/01/1990'
 gdf["resurf_count"] = 0
@@ -61,22 +77,22 @@ for moratorium_record in moratorium_data:
     start_date = moratorium_record['START DATE']
 
     # filter to street name
-    # TODO add suffix to logic
-    filtered_gdf = gdf[(gdf['pre_dir'] == street_prefix) | (gdf['street_nam'] == street_name)]
+    street_gdf = gdf[(gdf['pre_dir'] == street_prefix) & 
+                       (gdf['street_nam'] == street_name) &
+                       (gdf["street_typ"] == street_suffix)]
 
     # filter to street segments
     # check for three cases: start address within segment, end address within segment, segment between start and end address
-    filtered_gdf = filtered_gdf[filtered_gdf[
-        ((start_address >= gdf['f_add']) & (start_address <= gdf['t_add']) ) | 
-        ((end_address >= gdf['f_add']) & (end_address <= gdf['t_add']) ) | 
-        ((gdf['f_add'] >= start_address) & (gdf['t_add'] <= end_address) ) 
-    ]]
+    segment_gdf = street_gdf[
+        ((start_address >= street_gdf['f_add']) & (start_address <= street_gdf['t_add']) ) | 
+        ((end_address >= street_gdf['f_add']) & (end_address <= street_gdf['t_add']) ) | 
+        ((street_gdf['f_add'] >= start_address) & (street_gdf['t_add'] <= end_address) ) ]
 
-    filtered_gdf["last_resurf"] = start_date
-    filtered_gdf["resurf_count"] += 1
-    filtered_gdf['resurf_dates'] += start_date + ";"
-    filtered_gdf['m_f_add'] = start_address
-    filtered_gdf['m_t_add'] = end_address
+    segment_gdf["last_resurf"] = start_date
+    segment_gdf["resurf_count"] += 1
+    segment_gdf['resurf_dates'] += start_date + ";"
+    segment_gdf['m_f_add'] = start_address
+    segment_gdf['m_t_add'] = end_address
 
 
 
