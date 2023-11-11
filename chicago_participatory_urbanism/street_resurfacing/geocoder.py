@@ -28,7 +28,7 @@ except importlib.metadata.PackageNotFoundError:
     logging.warning(f'Street centerline metadata not found. Loading from alternate path: {alternate_path}')
     gdf = gpd.read_file(alternate_path)
 
-print("Data loaded.")
+logging.info("Data loaded.")
 
 
 
@@ -55,7 +55,7 @@ gdf = gdf[['pre_dir','street_nam', 'street_typ', 'suf_dir', 'class','f_add','t_a
 # drop unnamed streets
 gdf = gdf.dropna(subset=['street_nam'])
 # add new fields
-gdf["last_resurf"] = '01/01/1990'
+gdf["last_resurf"] = 0
 gdf["resurf_count"] = 0
 gdf['resurf_dates'] = ""
 gdf['m_f_add'] = 0
@@ -66,8 +66,9 @@ moratorium_data = moratorium_data[(moratorium_data["MORATORIUM TYPE"] =='Street 
 moratorium_data['START DATE timestamp'] = pd.to_datetime(moratorium_data['START DATE'])
 moratorium_data = moratorium_data.sort_values(by='START DATE timestamp', ascending=True)
 
-for moratorium_record in moratorium_data:
 
+logging.info("Geocoding road moratorium data...")
+for index, moratorium_record in moratorium_data.iterrows():
     street_prefix = moratorium_record['STREET ADDRESS PREFIX']
     street_name = moratorium_record['STREET NAME']
     street_suffix = moratorium_record['STREET NAME SUFFIX']
@@ -75,32 +76,31 @@ for moratorium_record in moratorium_data:
     end_address = int(moratorium_record['STREET ADDRESS END'])
     moratorium_type = moratorium_record['MORATORIUM TYPE']
     start_date = moratorium_record['START DATE']
+    year = int(start_date.split("/")[-1])
 
-    # filter to street name
-    street_gdf = gdf[(gdf['pre_dir'] == street_prefix) & 
+    logging.debug(f"{start_address}-{end_address} {street_prefix} {street_name} {street_suffix}, {year}")
+
+    mask_street = ((gdf['pre_dir'] == street_prefix) & 
                        (gdf['street_nam'] == street_name) &
-                       (gdf["street_typ"] == street_suffix)]
+                       (gdf["street_typ"] == street_suffix))
 
-    # filter to street segments
     # check for three cases: start address within segment, end address within segment, segment between start and end address
-    segment_gdf = street_gdf[
-        ((start_address >= street_gdf['f_add']) & (start_address < street_gdf['t_add']) ) | 
-        ((end_address > street_gdf['f_add']) & (end_address <= street_gdf['t_add']) ) | 
-        ((street_gdf['f_add'] >= start_address) & (street_gdf['t_add'] <= end_address) ) ]
+    mask_segment = mask_street & (  
+        ((start_address >= gdf['f_add']) & (start_address < gdf['t_add']) ) | 
+        ((end_address > gdf['f_add']) & (end_address <= gdf['t_add']) ) | 
+        ((gdf['f_add'] >= start_address) & (gdf['t_add'] <= end_address) )
+    )
 
-    segment_gdf["last_resurf"] = start_date
-    segment_gdf["resurf_count"] += 1
-    segment_gdf['resurf_dates'] += start_date + ";"
-    segment_gdf['m_f_add'] = start_address
-    segment_gdf['m_t_add'] = end_address
+    # update data on street segments
+    gdf.loc[mask_segment, "last_resurf"] = year
+    gdf.loc[mask_segment, "resurf_count"] += 1
+    gdf.loc[mask_segment, 'resurf_dates'] += start_date + ";"
+    gdf.loc[mask_segment, 'm_f_add'] = start_address
+    gdf.loc[mask_segment, 'm_t_add'] = end_address
 
-
-
-
-gdf.to_file(r'data\output\moratium_geocoded.geojson', driver='GeoJSON')
+logging.info("Exporting data...")
+gdf.to_file(r'data\output\moratiums_20231109_geocoded.geojson', driver='GeoJSON')
 
 
 # TODO take partial street segment if address does not go through the whole range
 # TODO map classification code (https://data.cityofchicago.org/api/assets/06DEC62C-ACAB-42D3-A540-378F8464F83D?download=true)
-# TODO handle multiple resurfacings on same segment
-# TODO keep streets that haven't been resurfaced
