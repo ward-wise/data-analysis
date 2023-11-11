@@ -84,8 +84,8 @@ for moratorium_record in moratorium_data:
     # filter to street segments
     # check for three cases: start address within segment, end address within segment, segment between start and end address
     segment_gdf = street_gdf[
-        ((start_address >= street_gdf['f_add']) & (start_address <= street_gdf['t_add']) ) | 
-        ((end_address >= street_gdf['f_add']) & (end_address <= street_gdf['t_add']) ) | 
+        ((start_address >= street_gdf['f_add']) & (start_address < street_gdf['t_add']) ) | 
+        ((end_address > street_gdf['f_add']) & (end_address <= street_gdf['t_add']) ) | 
         ((street_gdf['f_add'] >= start_address) & (street_gdf['t_add'] <= end_address) ) ]
 
     segment_gdf["last_resurf"] = start_date
