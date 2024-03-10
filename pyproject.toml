@@ -16,6 +16,7 @@ dependencies = [
 extract_ward_spending_data_from_pdfs = "src.scripts.ward_spending_pdf_data_extraction:extract_from_files"
 postprocess_and_combine_ward_spending_data = "src.scripts.ward_spending_post_processing:postprocess_and_combine_data"
 generate_ward_spending_geocoding = "src.scripts.ward_spending_geocoding:generate_ward_spending_geocoding"
+generate_bikeway_installations_geocoding = "src.scripts.bike_geocoding:generate_bikeway_installations_geocoding"
 
 [build-system]
 requires = [

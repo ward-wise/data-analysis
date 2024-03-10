@@ -23,7 +23,7 @@ secret_token=<ENTER_YOUR_SECRET_TOKEN_HERE>
 
 5. Run the following command in the terminal:
 ```
-make run_ward_spending_scripts
+make run_ward_spending_scripts run_bikeway_installation_scripts
 ```
 
 ---
