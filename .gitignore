@@ -29,7 +29,6 @@ htmlcov/
 .mypy_cache/
 *.npy
 *.o
-*.pdf
 *.ppt
 *.pptx
 *.pptm
