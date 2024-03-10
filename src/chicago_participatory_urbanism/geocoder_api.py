@@ -6,14 +6,9 @@ from typing import TypedDict
 import os
 import requests
 import numpy as np
-from dotenv import load_dotenv
 from shapely.geometry import Point
 from src.chicago_participatory_urbanism.location_structures import StreetAddress, Intersection
 import time
-
-
-load_dotenv()
-
 
 class GeoCoderAPI:
     # https://data.cityofchicago.org/Transportation/Street-Center-Lines/6imu-meau
@@ -24,7 +19,7 @@ class GeoCoderAPI:
     'headers to query socrata api'
     api_header = {
         'Accept': 'application/json',
-        'X-App-Token': os.getenv('app_token'),
+        'X-App-Token': os.environ['app_token'],
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0'
     }
 
@@ -63,7 +58,10 @@ class GeoCoderAPI:
             return resp.json()
 
         link = base_link + query_params
+
         resp = requests.get(link, headers=self.api_header)
+        resp.raise_for_status()
+
         return resp.json()
 
     def _query_address_api(
@@ -87,7 +85,9 @@ class GeoCoderAPI:
             return resp.json()
 
         link = base_link + query_params
+
         resp = requests.get(link, headers=self.api_header)
+        resp.raise_for_status()
 
         return resp.json()
 
@@ -105,6 +105,7 @@ class GeoCoderAPI:
         query_link = f'https://nominatim.openstreetmap.org/search?q={query_string}&format=jsonv2'
 
         resp = requests.get(query_link, headers=nom_header)
+        resp.raise_for_status()
 
         return resp.json()
 

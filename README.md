@@ -8,9 +8,20 @@ Check out the GitHub issues for things to work on.
 
 1. Clone the repo.
 
-2. Download the following files to `/data/`
+2. If you have not created an account yet with the City of Chicago Data Portal, sign up for one [at this link](https://data.cityofchicago.org/signup)
 
-3. Run the following command in the terminal:
+3. Once you have created and logged into your account [here](https://data.cityofchicago.org/login), navigate to the developer's settings [at this link](https://data.cityofchicago.org/profile/edit/developer_settings) and select `Create New App Token`. Select an appropriate name like `ward-wise-data-analysis` and make sure uncheck the `Public?` box. 
+
+4. Once the app token and corresponding secret has been generated, create an `.env` file at the root of this repository with this content:
+```text
+app_token=<ENTER_YOUR_APP_TOKEN_HERE>
+secret_token=<ENTER_YOUR_SECRET_TOKEN_HERE>
+```
+
+(note: do not include the < or > brackets)
+
+
+5. Run the following command in the terminal:
 ```
 make run_ward_spending_scripts
 ```

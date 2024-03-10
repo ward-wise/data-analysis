@@ -4,6 +4,7 @@ name = "ward-wise-data-analysis"
 version = "0.0.1"
 dependencies = [
 	"geopandas",
+    "numpy",
     "pandas",
     "pypdf2",
     "python-dotenv",
