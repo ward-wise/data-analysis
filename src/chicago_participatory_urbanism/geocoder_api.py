@@ -8,7 +8,7 @@ import requests
 import numpy as np
 from dotenv import load_dotenv
 from shapely.geometry import Point
-from chicago_participatory_urbanism.location_structures import Street, StreetAddress, Intersection
+from src.chicago_participatory_urbanism.location_structures import StreetAddress, Intersection
 import time
 
 

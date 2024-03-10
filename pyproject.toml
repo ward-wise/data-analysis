@@ -1,21 +1,28 @@
-[build-system]
-requires = ["flit_core >=3.2,<4"]
-build-backend = "flit_core.buildapi"
-
 [project]
-name = "chicago_participatory_urbanism"
-authors = []
-readme = "README.md"
-home-page = "https://github.com/smacmullan/chicago-participatory-urbanism"
-dynamic = ["version", "description"]
-
-[tool.flit.external-data]
-directory = "data"
-
-requires = [
+description = "Data scripts and tools for Ward Wise ChiHackNight project"
+name = "ward-wise-data-analysis"
+version = "0.0.1"
+dependencies = [
 	"geopandas",
-	"shapely",
-	"PyPDF2",
+    "pandas",
+    "pypdf2",
+    "python-dotenv",
+    "requests",
+    "shapely"
 ]
 
-requires-python=">=3.7"
+[project.scripts]
+extract_ward_spending_data_from_pdfs = "src.scripts.ward_spending_pdf_data_extraction:extract_from_files"
+postprocess_and_combine_ward_spending_data = "src.scripts.ward_spending_post_processing:postprocess_and_combine_data"
+generate_ward_spending_geocoding = "src.scripts.ward_spending_geocoding:generate_ward_spending_geocoding"
+
+[build-system]
+requires = [
+    "setuptools>=68.0.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+exclude = [
+    "tests*",
+]

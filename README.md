@@ -4,13 +4,18 @@ Every year, Chicago alders get $1.5 million to spend at their discretion on capi
 
 Check out the GitHub issues for things to work on.
 
-# Getting Started/Installing the Repo
+# Quickstart
+
 1. Clone the repo.
-2. Run the following command in the terminal:
+
+2. Download the following files to `/data/`
+
+3. Run the following command in the terminal:
 ```
-pip install .
+make run_ward_spending_scripts
 ```
-> **Note:** When doing development work on the package, you need to re-run this command to use the latest package changes in external scripts.
+
+---
 
 The repo has two main parts: the data processing Python package and a library of scripts that use the package. If you're a newcomer, we recommend familiarizing yourself with the project by using the scripts to follow the data processing work flow outlined below.
 

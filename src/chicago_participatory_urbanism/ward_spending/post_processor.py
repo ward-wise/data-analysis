@@ -1,5 +1,5 @@
 import pandas as pd
-from chicago_participatory_urbanism.ward_spending.categorization import STANDARD_CATEGORY, get_menu_category
+from src.chicago_participatory_urbanism.ward_spending.categorization import get_menu_category
 
 
 def post_process_data(file_name: str, year: int):

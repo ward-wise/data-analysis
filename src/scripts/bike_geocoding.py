@@ -1,9 +1,9 @@
-import pandas as pd
 import geopandas as gpd
 from shapely.geometry import LineString
 import importlib.metadata
 
-import chicago_participatory_urbanism.geocoder as geocoder
+from src import chicago_participatory_urbanism as geocoder
+
 
 def process_street_segment(primary_street, cross_street1, cross_street2):
     try:
@@ -13,6 +13,8 @@ def process_street_segment(primary_street, cross_street1, cross_street2):
         return street_segment
     except Exception:
         return None
+
+
 
 data = gpd.read_file([p for p in importlib.metadata.files('chicago_participatory_urbanism')
                           if 'CDOT Bikeway Installations.csv' in str(p)][0])
