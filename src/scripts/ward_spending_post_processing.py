@@ -3,7 +3,9 @@ import re
 
 import pandas as pd
 
-from src.chicago_participatory_urbanism.ward_spending.post_processor import post_process_data
+from src.chicago_participatory_urbanism.ward_spending.post_processor import (
+    post_process_data,
+)
 
 files = [
     "2019 Menu Posting - 22-10-02.csv",

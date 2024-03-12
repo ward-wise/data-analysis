@@ -17,10 +17,24 @@ run_ward_spending_scripts: setup_env
 run_bikeway_installation_scripts: setup_env
 	generate_bikeway_installations_geocoding
 
+
 .PHONY: setup_env_dev
 setup_env_dev:
 	pip install --upgrade pip
 	pip install --prefer-binary -r requirements-dev.txt
+
+
+.PHONY: format
+format: setup_env_dev
+	ruff format .
+	ruff check . --fix
+
+
+.PHONY: lint
+lint: setup_env_dev
+	ruff format . --check
+	ruff check . --no-fix
+
 
 .PHONY: test
 test: setup_env setup_env_dev
@@ -30,6 +44,7 @@ test: setup_env setup_env_dev
 		--cov $${PWD}/src \
 		-v \
 		tests/
+
 
 .PHONY: integration_test
 integration_test: setup_env setup_env_dev
