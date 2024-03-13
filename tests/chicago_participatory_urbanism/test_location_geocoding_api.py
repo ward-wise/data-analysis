@@ -1,19 +1,18 @@
+import pytest
+from shapely import GeometryCollection, LineString, MultiPoint, Point, Polygon, geometry
+
 from src.chicago_participatory_urbanism.geocoder_api import GeoCoderAPI
 from src.chicago_participatory_urbanism.ward_spending.location_geocoding import (
     LocationGeocoder,
 )
 
-from shapely import geometry, Point, MultiPoint, LineString, Polygon, GeometryCollection
-
-import pytest
-
 
 def test_geocoder_api_initialization(monkeypatch):
-    monkeypatch.setenv("app_token", "fake_app_token")
+    monkeypatch.setenv("APP_TOKEN", "fake_APP_TOKEN")
     geo_coder = GeoCoderAPI()
 
     assert type(geo_coder) is GeoCoderAPI
-    assert geo_coder.api_header["X-App-Token"] == "fake_app_token"
+    assert geo_coder.api_header["X-App-Token"] == "fake_APP_TOKEN"
 
 
 @pytest.mark.parametrize(
@@ -99,9 +98,7 @@ def test_geocoder_api_initialization(monkeypatch):
     ],
 )
 @pytest.mark.integration_test
-def test_geocoder_api_process_real_locations(
-    test_location: str, expected_result_type: geometry
-):
+def test_geocoder_api_process_real_locations(test_location: str, expected_result_type: geometry):
     location_geocoder = LocationGeocoder(geocoder=GeoCoderAPI())
     result = location_geocoder.process_location_text(text=test_location)
     assert type(result) is expected_result_type

@@ -10,7 +10,7 @@ setup_env:
 run_ward_spending_scripts: setup_env
 	extract_ward_spending_data_from_pdfs && \
 	postprocess_and_combine_ward_spending_data && \
-	app_token=$(app_token) generate_ward_spending_geocoding
+	APP_TOKEN=$(APP_TOKEN) generate_ward_spending_geocoding
 
 
 .PHONY: run_bikeway_installation_scripts
@@ -49,7 +49,7 @@ test: setup_env setup_env_dev
 .PHONY: integration_test
 integration_test: setup_env setup_env_dev
 	PYTHONPATH="$${PWD}" \
-	app_token=$(app_token) \
+	APP_TOKEN=$(APP_TOKEN) \
 	pytest \
 		-m "integration_test" \
 		-v \

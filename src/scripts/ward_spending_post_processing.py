@@ -20,10 +20,7 @@ def postprocess_and_combine_data():
     dataframes = []
     for file in files:
         match = re.search(year_pattern, file)
-        if match:
-            year = match.group()
-        else:
-            year = 0
+        year = match.group() if match else 0
         print(f"Processing {year} data...")
         file_path = os.path.join("data", "output", file)
         dataframes.append(post_process_data(file_path, year))

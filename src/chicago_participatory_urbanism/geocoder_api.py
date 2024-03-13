@@ -3,16 +3,18 @@ This section is taking processed street addresses and
 return multi_string coordinates in maps coordinates
 """
 
-from typing import TypedDict
 import os
-import requests
-import numpy as np
-from shapely.geometry import Point
-from src.chicago_participatory_urbanism.location_structures import (
-    StreetAddress,
-    Intersection,
-)
 import time
+from typing import Optional, TypedDict
+
+import numpy as np
+import requests
+from shapely.geometry import Point
+
+from src.chicago_participatory_urbanism.location_structures import (
+    Intersection,
+    StreetAddress,
+)
 
 
 class GeoCoderAPI:
@@ -24,11 +26,11 @@ class GeoCoderAPI:
     def __init__(self):
         self.api_header = {
             "Accept": "application/json",
-            "X-App-Token": os.environ["app_token"],
+            "X-App-Token": os.environ["APP_TOKEN"],
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0",
         }
 
-    def _query_transport_api(self, params: dict, sql_func: str = None) -> TypedDict:
+    def _query_transport_api(self, params: dict, sql_func: Optional[str] = None) -> TypedDict:
         # https://data.cityofchicago.org/Transportation/Street-Center-Lines/6imu-meau
         # https://dev.socrata.com/foundry/data.cityofchicago.org/pr57-gg9e
         # dataset metadata : https://data.cityofchicago.org/dataset/transportation/pr57-gg9e
@@ -38,8 +40,9 @@ class GeoCoderAPI:
         "street_nam" street name
         "street_typ" street type, (AVE/ST)
         "pre_dir" street direction value (N/S/W/E)
-        "f_cross" From Cross. Contain the cross street attribution parsed by "|", which refers to the intersecting street
-                 segments at the beginning and end of each street segment respe
+        "f_cross" From Cross. Contain the cross street attribution parsed by "|",
+                  which refers to the intersecting street segments at the beginning
+                  and end of each street segment respectively
         "t_cross" to cross
         "logiclf" left from street number
         "logiclt" to street number
@@ -67,16 +70,14 @@ class GeoCoderAPI:
 
         return resp.json()
 
-    def _query_address_api(self, params: dict, sql_func: str = None) -> TypedDict:
+    def _query_address_api(self, params: dict, sql_func: Optional[str] = None) -> TypedDict:
         """
         useful fields:
         "Add_Number"-address number
         "st_name"
         "cmpaddabrv"
         """
-        base_link = (
-            "https://datacatalog.cookcountyil.gov/resource/78yw-iddh.json?$where="
-        )
+        base_link = "https://datacatalog.cookcountyil.gov/resource/78yw-iddh.json?$where="
         query_params = " AND ".join(
             k + " like " + "'" + str(v).upper() + "'" for k, v in params.items()
         )
@@ -105,9 +106,7 @@ class GeoCoderAPI:
         nom_header.pop("X-App-Token")
         query_string = query_string + ", chicago il"
 
-        query_link = (
-            f"https://nominatim.openstreetmap.org/search?q={query_string}&format=jsonv2"
-        )
+        query_link = f"https://nominatim.openstreetmap.org/search?q={query_string}&format=jsonv2"
 
         resp = requests.get(query_link, headers=nom_header)
         resp.raise_for_status()
@@ -117,12 +116,8 @@ class GeoCoderAPI:
     def get_street_address_coordinates_from_full_name(self, address: str) -> Point:
         coors = []
         try:
-            results = self._query_address_api(
-                params={"cmpaddabrv": str(address).upper()}
-            )
-            _coordinate = tuple(
-                np.array(results[0]["the_geom"]["coordinates"]).reshape(-1, 2)[0]
-            )
+            results = self._query_address_api(params={"cmpaddabrv": str(address).upper()})
+            _coordinate = tuple(np.array(results[0]["the_geom"]["coordinates"]).reshape(-1, 2)[0])
             coors.append(_coordinate)
 
         except IndexError:
@@ -139,9 +134,7 @@ class GeoCoderAPI:
 
         return Point(coors)
 
-    def get_street_address_coordinates(
-        self, address: StreetAddress, fuzziness: int = 10
-    ) -> Point:
+    def get_street_address_coordinates(self, address: StreetAddress) -> Point:
         """
         Return the GPS coordinates of a street address in Chicago.
 
@@ -154,12 +147,8 @@ class GeoCoderAPI:
         """
         coors = []
         try:
-            results = self._query_address_api(
-                params={"cmpaddabrv": str(address).upper()}
-            )
-            _coordinate = tuple(
-                np.array(results[0]["the_geom"]["coordinates"]).reshape(-1, 2)[0]
-            )
+            results = self._query_address_api(params={"cmpaddabrv": str(address).upper()})
+            _coordinate = tuple(np.array(results[0]["the_geom"]["coordinates"]).reshape(-1, 2)[0])
             coors.append(_coordinate)
 
         except IndexError:
@@ -195,9 +184,7 @@ class GeoCoderAPI:
                 params={"street_nam": street_1},
                 sql_func=f'f_cross like "%25{street_2}%25"',
             )
-            _coordinate = tuple(
-                np.array(result[0]["the_geom"]["coordinates"]).reshape(-1, 2)[0]
-            )
+            _coordinate = tuple(np.array(result[0]["the_geom"]["coordinates"]).reshape(-1, 2)[0])
             if result:
                 corner = _coordinate
 

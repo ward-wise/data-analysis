@@ -1,6 +1,7 @@
 import os
+
 from src.chicago_participatory_urbanism.ward_spending.extract_text_from_pdf import (
-    extract_pdf_data,
+    WardSpendingPDFTextExtractor,
 )
 
 # Download these files to the data/pdf folder from the Chicago Capital Improvement Archive
@@ -21,4 +22,7 @@ def extract_from_files():
         output_file_path = os.path.join(os.getcwd(), "data", "output", output_file_name)
         print(f'Data saved to "{output_file_path}".')
 
-        extract_pdf_data(pdf_file_path, output_file_path)
+        extractor = WardSpendingPDFTextExtractor(
+            pdf_file_path=pdf_file_path, output_file_path=output_file_path
+        )
+        extractor.extract_pdf_data()

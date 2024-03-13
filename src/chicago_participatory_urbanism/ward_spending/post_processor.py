@@ -1,4 +1,5 @@
 import pandas as pd
+
 from src.chicago_participatory_urbanism.ward_spending.categorization import (
     get_menu_category,
 )

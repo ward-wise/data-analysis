@@ -14,7 +14,7 @@ Check out the GitHub issues for things to work on.
 
 4. Once the app token and corresponding secret has been generated, create an `.env` file at the root of this repository with this content:
 ```text
-app_token=<ENTER_YOUR_APP_TOKEN_HERE>
+APP_TOKEN=<ENTER_YOUR_APP_TOKEN_HERE>
 secret_token=<ENTER_YOUR_SECRET_TOKEN_HERE>
 ```
 

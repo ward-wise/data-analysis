@@ -1,32 +1,32 @@
-import pandas as pd
 import importlib.metadata
 import logging
+
 import geopandas as gpd
+import pandas as pd
+from shapely.geometry import LineString, MultiLineString, MultiPoint, Point
 from shapely.ops import unary_union
-from shapely.geometry import Point, MultiPoint, LineString, MultiLineString
+
 from src.chicago_participatory_urbanism.location_structures import (
-    StreetAddress,
     Intersection,
+    StreetAddress,
 )
 
 # address point csv from https://hub-cookcountyil.opendata.arcgis.com/datasets/5ec856ded93e4f85b3f6e1bc027a2472_0/about
-address_points_path = [
+address_points_path = next(
     p
     for p in importlib.metadata.files("chicago_participatory_urbanism")
     if "Address_Points_reduced.csv" in str(p)
-][0]
+)
 logging.info(f"Loading address points csv data from {address_points_path.locate()}")
 df = pd.read_csv(address_points_path.locate())
 
 # street center lines GeoJSON from https://data.cityofchicago.org/Transportation/Street-Center-Lines/6imu-meau
-street_center_lines_path = [
+street_center_lines_path = next(
     p
     for p in importlib.metadata.files("chicago_participatory_urbanism")
     if "Street Center Lines.geojson" in str(p)
-][0]
-logging.info(
-    f"Loading street center lines csv from {street_center_lines_path.locate()}"
 )
+logging.info(f"Loading street center lines csv from {street_center_lines_path.locate()}")
 gdf = gpd.read_file(street_center_lines_path.locate())
 
 print("Data loaded.")
@@ -38,7 +38,9 @@ class Geocoder:
         Return the GPS coordinates of a street address in Chicago.
 
         Parameters:
-        - address (string): A street address in Chicago matching the following format: "1763 W BELMONT AVE"
+        - address (string): A street address in Chicago
+                           matching the following format:
+                           "1763 W BELMONT AVE"
 
         Returns:
         - Point: A Shapely point with the GPS coordinates of the address (longitude, latitude).
@@ -53,9 +55,7 @@ class Geocoder:
 
         return Point(longitude, latitude)
 
-    def get_street_address_coordinates(
-        self, address: StreetAddress, fuzziness: int = 10
-    ) -> Point:
+    def get_street_address_coordinates(self, address: StreetAddress, fuzziness: int = 10) -> Point:
         """
         Return the GPS coordinates of a street address in Chicago.
 
@@ -121,7 +121,8 @@ class Geocoder:
             if not intersection_geometry.is_empty:
                 if isinstance(intersection_geometry, MultiPoint):
                     # extract first point of multipoint
-                    ## (this tends to happen when one half of the intersecting street is offset from the other half)
+                    ## this tends to happen when one half of the
+                    ## intersecting street is offset from the other half)
                     first_point = intersection_geometry.geoms[0]
                     return
                 if isinstance(intersection_geometry, LineString):
