@@ -42,7 +42,7 @@ test: setup_env setup_env_dev
 	pytest \
 		-m "not integration_test" \
 		--cov $${PWD}/src \
-		-v \
+		-vv \
 		tests/
 
 

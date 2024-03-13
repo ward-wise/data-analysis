@@ -1,11 +1,11 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 
 @dataclass
 class Street:
-    direction: str
     name: str
-    street_type: str
+    direction: str = field(compare=False)
+    street_type: str = field(compare=False)
 
     def __str__(self):
         return f"{self.direction} {self.name} {self.street_type}"

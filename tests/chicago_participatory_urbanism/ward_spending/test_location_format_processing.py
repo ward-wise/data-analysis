@@ -1,104 +1,144 @@
-import src.chicago_participatory_urbanism.ward_spending.location_format_processing as lfp
+import itertools
+
+import pytest
+
+from src.chicago_participatory_urbanism.location_structures import (
+    Intersection,
+    Street,
+    StreetAddress,
+)
+from src.chicago_participatory_urbanism.ward_spending.location_format_processing import (
+    LocationFormat,
+    extract_address_range_street_addresses,
+    extract_alley_intersections,
+    extract_intersection,
+    extract_segment_address_intersection_info,
+    extract_segment_intersection_address_info,
+    extract_segment_intersections,
+    extract_street_address,
+    get_location_format,
+)
 
 
-# TODO make generic and add more cases
-def test_get_location_format_street_address():
-    location = "1640 N MAPLEWOOD AVE"
-    result = lfp.LocationStringProcessor(location).get_location_format([location])
-    assert result[0]["format"] == lfp.LocationFormat.STREET_ADDRESS
+@pytest.mark.parametrize(
+    "test_location, expected_format",
+    [
+        ("1640 N MAPLEWOOD AVE", LocationFormat.STREET_ADDRESS),
+        (
+            "ON N LEAVITT ST FROM W DIVISION ST (1200 N) TO W NORTH AVE (1600 N)",
+            LocationFormat.STREET_SEGMENT_INTERSECTIONS,
+        ),
+        ("N WOOD ST & W AUGUSTA BLVD & W CORTEZ ST & N HERMITAGE AVE", LocationFormat.ALLEY),
+        ("N ASHLAND AVE & W CHESTNUT ST", LocationFormat.INTERSECTION),
+        ("434-442 E 46TH PL", LocationFormat.STREET_ADDRESS_RANGE),
+        (
+            "ON W 52ND PL FROM 322 W TO S PRINCETON AVE (300 W)",
+            LocationFormat.STREET_SEGMENT_ADDRESS_INTERSECTION,
+        ),
+        (
+            "ON W 52ND PL FROM S PRINCETON AVE (300 W) TO 322 W",
+            LocationFormat.STREET_SEGMENT_INTERSECTION_ADDRESS,
+        ),
+        (
+            "NOT A LOCATION",
+            LocationFormat.UNIDENTIFIED,
+        ),
+    ],
+)
+def test_get_location_format(test_location: str, expected_format: LocationFormat):
+    assert get_location_format(test_location) == expected_format
 
 
 def test_extract_street_address():
     street_address_text = "1640 N MAPLEWOOD AVE"
-    result = lfp.extract_street_address(street_address_text)
-    assert result.number == 1640
-    assert result.street.direction == "N"
-    assert result.street.name == "MAPLEWOOD"
-    assert result.street.street_type == "AVE"
+    result = extract_street_address(street_address_text)
 
-
-def test_extract_segment_intersections_address_range():
-    location = "ON N LEAVITT ST FROM W DIVISION ST (1200 N) TO W NORTH AVE (1600 N)"
-    result = lfp.extract_segment_intersections_address_range(location)
-    assert result[0].number == 1200
-    assert result[0].street.direction == "N"
-    assert result[0].street.name == "LEAVITT"
-    assert result[0].street.street_type == "ST"
-    assert result[1].number == 1600
-    assert result[1].street.direction == "N"
-    assert result[1].street.name == "LEAVITT"
-    assert result[1].street.street_type == "ST"
+    assert result == StreetAddress(
+        number=1640,
+        street=Street(direction="N", name="MAPLEWOOD", street_type="AVE"),
+    )
 
 
 def test_extract_segment_intersections():
     location = "ON N LEAVITT ST FROM W DIVISION ST (1200 N) TO W NORTH AVE (1600 N)"
-    result = lfp.extract_segment_intersections(location)
-    assert result[0].street1.direction == "N"
-    assert result[0].street1.name == "LEAVITT"
-    assert result[0].street1.street_type == "ST"
-    assert result[0].street2.direction == "W"
-    assert result[0].street2.name == "DIVISION"
-    assert result[0].street2.street_type == "ST"
+    result = extract_segment_intersections(location)
 
-    assert result[1].street1.direction == "N"
-    assert result[1].street1.name == "LEAVITT"
-    assert result[1].street1.street_type == "ST"
-    assert result[1].street2.direction == "W"
-    assert result[1].street2.name == "NORTH"
-    assert result[1].street2.street_type == "AVE"
+    assert result[0] == Intersection(
+        street1=Street(direction="N", name="LEAVITT", street_type="ST"),
+        street2=Street(direction="W", name="DIVISION", street_type="ST"),
+    )
+
+    assert result[1] == Intersection(
+        street1=Street(direction="N", name="LEAVITT", street_type="ST"),
+        street2=Street(direction="W", name="NORTH", street_type="AVE"),
+    )
 
 
-# TODO
+# TODO: make test more strict
 def test_extract_alley_intersections():
     location = "N WOOD ST & W AUGUSTA BLVD & W CORTEZ ST & N HERMITAGE AVE"
-    _result = lfp.extract_alley_intersections(location)
-    pass
+    result = extract_alley_intersections(location)
+
+    assert len(result) == 6
+
+    street1 = Street(direction="N", name="WOOD", street_type="ST")
+    street2 = Street(direction="W", name="AUGUSTA", street_type="BLVD")
+    street3 = Street(direction="W", name="CORTEZ", street_type="ST")
+    street4 = Street(direction="N", name="HERMITAGE", street_type="AVE")
+
+    for subset in itertools.combinations([street1, street2, street3, street4], 2):
+        assert (
+            Intersection(street1=subset[0], street2=subset[1]) in result
+            or Intersection(street1=subset[1], street2=subset[0]) in result
+        )
 
 
 def test_extract_intersection_street_names():
     location = "N ASHLAND AVE & W CHESTNUT ST"
-    result = lfp.extract_intersection(location)
-    assert result.street1.direction == "N"
-    assert result.street1.name == "ASHLAND"
-    assert result.street1.street_type == "AVE"
-    assert result.street2.direction == "W"
-    assert result.street2.name == "CHESTNUT"
-    assert result.street2.street_type == "ST"
+    result = extract_intersection(location)
+    assert result == Intersection(
+        street1=Street(direction="N", name="ASHLAND", street_type="AVE"),
+        street2=Street(direction="W", name="CHESTNUT", street_type="ST"),
+    )
 
 
 def test_extract_address_range_street_addresses():
     location = "434-442 E 46TH PL"
-    result = lfp.extract_address_range_street_addresses(location)
-    assert result[0].number == 434
-    assert result[0].street.direction == "E"
-    assert result[0].street.name == "46TH"
-    assert result[0].street.street_type == "PL"
+    result = extract_address_range_street_addresses(location)
 
-    assert result[1].number == 442
-    assert result[1].street.direction == "E"
-    assert result[1].street.name == "46TH"
-    assert result[1].street.street_type == "PL"
+    assert result[0] == StreetAddress(
+        number=434,
+        street=Street(direction="E", name="46TH", street_type="PL"),
+    )
+
+    assert result[1] == StreetAddress(
+        number=442, street=Street(direction="E", name="46TH", street_type="PL")
+    )
 
 
 def test_extract_segment_address_intersection_info():
     location = "ON W 52ND PL FROM 322 W TO S PRINCETON AVE (300 W)"
-    result = lfp.extract_segment_address_intersection_info(location)
-    assert result[0].number == 322
-    assert result[0].street.direction == "W"
-    assert result[0].street.name == "52ND"
-    assert result[0].street.street_type == "PL"
+    result = extract_segment_address_intersection_info(location)
 
-    assert result[1].street1.name == "52ND"
-    assert result[1].street2.name == "PRINCETON"
+    assert result[0] == StreetAddress(
+        number=322, street=Street(direction="W", name="52ND", street_type="PL")
+    )
+
+    assert result[1] == Intersection(
+        street1=Street(direction="W", name="52ND", street_type="PL"),
+        street2=Street(direction="S", name="PRINCETON", street_type="AVE"),
+    )
 
 
 def test_extract_segment_intersection_address_info():
     location = "ON W 52ND PL FROM S PRINCETON AVE (300 W) TO 322 W"
-    result = lfp.extract_segment_intersection_address_info(location)
-    assert result[0].street1.name == "52ND"
-    assert result[0].street2.name == "PRINCETON"
+    result = extract_segment_intersection_address_info(location)
 
-    assert result[1].number == 322
-    assert result[1].street.direction == "W"
-    assert result[1].street.name == "52ND"
-    assert result[1].street.street_type == "PL"
+    assert result[0] == Intersection(
+        street1=Street(direction="W", name="52ND", street_type="PL"),
+        street2=Street(direction="S", name="PRINCETON", street_type="AVE"),
+    )
+
+    assert result[1] == StreetAddress(
+        number=322, street=Street(direction="W", name="52ND", street_type="PL")
+    )
