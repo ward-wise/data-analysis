@@ -3,6 +3,7 @@ Identify location description text format and parse into
 street address or street intersection
 """
 
+import itertools
 import re
 from enum import Enum, auto
 from typing import List
@@ -116,13 +117,10 @@ def extract_alley_intersections(location_text: str) -> List[Intersection]:
     street4 = Street(direction="", name=street_name4, street_type="")
 
     # get every possible intersection (streets aren't in any particular order)
-    intersections = []
-    intersections.append(Intersection(street1, street2))
-    intersections.append(Intersection(street1, street3))
-    intersections.append(Intersection(street1, street4))
-    intersections.append(Intersection(street2, street3))
-    intersections.append(Intersection(street2, street4))
-    intersections.append(Intersection(street3, street4))
+    intersections = [
+        Intersection(street1=subset[0], street2=subset[1])
+        for subset in itertools.combinations([street1, street2, street3, street4], 2)
+    ]
 
     return intersections
 
