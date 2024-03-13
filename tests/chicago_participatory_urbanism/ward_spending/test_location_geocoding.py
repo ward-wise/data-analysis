@@ -111,3 +111,35 @@ def test_get_geometry_from_location_intersection(mock_lfp):
 
     assert result == Point(1, 2)
     mock_geoencoder.get_intersection_coordinates.assert_called_once_with(test_intersection)
+
+
+@mock.patch("src.chicago_participatory_urbanism.ward_spending.location_geocoding.lfp")
+def test_get_geometry_from_location_street_segment_intersections(mock_lfp):
+    mock_lfp.get_location_format.return_value = mock_lfp.LocationFormat.STREET_SEGMENT_INTERSECTIONS
+
+    test_intersection_1 = Intersection(
+        street1=Street(name="Street 1", direction="N", street_type="Big"),
+        street2=Street(name="Street 2", direction="W", street_type="Small"),
+    )
+
+    test_intersection_2 = Intersection(
+        street1=Street(name="Street 1", direction="N", street_type="Big"),
+        street2=Street(name="Street 3", direction="W", street_type="Medium"),
+    )
+
+    mock_lfp.extract_segment_intersections.return_value = (test_intersection_1, test_intersection_2)
+
+    mock_geoencoder = mock.Mock()
+    mock_geoencoder.get_intersection_coordinates.side_effect = [Point(1, 2), Point(1, 3)]
+
+    test_location_geoencoder = LocationGeocoder(geocoder=mock_geoencoder)
+    result = test_location_geoencoder.process_location_text(text="test_segment_intersections")
+
+    assert result == LineString([Point(1, 2), Point(1, 3)])
+    mock_geoencoder.get_intersection_coordinates.assert_has_calls(
+        [
+            mock.call(test_intersection_1),
+            mock.call(test_intersection_2),
+        ],
+        any_order=False,
+    )
