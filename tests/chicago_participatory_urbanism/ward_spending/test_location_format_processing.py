@@ -1,5 +1,3 @@
-import itertools
-
 import pytest
 
 from src.chicago_participatory_urbanism.location_structures import (
@@ -74,7 +72,6 @@ def test_extract_segment_intersections():
     )
 
 
-# TODO: make test more strict
 def test_extract_alley_intersections():
     location = "N WOOD ST & W AUGUSTA BLVD & W CORTEZ ST & N HERMITAGE AVE"
     result = extract_alley_intersections(location)
@@ -86,11 +83,12 @@ def test_extract_alley_intersections():
     street3 = Street(direction="W", name="CORTEZ", street_type="ST")
     street4 = Street(direction="N", name="HERMITAGE", street_type="AVE")
 
-    for subset in itertools.combinations([street1, street2, street3, street4], 2):
-        assert (
-            Intersection(street1=subset[0], street2=subset[1]) in result
-            or Intersection(street1=subset[1], street2=subset[0]) in result
-        )
+    assert Intersection(street1, street2) in result
+    assert Intersection(street1, street3) in result
+    assert Intersection(street1, street4) in result
+    assert Intersection(street2, street3) in result
+    assert Intersection(street2, street4) in result
+    assert Intersection(street3, street4) in result
 
 
 def test_extract_intersection_street_names():

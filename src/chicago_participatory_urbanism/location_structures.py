@@ -19,6 +19,11 @@ class Intersection:
     def __str__(self):
         return f"{self.street1} & {self.street2}"
 
+    def __eq__(self, other):
+        return (self.street1 == other.street1 and self.street2 == other.street2) or (
+            self.street1 == other.street2 and self.street2 == other.street1
+        )
+
 
 @dataclass
 class StreetAddress:
