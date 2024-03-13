@@ -1,7 +1,6 @@
 from unittest import mock
 
-from shapely import LineString
-from shapely.geometry import MultiPoint, Point
+from shapely import LineString, MultiPoint, Point
 
 from src.chicago_participatory_urbanism.location_structures import (
     Intersection,
