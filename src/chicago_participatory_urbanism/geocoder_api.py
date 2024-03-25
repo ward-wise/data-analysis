@@ -19,7 +19,6 @@ class GeoCoderAPI:
     'headers to query socrata api'
     api_header = {
         'Accept': 'application/json',
-        'X-App-Token': os.environ['app_token'],
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0'
     }
 
