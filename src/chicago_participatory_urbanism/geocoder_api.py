@@ -98,7 +98,6 @@ class GeoCoderAPI:
         '''
         time.sleep(1)
         nom_header = self.api_header.copy()
-        nom_header.pop('X-App-Token')
         query_string = query_string + ', chicago il'
 
         query_link = f'https://nominatim.openstreetmap.org/search?q={query_string}&format=jsonv2'
