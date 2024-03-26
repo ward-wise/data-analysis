@@ -1,6 +1,6 @@
 import unittest
-from chicago_participatory_urbanism.geocoder_api import GeoCoderAPI
-from chicago_participatory_urbanism.ward_spending.location_geocoding import LocationGeocoder
+from src.chicago_participatory_urbanism.geocoder_api import GeoCoderAPI
+from src.chicago_participatory_urbanism.ward_spending.location_geocoding import LocationGeocoder
 from cases import address_tests
 
 class TestGeocoderAPI(unittest.TestCase):

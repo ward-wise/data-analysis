@@ -4,13 +4,29 @@ Every year, Chicago alders get $1.5 million to spend at their discretion on capi
 
 Check out the GitHub issues for things to work on.
 
-# Getting Started/Installing the Repo
+# Quickstart
+
 1. Clone the repo.
-2. Run the following command in the terminal:
+
+2. If you have not created an account yet with the City of Chicago Data Portal, sign up for one [at this link](https://data.cityofchicago.org/signup)
+
+3. Once you have created and logged into your account [here](https://data.cityofchicago.org/login), navigate to the developer's settings [at this link](https://data.cityofchicago.org/profile/edit/developer_settings) and select `Create New App Token`. Select an appropriate name like `ward-wise-data-analysis-[YOURNAMEHERE]` and make sure uncheck the `Public?` box.
+
+4. Once the app token and corresponding secret has been generated, create an `.env` file at the root of this repository with this content:
+```text
+app_token=<ENTER_YOUR_APP_TOKEN_HERE>
+secret_token=<ENTER_YOUR_SECRET_TOKEN_HERE>
 ```
-pip install .
+>**Note**: do not include the < or > brackets
+
+
+5. Run the following command in the terminal:
 ```
-> **Note:** When doing development work on the package, you need to re-run this command to use the latest package changes in external scripts.
+make run_ward_spending_scripts run_bikeway_installation_scripts
+```
+>**Note**: If you are using Windows, you will have to install the **make** command. The easiest way to do this is with Chocolately. Run `choco install make` in an elevated PowerShell terminal. If you get errors running the scripts, trying the command in an admin PowerShell terminal.
+
+---
 
 The repo has two main parts: the data processing Python package and a library of scripts that use the package. If you're a newcomer, we recommend familiarizing yourself with the project by using the scripts to follow the data processing work flow outlined below.
 

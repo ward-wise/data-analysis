@@ -5,7 +5,7 @@ street address or street intersection
 import re
 from enum import auto, Enum
 from typing import Dict, List
-from chicago_participatory_urbanism.location_structures import Street, StreetAddress, Intersection
+from src.chicago_participatory_urbanism.location_structures import Street, StreetAddress, Intersection
 
 
 class LocationFormat(Enum):

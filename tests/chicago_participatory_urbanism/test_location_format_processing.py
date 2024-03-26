@@ -1,5 +1,5 @@
 import unittest
-import chicago_participatory_urbanism.ward_spending.location_format_processing as lfp
+import src.chicago_participatory_urbanism.ward_spending.location_format_processing as lfp
 
 class TestLocationFunctions(unittest.TestCase):
 

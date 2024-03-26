@@ -1,6 +1,6 @@
 from shapely.geometry import Point, LineString, Polygon
 import math
-import chicago_participatory_urbanism.ward_spending.location_format_processing as lfp
+import src.chicago_participatory_urbanism.ward_spending.location_format_processing as lfp
 
 class LocationGeocoder:
 
