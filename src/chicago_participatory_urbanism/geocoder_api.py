@@ -19,10 +19,8 @@ class GeoCoderAPI:
     def __init__(self):
         self.api_header = {
             'Accept': 'application/json',
-            'X-App-Token': os.environ['app_token'],
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0'
         }
-
 
     def _query_transport_api(
             self,
@@ -100,7 +98,6 @@ class GeoCoderAPI:
         '''
         time.sleep(1)
         nom_header = self.api_header.copy()
-        nom_header.pop('X-App-Token')
         query_string = query_string + ', chicago il'
 
         query_link = f'https://nominatim.openstreetmap.org/search?q={query_string}&format=jsonv2'

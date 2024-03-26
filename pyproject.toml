@@ -7,7 +7,6 @@ dependencies = [
     "numpy",
     "pandas",
     "pypdf2",
-    "python-dotenv",
     "requests",
     "shapely"
 ]
