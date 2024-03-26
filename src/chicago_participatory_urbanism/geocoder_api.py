@@ -3,7 +3,6 @@ This section is taking processed street addresses and
 return multi_string coordinates in maps coordinates
 """
 
-import os
 import time
 from typing import Optional, TypedDict
 
@@ -29,10 +28,7 @@ class GeoCoderAPI:
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0",
         }
 
-    def _query_transport_api(
-            self,
-            params: dict,
-            sql_func: str = None) -> TypedDict:
+    def _query_transport_api(self, params: dict, sql_func: Optional[str] = None) -> TypedDict:
         # https://data.cityofchicago.org/Transportation/Street-Center-Lines/6imu-meau
         # https://dev.socrata.com/foundry/data.cityofchicago.org/pr57-gg9e
         # dataset metadata : https://data.cityofchicago.org/dataset/transportation/pr57-gg9e

@@ -7,14 +7,6 @@ from src.chicago_participatory_urbanism.ward_spending.location_geocoding import 
 )
 
 
-def test_geocoder_api_initialization(monkeypatch):
-    monkeypatch.setenv("APP_TOKEN", "FAKE_APP_TOKEN")
-    geo_coder = GeoCoderAPI()
-
-    assert type(geo_coder) is GeoCoderAPI
-    assert geo_coder.api_header["X-App-Token"] == "FAKE_APP_TOKEN"
-
-
 @pytest.mark.parametrize(
     "test_location, expected_result_type",
     [
