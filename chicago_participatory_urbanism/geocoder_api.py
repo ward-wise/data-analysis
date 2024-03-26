@@ -246,14 +246,3 @@ class GeoCoderAPI:
         )
         if result is not None and result.any():
             return Point(result)
-
-if __name__ == '__main__':
-
-    coder = LocationGeocoder(geocoder=GeoCoderAPI())
-    print(coder.process_location_text('ON W EVERGREEN AVE FROM N MILWAUKEE AVE  (1800 W) TO W SCHILLER ST  (1900 W)'))
-
-    # ARTESIAN
-    # 3221 W ARMITAGE AVE
-    # print(GeoCoderAPI().get_street_address_coordinates_from_full_name(address='SURF'))
-    # cross = Intersection(street1='W DIVISION ST', street2='N PAULINA ST')
-    # print(GeoCoderAPI().get_intersection_coordinates(intersection=cross))
