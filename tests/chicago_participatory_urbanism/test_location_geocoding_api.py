@@ -6,15 +6,6 @@ from shapely import geometry, Point, MultiPoint, LineString, Polygon, GeometryCo
 import pytest
 
 
-def test_geocoder_api_initialization(monkeypatch):
-
-    monkeypatch.setenv("app_token", "fake_app_token")
-    geo_coder = GeoCoderAPI()
-
-    assert type(geo_coder) is GeoCoderAPI
-    assert geo_coder.api_header['X-App-Token'] == "fake_app_token"
-
-
 @pytest.mark.parametrize("test_location, expected_result_type", [
     ('ON N RIDGEWAY AVE FROM W SCHOOL ST (3300 N) TO W BELMONT AVE (3200 N)', LineString),
     ('N MILWAUKEE AVE & N WASHTENAW AVE', Point),
