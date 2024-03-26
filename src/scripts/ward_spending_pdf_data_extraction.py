@@ -1,11 +1,16 @@
 import os
-from src.chicago_participatory_urbanism.ward_spending.extract_text_from_pdf import extract_pdf_data
+
+from src.chicago_participatory_urbanism.ward_spending.extract_text_from_pdf import (
+    WardSpendingPDFTextExtractor,
+)
 
 # Download these files to the data/pdf folder from the Chicago Capital Improvement Archive
-files = ['2019 Menu Posting - 22-10-02.pdf', 
-         '2020 Menu Posting - 22-10-02.pdf',
-         '2021 Menu Posting - 22-10-02.pdf',
-         '2022 Menu - 2-9-23.pdf']
+files = [
+    "2019 Menu Posting - 22-10-02.pdf",
+    "2020 Menu Posting - 22-10-02.pdf",
+    "2021 Menu Posting - 22-10-02.pdf",
+    "2022 Menu - 2-9-23.pdf",
+]
 
 
 def extract_from_files():
@@ -17,4 +22,7 @@ def extract_from_files():
         output_file_path = os.path.join(os.getcwd(), "data", "output", output_file_name)
         print(f'Data saved to "{output_file_path}".')
 
-        extract_pdf_data(pdf_file_path, output_file_path)
+        extractor = WardSpendingPDFTextExtractor(
+            pdf_file_path=pdf_file_path, output_file_path=output_file_path
+        )
+        extractor.extract_pdf_data()
