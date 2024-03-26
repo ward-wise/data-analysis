@@ -6,7 +6,6 @@ import requests
 import numpy as np
 from shapely.geometry import Point
 from chicago_participatory_urbanism.location_structures import Intersection
-from chicago_participatory_urbanism.ward_spending.location_geocoding import LocationGeocoder
 import time
 
 
