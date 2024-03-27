@@ -7,6 +7,7 @@ import numpy as np
 from shapely.geometry import Point
 from chicago_participatory_urbanism.location_structures import Intersection
 import time
+from typing import Optional, Dict
 
 
 class GeoCoderAPI:
@@ -24,8 +25,8 @@ class GeoCoderAPI:
 
     def _query_transport_api(
             self,
-            params: dict,
-            sql_func: str = None) -> dict:
+            params: Dict[str, str],
+            sql_func: str = None) -> Optional[np.array]:
         # https://data.cityofchicago.org/Transportation/Street-Center-Lines/6imu-meau
         # https://dev.socrata.com/foundry/data.cityofchicago.org/pr57-gg9e
         # dataset metadata : https://data.cityofchicago.org/dataset/transportation/pr57-gg9e
@@ -43,6 +44,11 @@ class GeoCoderAPI:
             "logiclf" left from street number
             "logiclt" to street number
 
+            :param params: dictionary for fields and field information
+            :sql_func: to use API's sql function, e.x. "like"
+
+            :return: geocode coordinates or None
+
             Usage:
             without sql_function:
             self._query_transport_api(params={'street_nam': 'ARTESIAN', 'street_typ':'AVE'})
@@ -50,7 +56,7 @@ class GeoCoderAPI:
             with sql_function:
             f_cross like "%25{street_2}%25"
             self._query_transport_api(params={'street_nam': 'ARTESIAN', 'street_typ':'AVE'},
-                                      sql_func='f_cross like "%2568TH%25"')
+                                      sql_like='f_cross like "%2568TH%25"')
         '''
         base_link = "https://data.cityofchicago.org/resource/pr57-gg9e.json?$where="
         query_params = ' AND '.join(k + ' like ' + "'"+str(v).upper() + "'"
@@ -78,13 +84,18 @@ class GeoCoderAPI:
 
     def _query_address_api(
             self,
-            params: dict,
-            sql_func: str = None) -> dict:
+            params: Dict[str, str],
+            sql_func: str = None) -> Optional[np.array]:
         '''
         useful fields:
         "Add_Number"-address number
         "st_name"
         "cmpaddabrv"
+
+        :param params: dictionary for fields and field information
+        :sql_func: to use API's sql function, e.x. "like"
+
+        :return: geocode coordinates or None
 
         Usage:
         without sql_function:
@@ -113,7 +124,7 @@ class GeoCoderAPI:
             coordinate = resp.json()[0]['the_geom']['coordinates']
             return np.array(coordinate).reshape(-1, 2)
 
-    def _query_nominatim(self, query_string) -> dict:
+    def _query_nominatim(self, query_string: str) -> Dict[np.array]:
         '''
         rate limit of 1 request per second,
         example - 200 E 40TH ST
@@ -132,12 +143,12 @@ class GeoCoderAPI:
             return None
         else:
             coordinate = np.array(
-                            [float(resp.json()[0]['lon']),
-                            float(resp.json()[0]['lat'])]
-                        )
+                [float(resp.json()[0]['lon']),
+                float(resp.json()[0]['lat'])]
+            )
             return coordinate
 
-    def _query_census_api(self, query_string):
+    def _query_census_api(self, query_string: str) -> Optional[np.array]:
         '''
         TO DO:
         switch openstreetmap with US Census geocoder: https://geocoding.geo.census.gov/geocoder/
@@ -176,7 +187,7 @@ class GeoCoderAPI:
 
     def get_street_address_coordinates(
             self,
-            address: str) -> Point:
+            address: str) -> Optional[Point]:
         # get_street_address_coordinates_from_full_name
         '''
         run address string to APIs until a match, or return None
@@ -211,7 +222,7 @@ class GeoCoderAPI:
 
     def get_intersection_coordinates(
             self,
-            intersection: Intersection) -> Point:
+            intersection: Intersection) -> Optional[Point]:
         """
         Return the GPS coordinates of an intersection in Chicago.
 

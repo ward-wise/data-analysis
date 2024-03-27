@@ -1,16 +1,25 @@
 from shapely.geometry import Point, LineString, Polygon
 import math
 import chicago_participatory_urbanism.ward_spending.location_format_processing as lfp
+from chicago_participatory_urbanism.geocoder_api import GeoCoderAPI
+from typing import Union
+
 
 class LocationGeocoder:
 
     def __init__(self, geocoder):
         self.geocoder = geocoder
 
-    def process_location_text(self, text):
+    def process_location_text(self,
+                              text: str) -> Union[Point, LineString, Polygon]:
         """
         Take the location text from the ward spending data and
         return a geometry matching the GPS coordinates.
+        
+        :param text: Location information text, e.x "ON W 81ST ST FROM S LEAVITT ST (2200 W) TO S WESTERN AVE (2400 W)"
+        
+        :return geocode geometry & geocode coordinate, or None.  When LocationFormat is unable to parse the text strings
+                it will throw a "NO format match found" error
         """
 
         locations = text.split(";")
@@ -93,7 +102,7 @@ class LocationGeocoder:
 
                 case _ :
                     print(f"Location text: {location}")
-                    print(f"No format match found.\n")
+                    print("No format match found.\n")
                     return None
 
         except Exception as e:
@@ -116,3 +125,10 @@ def get_clockwise_sequence(points):
 
     return sorted_points
 
+
+
+if __name__ == '__main__':
+    'example usage'
+    api = GeoCoderAPI()
+    geocode = LocationGeocoder(geocoder=api).process_location_text('1110 N STATE ST; 1030 N STATE ST')
+    print(geocode)
