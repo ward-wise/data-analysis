@@ -5,7 +5,7 @@ return multi_string coordinates in maps coordinates
 import requests
 import numpy as np
 from shapely.geometry import Point
-from chicago_participatory_urbanism.location_structures import Intersection
+from src.chicago_participatory_urbanism.location_structures import StreetAddress, Intersection
 import time
 from typing import Optional, Dict
 
