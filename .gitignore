@@ -8,7 +8,6 @@ build/
 *.core
 *.coverage
 *.css
-*.csv
 *.dat
 *.db
 *.dll
@@ -42,6 +41,7 @@ __pycache__/
 *.tar.gz
 *.tgz
 *.tmp
+.venv/
 .vscode/
 *.whl
 xcoms/
