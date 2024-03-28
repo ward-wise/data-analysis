@@ -27,3 +27,8 @@ where = ["."]
 exclude = [
     "tests*",
 ]
+
+[tool.pytest.ini_options]
+markers = [
+    "integration_test: tests that actually hit external systems",
+]

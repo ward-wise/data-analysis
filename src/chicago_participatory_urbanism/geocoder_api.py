@@ -16,11 +16,11 @@ class GeoCoderAPI:
     # https://dev.socrata.com/foundry/data.cityofchicago.org/pr57-gg9e
     # https://datacatalog.cookcountyil.gov/GIS-Maps/Cook-County-Address-Points/78yw-iddh
 
-    'headers to query socrata api'
-    api_header = {
-        'Accept': 'application/json',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0'
-    }
+    def __init__(self):
+        self.api_header = {
+            'Accept': 'application/json',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0'
+        }
 
     def _query_transport_api(
             self,
