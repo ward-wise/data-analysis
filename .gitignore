@@ -41,6 +41,7 @@ __pycache__/
 *.tar.gz
 *.tgz
 *.tmp
+.venv/
 .vscode/
 *.whl
 xcoms/
