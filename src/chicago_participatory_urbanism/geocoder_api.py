@@ -124,7 +124,7 @@ class GeoCoderAPI:
             coordinate = resp.json()[0]['the_geom']['coordinates']
             return np.array(coordinate).reshape(-1, 2)
 
-    def _query_nominatim(self, query_string: str) -> Dict[np.array]:
+    def _query_nominatim(self, query_string: str) -> np.array:
         '''
         rate limit of 1 request per second,
         example - 200 E 40TH ST
