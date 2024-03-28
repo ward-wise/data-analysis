@@ -14,4 +14,3 @@ self.street_center_lines_gdf = self.street_center_lines_gdf.rename(columns={'CMP
 self.street_center_lines_gdf = self.street_center_lines_gdf.drop(columns=['Lat', 'Long'])
 
 self.street_center_lines_gdf.to_file('geocode/address_points.geojson', driver="GeoJSON") #Specify file path for geoJSON output
-
