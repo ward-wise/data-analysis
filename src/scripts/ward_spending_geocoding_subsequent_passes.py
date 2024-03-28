@@ -13,13 +13,13 @@ location_geocoder = LocationGeocoder(geocoder)
 
 
 # geocode entries with missing geometry data
-gdf = gpd.read_file(input_geojson_file)
-for index, row in gdf.iterrows():
+self.gdf = gpd.read_file(input_geojson_file)
+for index, row in self.gdf.iterrows():
     if row['geometry'] is None:
         location_text = row['location']
         geometry = location_geocoder.process_location_text(location_text)
-        gdf.at[index, 'geometry'] = geometry
+        self.gdf.at[index, 'geometry'] = geometry
 
 
-gdf.to_file(output_geojson_file, driver='GeoJSON')
+self.gdf.to_file(output_geojson_file, driver='GeoJSON')
 print(f"Updated GeoJSON saved to {output_geojson_file}")

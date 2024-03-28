@@ -10073,7 +10073,7 @@ ward,type,location,year,est_cost,id,point_location,lat,long,query
 9,School Projects,Poe School - Playground,2012,7115,6612,Poe School,41.702492,-87.6066076,google
 13,Miscellaneous-Other,Police Bikes,2007,8785,9942,Police Bikes,NA,NA,google
 2,POD Camera,Polk & Francisco,2010,20000,1784,Polk & Francisco,41.8710254,-87.6984689,google
-49,Chicago Park District,Pottawattomie Park - dog friendly area (DFA),2010,119040,39262,Pottawattomie Park,42.0158615,-87.6775959,google
+49,Chicago Park District,Pottawattomie Park - dog friendly area (self.dfA),2010,119040,39262,Pottawattomie Park,42.0158615,-87.6775959,google
 2,Miscellaneous-Other,Prairie & 35 th,2008,2259.66666666667,40287,Prairie & 35 th,NA,NA,google
 4,Miscellaneous-Other,Donoghue and Price Schools - murals,2009,20000,3160,Price Elementary School,41.8152201,-87.6037684,google
 4,Printers Row Park - Lighting Improvements,Printers Row Park,2017,6500,3464,Printers Row Park,41.8733693,-87.6294082,google

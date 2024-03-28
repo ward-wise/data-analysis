@@ -5,13 +5,13 @@ import geopandas as gpd
 
 df = pd.read_csv('geocode/Address_Points_reduced.csv') #Specify file path for CSV input
 
-geometry = [Point(xy) for xy in zip(df['Long'], df['Lat'])]
+geometry = [Point(xy) for xy in zip(self.df['Long'], self.df['Lat'])]
 crs = 'EPSG:4326' #Specify coordinate reference system--see geopandas docs.
-gdf = gpd.GeoDataFrame(df, crs=crs, geometry=geometry)
+self.gdf = gpd.GeoDataFrame(self.df, crs=crs, geometry=geometry)
 #Rename columns if necessary. These columns will show up as a "property" of each coordinate in the geoJSON file, so clear labeling will be helpful.
-gdf = gdf.rename(columns={'CMPADDABRV':'Address', 'Unnamed: 0':'ID'})
+self.gdf = self.gdf.rename(columns={'CMPADDABRV':'Address', 'Unnamed: 0':'ID'})
 #Drop redundant Latitude and Longitude columns if necessary. This massively reduces the file size.
-gdf = gdf.drop(columns=['Lat', 'Long']) 
+self.gdf = self.gdf.drop(columns=['Lat', 'Long']) 
 
-gdf.to_file('geocode/address_points.geojson', driver="GeoJSON") #Specify file path for geoJSON output
+self.gdf.to_file('geocode/address_points.geojson', driver="GeoJSON") #Specify file path for geoJSON output
 
