@@ -1,10 +1,12 @@
-from src.chicago_participatory_urbanism.geocoder_local import Geocoder
-import pytest
 from unittest.mock import patch
 
+import pytest
 
-@patch('src.chicago_participatory_urbanism.geocoder_local.gpd.read_file')
-@patch('src.chicago_participatory_urbanism.geocoder_local.pd.read_csv')
+from src.chicago_participatory_urbanism.geocoder_local import Geocoder
+
+
+@patch("src.chicago_participatory_urbanism.geocoder_local.gpd.read_file")
+@patch("src.chicago_participatory_urbanism.geocoder_local.pd.read_csv")
 def test_geocoder_local_initializes_correctly_with_fake_files(mock_read_csv, mock_read_file):
     test_geocoder = Geocoder()
     assert test_geocoder.address_points_df == mock_read_csv.return_value

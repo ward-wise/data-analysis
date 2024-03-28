@@ -4,6 +4,18 @@ setup_env:
 	pip install --prefer-binary .
 
 
+.PHONY: format
+format: setup_env_dev
+	ruff format .
+	ruff check . --fix
+
+
+.PHONY: lint
+lint: setup_env_dev
+	ruff format . --check
+	ruff check . --no-fix
+
+
 .PHONY: run_ward_spending_scripts
 run_ward_spending_scripts: setup_env
 	extract_ward_spending_data_from_pdfs && \
