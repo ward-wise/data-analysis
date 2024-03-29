@@ -85,5 +85,4 @@ ignore = [
     "PLR0912",
     # (pylint) magic-value
     "PLR2004"
-
 ]
