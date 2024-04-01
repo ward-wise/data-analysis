@@ -35,6 +35,7 @@ htmlcov/
 *.pyc
 __pycache__/
 .pytest_cache/
+.ruff_cache/
 *.snappy-*.tar.gz
 *.so
 *.sqlite
