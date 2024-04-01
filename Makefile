@@ -22,16 +22,6 @@ setup_env_dev:
 	pip install --prefer-binary -r requirements-dev.txt
 
 
-.PHONY: test
-test: setup_env setup_env_dev
-	PYTHONPATH="$${PWD}" \
-	pytest \
-		-m "not integration_test" \
-		--cov $${PWD}/src \
-		-v \
-		tests/
-
-
 .PHONY: format
 format: setup_env_dev
 	ruff format .
@@ -42,6 +32,16 @@ format: setup_env_dev
 lint: setup_env_dev
 	ruff format . --check
 	ruff check . --no-fix
+
+
+.PHONY: test
+test: setup_env setup_env_dev
+	PYTHONPATH="$${PWD}" \
+	pytest \
+		-m "not integration_test" \
+		--cov $${PWD}/src \
+		-v \
+		tests/
 
 
 .PHONY: integration_test
