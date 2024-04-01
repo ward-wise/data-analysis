@@ -1,0 +1,5 @@
+*
+!pyproject.toml
+!src/**/*.py
+!src/chicago_participatory_urbanism/assets/Address_Points_reduced.csv
+!src/chicago_participatory_urbanism/assets/Street Center Lines.geojson

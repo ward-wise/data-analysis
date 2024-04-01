@@ -1,3 +1,15 @@
+IMAGE_URI=ward-wise/data-anaylsis
+
+
+.PHONY: build_image
+build_image:
+	echo "building image" && \
+	docker build \
+		-f ./Dockerfile \
+		-t "${IMAGE_URI}" \
+		.
+
+
 .PHONY: setup_env
 setup_env:
 	pip install --upgrade pip
@@ -28,10 +40,32 @@ format: setup_env_dev
 	ruff check . --fix
 
 
+.PHONY: format_docker
+format_docker:
+	docker run \
+	  -v $$(pwd):/app \
+	  --workdir /app \
+	  --entrypoint="" \
+	  --rm \
+	  -t python:3.12-slim \
+	  /bin/bash -c "apt-get update && apt-get install make && make format"
+
+
 .PHONY: lint
 lint: setup_env_dev
 	ruff format . --check
 	ruff check . --no-fix
+
+
+.PHONY: lint_docker
+lint_docker:
+	docker run \
+	  -v $$(pwd):/app \
+	  --workdir /app \
+	  --entrypoint="" \
+	  --rm \
+	  -t python:3.12-slim \
+	  /bin/bash -c "apt-get update && apt-get install make && make lint"
 
 
 .PHONY: test
@@ -44,6 +78,19 @@ test: setup_env setup_env_dev
 		tests/
 
 
+.PHONY: test_docker
+test_docker: build_image
+	docker run \
+	  -v $$(pwd)/Makefile:/app/Makefile \
+	  -v $$(pwd)/requirements-dev.txt:/app/requirements-dev.txt \
+	  -v $$(pwd)/tests:/app/tests \
+	  --workdir /app \
+	  --entrypoint="" \
+	  --rm \
+	  -it "${IMAGE_URI}" \
+	  /bin/bash -c "make test"
+
+
 .PHONY: integration_test
 integration_test: setup_env setup_env_dev
 	PYTHONPATH="$${PWD}" \
@@ -52,3 +99,16 @@ integration_test: setup_env setup_env_dev
 		-m "integration_test" \
 		-v \
 		tests/
+
+
+.PHONY: integration_test_docker
+integration_test_docker: build_image
+	docker run \
+	  -v $$(pwd)/Makefile:/app/Makefile \
+	  -v $$(pwd)/requirements-dev.txt:/app/requirements-dev.txt \
+	  -v $$(pwd)/tests:/app/tests \
+	  --workdir /app \
+	  --entrypoint="" \
+	  --rm \
+	  -t "${IMAGE_URI}" \
+	  /bin/bash -c "apt-get update && apt-get install make && make integration_test"
