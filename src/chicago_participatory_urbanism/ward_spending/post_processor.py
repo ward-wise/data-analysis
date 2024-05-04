@@ -10,7 +10,9 @@ def post_process_data(file_name: str, year: int):
     data['year'] = year
     # convert cost column to numeric
     data['cost'] = data['cost'].str.replace('[\$,]', '', regex=True).astype(float)
-    
+    # Remove blank rows
+    data = data.dropna(subset=['item', 'cost', 'location'])
+
     # add category
     data["category"] = data["item"].apply(get_menu_category)
 

@@ -10,6 +10,7 @@ files = [
     "2020 Menu Posting - 22-10-02.csv",
     "2021 Menu Posting - 22-10-02.csv",
     "2022 Menu - 2-9-23.csv",
+    "2023 Menu - 2-27-24.csv",
 ]
 
 
@@ -32,6 +33,6 @@ def postprocess_and_combine_data():
     data.reset_index()
 
     # export data
-    output_file_path = "data/output/2019-2022 data.csv"
+    output_file_path = "data/output/2019-2023 data.csv"
     data.to_csv(output_file_path, index=False)
     print(f"Post-processing complete. Data saved to {output_file_path}.")
