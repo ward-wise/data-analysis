@@ -1,13 +1,13 @@
 STANDARD_CATEGORY = {
     "pedestrian": "Pedestrian Infrastructure",
     "bump outs": "Pedestrian Infrastructure",
+    "guardrail" : "Pedestrian Infrastructure",
     "bicycle": "Bicycle Infrastructure",
     "bike": "Bicycle Infrastructure",
     "neighborhood greenway": "Bicycle Infrastructure",
     "light": "Lighting",
     "street resurfacing": "Street Resurfacing",
     "street speed hump replacement": "Street Resurfacing",
-    "street speed hump": "Street Resurfacing",
     "curb & gutter": "Street Resurfacing",
     "alley": "Alleys",
     "miscellaneous cdot projects": "Misc. CDOT",
@@ -17,7 +17,7 @@ STANDARD_CATEGORY = {
     "school" : "Education",
     "arts program" : "Education",
     "library" : "Education",
-    "cps" : "Education"
+    "cps" : "Education",
     "turn arrow": "Street Redesign",
     "street speed hump menu": "Street Redesign",
     "pavement markings": "Street Redesign",
@@ -40,7 +40,8 @@ def get_menu_category(item):
     item = item.lower()
     if ("pedestrian" in item 
         or "bump outs" in item
-        or "state law stop" in item):
+        or "state law stop" in item
+        or "guardrail" in item):
         return "Pedestrian Infrastructure"
     elif ("bicycle" in item
           or "bike" in item
@@ -51,7 +52,7 @@ def get_menu_category(item):
     #"resurfac" is used because it will pick up resurface or resurfacing.
     elif("resurfac" in item and "street" in item 
          or "street" in item and "speed" in item and "hump" in item
-         or "curb & gutter" in item):
+         or "curb" in item and "gutter" in item):
         return "Street Resurfacing"
     elif "alley" in item:
         return "Alleys"
@@ -66,11 +67,12 @@ def get_menu_category(item):
           or "pavement markings" in item 
           or "traffic circle" in item 
           or "cul-de-sac" in item
-          or "diagnol parking" in item):
+          or "diagonal parking" in item):
         return "Street Redesign"
     elif ("school" in item
           or "cps" in item
           or "library" in item
+          or "elementary" in item
           or "arts" in item and "program" in item):
         return "Education"
     elif "sidewalk" in item:
