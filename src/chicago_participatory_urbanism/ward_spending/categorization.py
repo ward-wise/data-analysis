@@ -14,6 +14,10 @@ STANDARD_CATEGORY = {
     "mural": "Beautification",
     "public art": "Beautification",
     "tree planting": "Beautification",
+    "school" : "Education",
+    "arts program" : "Education",
+    "library" : "Education",
+    "cps" : "Education"
     "turn arrow": "Street Redesign",
     "street speed hump menu": "Street Redesign",
     "pavement markings": "Street Redesign",
@@ -35,7 +39,8 @@ STANDARD_CATEGORY = {
 def get_menu_category(item):
     item = item.lower()
     if ("pedestrian" in item 
-        or "bump outs" in item):
+        or "bump outs" in item
+        or "state law stop" in item):
         return "Pedestrian Infrastructure"
     elif ("bicycle" in item
           or "bike" in item
@@ -63,6 +68,11 @@ def get_menu_category(item):
           or "cul-de-sac" in item
           or "diagnol parking" in item):
         return "Street Redesign"
+    elif ("school" in item
+          or "cps" in item
+          or "library" in item
+          or "arts" in item and "program" in item):
+        return "Education"
     elif "sidewalk" in item:
         return "Sidewalk Repair"
     elif ("pod" in item and "camera" in item
