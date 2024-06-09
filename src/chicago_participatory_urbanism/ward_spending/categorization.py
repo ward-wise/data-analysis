@@ -7,6 +7,7 @@ STANDARD_CATEGORY = {
     "light": "Lighting",
     "street resurfacing": "Street Resurfacing",
     "street speed hump replacement": "Street Resurfacing",
+    "street speed hump": "Street Resurfacing",
     "curb & gutter": "Street Resurfacing",
     "alley": "Alleys",
     "miscellaneous cdot projects": "Misc. CDOT",
@@ -18,9 +19,13 @@ STANDARD_CATEGORY = {
     "pavement markings": "Street Redesign",
     "traffic circle": "Street Redesign",
     "cul-de-sac": "Street Redesign",
-    "diagnol parking": "Street Redesign",
+    "diagonal parking": "Street Redesign",
     "sidewalk": "Sidewalk Repair",
     "pod camera": "Police Cameras",
+    "ptz camera": "Police Cameras",
+    "oemc camera project": "Police Cameras",
+    "lpr": "Police Cameras",
+    "fly dumping camera": "Police Cameras",
     "park": "Parks",
     "playground": "Parks",
     "garden": "Parks",
@@ -38,13 +43,14 @@ def get_menu_category(item):
         return "Bicycle Infrastructure"
     elif "light" in item:
         return "Lighting"
-    elif("street resurfacing" in item 
-         or "street speed hump replacement" in item 
+    #"resurfac" is used because it will pick up resurface or resurfacing.
+    elif("resurfac" in item and "street" in item 
+         or "street" in item and "speed" in item and "hump" in item
          or "curb & gutter" in item):
         return "Street Resurfacing"
     elif "alley" in item:
         return "Alleys"
-    elif "miscellaneous cdot projects" in item:
+    elif "miscellaneous" in item and "cdot" in item:
         return "Misc. CDOT"
     elif ("mural" in item
           or "public art" in item
@@ -59,7 +65,12 @@ def get_menu_category(item):
         return "Street Redesign"
     elif "sidewalk" in item:
         return "Sidewalk Repair"
-    elif "pod camera" in item:
+    elif ("pod" in item and "camera" in item
+          or "lpr" in item
+          or "dumping" in item and "camera" in item
+          or "ptz" in item and "camera" in item
+          or "oemc" in item and "camera" in item
+          or "high definition" in item and "camera" in item):
         return "Police Cameras"
     elif ("park" in item
           or "playground" in item
