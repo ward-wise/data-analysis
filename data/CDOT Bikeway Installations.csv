@@ -1,158 +1,81 @@
 Street,From,To,Length (miles),Facility,Status,Planned Year
-28th,Kostner,Albany,1.64,Neighborhood Bikeway,Installed,2023
-30th,Kostner,Albany,1.63,Neighborhood Bikeway,Installed,2023
-Broadway,Montrose,Wilson,0.28,Concrete Upgrade to Protected Bike Lane,Installed,2023
-Loomis,76th,71st,0.63,Concrete Upgrade to Protected Bike Lane,Installed,2023
-Roscoe,Campbell,Western,0.1,Concrete Upgrade to Protected Bike Lane,Installed,2023
-71st,Langley,Cottage Grove,0.16,Protected Bike Lane,Underway,2023
-Augusta,Western,Milwaukee,1.34,Protected Bike Lane,Underway,2023
-Augusta,Milwaukee,Throop,0.11,Access Path,Underway,2023
-Augusta,Throop,Elston,0.12,Shared Lane,Underway,2023
-Belmont,Kimball,Western,1.27,Protected Bike Lane,Underway,2023
-Belmont,Western,Ashland,0.99,Bike Lane,Underway,2023
-Clark,Hollywood,Devon,0.99,Concrete Upgrade to Protected Bike Lane,Underway,2023
-Grand,Chicago,Damen,1.27,Protected Bike Lane,Underway,2023
-Wells,17th,Roosevelt,0.59,Protected Bike Lane,Underway,2023
-Wells,Roosevelt,9th,0.24,Protected Bike Lane,Underway,2023
-Wentworth,18th,17th,0.08,Protected Bike Lane,Underway,2023
-115th,Major Taylor Trail,Union,0.3,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-119th,Ashland,Halsted,1.01,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-16th,Central Park,Homan,0.25,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-16th,Spaulding,Kedzie,0.13,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-18th,Canal,Wentworth,0.36,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-31st,Wells,LaSalle,0.15,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-31st,Michigan,Martin Luther King Jr,0.33,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-31st,Martin Luther King Jr,Fort Dearborn,0.48,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-55th,55th,Dorchester,0.09,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-Armitage,Kedzie,Western,1,Bike Lane,Upcoming,2023
-Berteau,Western,Lincoln,0.38,Neighborhood Bikeway,Upcoming,2023
-Bloomingdale,Narragansett,Laramie,1.56,Neighborhood Bikeway,Upcoming,2023
-Blue Island,18th,Roosevelt,0.75,Protected Bike Lane,Upcoming,2023
-Canal,Roosevelt,Harrison,0.49,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-Central Park,Armitage,Fullerton,0.51,Bike Lane,Upcoming,2023
-Central Park,Madison,Franklin,0.67,Protected Bike Lane,Upcoming,2023
-Clark,Irving Park,Montrose,0.54,Protected Bike Lane,Upcoming,2023
-Clark,Kinzie,Oak,0.78,Protected Bike Lane,Upcoming,2023
-Clinton,Harrison,Fulton,0.86,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-Dearborn,Kinzie,Chicago,0.74,Protected Bike Lane,Upcoming,2023
-Desplaines,Harrison,Lake,0.79,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-Diversey,Western,Damen,0.5,Protected Bike Lane,Upcoming,2023
-Douglas,Independence,Sacramento,0.88,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-Franklin,Central Park,Sacramento,0.76,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-Halsted,Fulton,Hubbard,0.23,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-Halsted,26th,Lumber,0.34,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-Hamlin,33rd,Cermak,1.26,Neighborhood Bikeway,Upcoming,2023
-Harrison,Halsted,Desplaines,0.17,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-Harrison,Canal,Franklin,0.23,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-Harrison,Ashland,Halsted,1,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-Independence,Douglas,Congress,0.84,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-Jackson,Oakley,Hoyne,0.25,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-Jackson,Damen,Ogden,0.3,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-Jackson,Austin,Central,0.53,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-Kedzie,Diversey,Elston,0.96,Protected Bike Lane,Upcoming,2023
-Keeler,Harrison,Congress,0.06,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-Lake,Laramie,Pulaski,1.53,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-Lake,Pine,Laramie,0.41,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-Lake,Kedzie,Damen,1.52,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-Laramie,Ferdinand,Le Moyne,1.29,Bike Lane,Upcoming,2023
-Laramie,Bloomingdale,Grand,0.26,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-Lavergne,Harrison,Le Moyne,2.4,Neighborhood Bikeway,Upcoming,2023
-Leavitt,Milwaukee,Lyndale,0.63,Neighborhood Bikeway,Upcoming,2023
-Leavitt,Diversey,Montrose,2.06,Neighborhood Bikeway,Upcoming,2023
-Leavitt,Montrose,Bowmanville,1.25,Neighborhood Bikeway,Upcoming,2023
-Loomis,Eleanor,Cermak,0.54,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-Menard,Jackson,Lake,0.75,Neighborhood Bikeway,Upcoming,2023
-Randolph,Field,Lake Shore,0.56,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-Milwaukee,Kinzie,Hubbard,0.11,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-Martin Luther King Jr,100th,99th,0.15,Protected Bike Lane,Upcoming,2023
-Martin Luther King Jr,99th,95th,0.5,Bike Lane,Upcoming,2023
-Polk,Damen,Ashland,0.51,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-Randolph,Clinton,Michigan,0.87,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-Sacramento,19th,Ogden,0.31,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-State,26th,Cullerton,0.68,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-Taylor,Morgan,Canal,0.61,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-Vincennes,103rd,89th,1.84,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-Walton,Clark,Dearborn,0.08,Buffered Bike Lane,Upcoming,2023
-Washington,Wacker,Michigan,0.65,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-Wellington,Kimball,Kedzie,0.25,Neighborhood Bikeway,Upcoming,2023
-Woodlawn/Doty,111th,103rd,1.51,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-Wrightwood,Keeler,Pulaski,0.25,Concrete Upgrade to Protected Bike Lane,Upcoming,2023
-26th,Pulaski,Sacramento,1.26,Bike Lane,Installed,2022
-63rd,Maryland,Stony Island,0.94,Bike Lane,Installed,2022
-81st,Wood,Racine,0.75,Neighborhood Bikeway,Upcoming,2022
-82nd,Ashland,Loomis,0.25,Neighborhood Bikeway,Upcoming,2022
-100th,Ewing,Ave J,0.13,Neighborhood Bikeway,Installed,2022
-Armitage,Kedzie,Western,1,Bike Lane,Upcoming,2022
-Augusta,Western,Milwaukee,1.34,Protected Bike Lane,Upcoming,2022
-Augusta,Milwaukee,Throop,0.11,Access Path,Upcoming,2022
-Augusta,Throop,Elston,0.12,Shared Lane,Upcoming,2022
-Belmont,Ashland,Halsted,1,Bike Lane,Installed,2022
-Belmont,Kimball,Western,1.27,Protected Bike Lane,Upcoming,2022
-Berwyn,Virginia,Western,0.76,Neighborhood Bikeway,Installed,2022
-Berwyn,Western,Damen,0.5,Neighborhood Bikeway,Installed,2022
-Broadway,Montrose,Wilson,0.28,Concrete Upgrade,Upcoming,2022
-Clark,Hollywood,Devon,0.99,Concrete Upgrade,Upcoming,2022
-Clark,Irving Park,Montrose,0.54,Protected Bike Lane,Upcoming,2022
-Central Park,Madison,Franklin,0.67,Protected Bike Lane,Upcoming,2022
-Chicago,Western,Ashland,1,Bike Lane,Installed,2022
-Commercial,100th,94th,0.76,Buffered Bike Lane,Installed,2022
-Diversey,Milwaukee,California,0.75,Buffered Bike Lane,Installed,2022
-Douglas,Independence,Sacramento,0.9,Concrete Upgrade,Upcoming,2022
-Erie,Damen,Noble,0.76,Neighborhood Bikeway,Installed,2022
-Exchange,83rd,79th,0.5,Bike Lane,Installed,2022
-Garfield/Morgan/Rainey,Martin Luther King Jr,Cottage Grove,0.52,Protected Bike Lane,Installed,2022
-Grand,Narragansett,Meade,0.4,Buffered Bike Lane,Installed,2022
-Grand,Meade,Austin,0.13,Shared Lane,Installed,2022
-Grand,Austin,Central,0.52,Buffered Bike Lane,Installed,2022
-Grand,Central,Long,0.26,Protected Bike Lane,Installed,2022
-Grand,Long,Laramie,0.26,Buffered Bike Lane,Installed,2022
-Grand,Laramie,Armitage,0.13,Bike Lane,Installed,2022
-Hamlin,Congress,Madison,0.44,Protected Bike Lane,Installed,2022
-Hamlin,Madison,Washington,0.08,Bike Lane,Installed,2022
-Harrison,Central,Kostner,1.52,Bike Lane,Installed,2022
-Harrison,Ogden,Wood,0.17,Protected Bike Lane,Upcoming,2022
-Hirsch,Austin,Lavergne,1.26,Neighborhood Bikeway,Installed,2022
-Homan,Cermak,Ogden,0.32,Shared Lane,Installed,2022
-Homan,Ogden,Roosevelt,0.71,Bike Lane,Installed,2022
-Independence,Congress,Independence,0.84,Concrete Upgrade,Upcoming,2022
-Jackson,Central,Laramie,0.5,Shared Lane,Installed,2022
-Kedzie,Diversey,Elston,0.96,Protected Bike Lane,Upcoming,2022
-Kedzie,Elston,Foster,2.06,Bike Lane,Installed,2022
-Keeler,Cermak,Lake,2.37,Neighborhood Bikeway,Installed,2022
-Keeler,33rd,Cermak,1.26,Neighborhood Bikeway,Installed,2022
-Kenmore,Leland,Argyle,0.42,Neighborhood Bikeway,Installed,2022
-Kinzie,Wells,Dearborn,0.23,Bike Lane,Installed,2022
-Kinzie,Dearborn,State,0.08,Shared Lane,Installed,2022
-Kinzie,Desplaines,Wells,0.53,Concrete Upgrade,Installed,2022
-Lake,Pulaski,Kedzie,1.01,Concrete Upgrade,Installed,2022
-Lake,Kedzie,Damen,1.52,Concrete Upgrade,Underway,2022
-Laramie,Harrison,Ferdinand,1.13,Bike Lane,Installed,2022
-Laramie,Ferdinand,Le Moyne,1.29,Bike Lane,Upcoming,2022
-Laramie,Le Moyne,Bloomingdale,0.38,Bike Lane,Installed,2022
-Laramie,Bloomingdale,Grand,0.26,Protected Bike Lane,Installed,2022
-Lawrence,Austin,Central,0.5,Bike Lane,Installed,2022
-Lawrence,Central Park,Chicago River,0.84,Bike Lane,Upcoming,2022
-Le Moyne,Austin,Lavergne,1.27,Neighborhood Bikeway,Installed,2022
-Logan,Campbell,Diversey,0.48,Concrete Upgrade,Installed,2022
-Loomis,Roosevelt,Harrison,0.5,Bike Lane,Upcoming,2022
-Lyndale,Rockwell,Leavitt,0.53,Neighborhood Bikeway,Installed,2022
-Milwaukee,Addison,Waveland,0.16,Protected Bike Lane,Underway,2022
-Milwaukee,Waveland,Irving Park,0.62,Concrete Upgrade,Underway,2022
-Milwaukee,Augusta,Division,0.37,Protected Bike Lane,Installed,2022
-Milwaukee,Chicago,Elston,0.07,Protected Bike Lane,Installed,2022
-Milwaukee,Kinzie,Hubbard,0.11,Concrete Upgrade,Upcoming,2022
-Milwaukee,Hubbard,Ohio,0.22,Protected Bike Lane,Installed,2022
-Martin Luther King Jr,76th,67th,1.13,Bike Lane,Installed,2022
-Montrose,Damen,Clark,0.67,Bike Lane,Installed,2022
-Montrose,California,Western,0.5,Bike Lane,Installed,2022
-Polk,Damen,Ashland,0.51,Concrete Upgrade,Upcoming,2022
-Polk,Pulaski,California,1.51,Neighborhood Bikeway,Installed,2022
-Racine,Cortland,Armitage,0.06,Bike Lane,Upcoming,2022
-Rockwell,Milwaukee,Logan,0.81,Neighborhood Bikeway,Installed,2022
-Stony Island,59th,56th,0.38,Buffered Bike Lane,Installed,2022
-Sunnyside,Maplewood,Lincoln,0.38,Neighborhood Bikeway,Installed,2022
-Winthrop,Leland,Argyle,0.42,Neighborhood Bikeway,Installed,2022
-Wells,17th,Roosevelt,0.62,Protected Bike Lane,Underway,2022
-Wells,Roosevelt,9th,0.23,Buffered Bike Lane,Upcoming,2022
-Wells,9th,Harrison,0.26,Shared Lane,Upcoming,2022
-Wentworth,Cermak,19th,0.26,Buffered Bike Lane,Upcoming,2022
+Ainslie,Rockwell,Lincoln,0.2,Neighborhood,Installed,2024
+Canal,Roosevelt,Taylor,0.18,Concrete Protected Bike Lane,Installed,2024
+Chicago,Grand,Western,0.67,Bike Lane,Installed,2024
+Damen,17th,14th,0.31,Protected Bike Lane,Installed,2024
+Douglas,Independence,Sacramento,0.95,Concrete Protected Bike Lane,Installed,2024
+Franklin,Central Park,Sacramento,0.76,Concrete Protected Bike Lane,Installed,2024
+Francisco,Lawrence,Ainslie,0.14,Protected Bike Lane,Installed,2024
+Jackson,Oakley,Hoyne,0.25,Concrete Protected Bike Lane,Installed,2024
+Jackson,Damen,Ogden,0.3,Concrete Protected Bike Lane,Installed,2024
+Kilbourn,Belmont,Addison,0.52,Neighborhood,Installed,2024
+31st,Michigan,MLK,0.33,Concrete Protected Bike Lane,Underway,2024
+Canal,Taylor,Harrison,0.32,Concrete Protected Bike Lane,Underway,2024
+Central Park,31st,26th,0.51,Bike Lane,Underway,2024
+Chicago,Austin,Central,0.5,Bike Lane,Underway,2024
+Clark,Grand,Oak,0.62,Protected Bike Lane,Underway,2024
+Commercial,93rd,90th,0.36,Protected Bike Lane,Underway,2024
+Dearborn,Division,Goethe,0.13,Bike Lane,Underway,2024
+Dearborn,Goethe,North,0.37,Neighborhood,Underway,2024
+Grand,Chicago,Damen,1.27,Protected Bike Lane,Underway,2024
+Halsted,47th,Pershing,1.01,Protected Bike Lane,Underway,2024
+Kedzie,28th,Cermak,0.75,Bike Lane,Underway,2024
+Laramie,Ferdinand,Le Moyne,1.29,Bike Lane,Underway,2024
+Lincoln,Ainslie,Berwyn,0.57,Protected Bike Lane,Underway,2024
+Milwaukee,Logan,Belmont,1.1,Bike Lane,Underway,2024
+Rockwell,Argyle,Winnemac,0.05,Neighborhood,Underway,2024
+Taylor,Morgan,Canal,0.61,Concrete Protected Bike Lane,Underway,2024
+Winnemac,Rockwell,Leavitt,0.5,Neighborhood,Underway,2024
+111th,Cottage Grove,Doty,0.48,Off-Street Trail,Upcoming,2024
+111th,MLK,Cottage Grove,0.18,Protected Bike Lane,Upcoming,2024
+16th,Central Park,Homan,0.25,Concrete Protected Bike Lane,Upcoming,2024
+16th,Spaulding,Kedzie,0.13,Concrete Protected Bike Lane,Upcoming,2024
+24th,Marshall,California,0.18,Protected Bike Lane,Upcoming,2024
+24th,Pulaski,Marshall,1.32,Neighborhood,Upcoming,2024
+32nd,Keeler,Central Park,0.74,Neighborhood,Upcoming,2024
+55th,55th,Dorchester,0.09,Concrete Protected Bike Lane,Upcoming,2024
+63rd,Western,Marshfield,0.95,Buffered Bike Lane,Upcoming,2024
+91st,South Chicago,Mackinaw,0.66,Buffered Bike Lane,Upcoming,2024
+Ainslie,Western,Damen,0.5,Neighborhood,Upcoming,2024
+Belmont,Milwaukee,Kimball,0.59,Protected Bike Lane,Upcoming,2024
+Berteau,Elston,California,1.35,Neighborhood,Upcoming,2024
+Berwyn,Damen,Lakefront Trail,1.26,Neighborhood,Upcoming,2024
+Bloomingdale,Narragansett,Laramie,1.56,Neighborhood,Upcoming,2024
+California,Fullerton,Schubert,0.38,Bike Lane,Upcoming,2024
+California,George,Belmont,0.33,Bike Lane,Upcoming,2024
+California,Schubert,George,0.3,Protected Bike Lane,Upcoming,2024
+California,Winona,Peterson,1.08,Bike Lane,Upcoming,2024
+Central Park,32nd,31st,0.13,Bike Lane,Upcoming,2024
+Central Park,Elston,Carmen,1.46,Neighborhood,Upcoming,2024
+Central Park,Wolfram,Belmont,0.44,Bike Lane,Upcoming,2024
+Commercial,90th,87th,0.38,Protected Bike Lane,Upcoming,2024
+Cortland,Ashland,Chicago River,0.18,Protected Bike Lane,Upcoming,2024
+Cottage Grove,111th,108th,0.38,Protected Bike Lane,Upcoming,2024
+Cullom,Elston,California,1.44,Neighborhood,Upcoming,2024
+Damen,Cermak,18th,0.38,Bike Lane,Upcoming,2024
+Diversey,Western,Damen,0.5,Protected Bike Lane,Upcoming,2024
+Division,Grand,California,1.08,Protected Bike Lane,Upcoming,2024
+Eastlake,Ashland,Sheridan,0.65,Neighborhood,Upcoming,2024
+Halsted,Roosevelt,Van Buren,0.66,Protected Bike Lane,Upcoming,2024
+Harrison,Ashland,Halsted,1,Concrete Protected Bike Lane,Upcoming,2024
+Harrison,Canal,Franklin,0.23,Protected Bike Lane,Upcoming,2024
+Howard,Winchester,Paulina,0.31,Buffered Bike Lane,Upcoming,2024
+Homan,Jackson,Chicago,1.26,Bike Lane,Upcoming,2024
+Homan,Roosevelt,Jackson,0.75,Protected Bike Lane,Upcoming,2024
+Kedzie,47th,Archer,0.4,Bike Lane,Upcoming,2024
+Kedzie,Jackson,Madison,0.25,Bike Lane,Upcoming,2024
+Kedzie,Madison,Washington,0.13,Buffered Bike Lane,Upcoming,2024
+Kedzie,Washington,Chicago,0.9,Bike Lane,Upcoming,2024
+Keeler,Harrison,Congress,0.06,Protected Bike Lane,Upcoming,2024
+Leland,Virginia,Clark,1.6,Neighborhood,Upcoming,2024
+Lincoln,Montrose,Leavitt,0.02,Neighborhood,Upcoming,2024
+Logan Square,Logan,Logan,0.32,Protected Bike Lane,Upcoming,2024
+Milwaukee,Kinzie,Hubbard,0.11,Concrete Protected Bike Lane,Upcoming,2024
+Montgomery,Kelly Park,Rockwell,0.09,Neighborhood,Upcoming,2024
+Pratt,Western,Ravenswood,0.76,Protected Bike Lane,Upcoming,2024
+Ravenswood,Wilson,Peterson,1.77,Neighborhood,Upcoming,2024
+Rockwell,48th,35th,1.63,Neighborhood,Upcoming,2024
+Rockwell,Leland,Lawrence,0.13,Neighborhood,Upcoming,2024
+Taylor,Racine,Morgan,0.29,Protected Bike Lane,Upcoming,2024
+Virginia,Lawrence,Leland,0.15,Neighborhood,Upcoming,2024
+Wabash,Roosevelt,Harrison,0.48,Protected Bike Lane,Upcoming,2024
