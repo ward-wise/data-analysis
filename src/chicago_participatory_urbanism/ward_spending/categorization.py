@@ -41,7 +41,8 @@ def get_menu_category(item):
     if ("pedestrian" in item 
         or "bump outs" in item
         or "state law stop" in item
-        or "guardrail" in item):
+        or "guardrail" in item
+        or "bollard" in item):
         return "Pedestrian Infrastructure"
     elif ("bicycle" in item
           or "bike" in item
@@ -73,8 +74,12 @@ def get_menu_category(item):
           or "cps" in item
           or "library" in item
           or "elementary" in item
-          or "arts" in item and "program" in item):
+          or "art" in item and "program" in item):
         return "Education"
+    elif ("traffic" in item
+          or "speed" in item
+          or  "bus" in item and "pad" in item):
+        return "Traffic Infrastructure"
     elif "sidewalk" in item:
         return "Sidewalk Repair"
     elif ("pod" in item and "camera" in item
