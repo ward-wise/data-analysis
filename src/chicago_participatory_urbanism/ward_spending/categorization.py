@@ -61,7 +61,8 @@ def get_menu_category(item):
         return "Misc. CDOT"
     elif ("mural" in item
           or "public art" in item
-          or "tree planting" in item):
+          or "tree planting" in item
+          or "pole" in item and "paint" in item):
         return "Beautification"
     elif ("turn arrow" in item 
           or "street speed hump menu" in item 
