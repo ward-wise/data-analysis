@@ -1,3 +1,4 @@
+# this mapping is not currently in use. See below categorization function
 STANDARD_CATEGORY = {
     "pedestrian": "Pedestrian Infrastructure",
     "bump outs": "Pedestrian Infrastructure",
@@ -62,6 +63,8 @@ def get_menu_category(item):
     elif ("mural" in item
           or "public art" in item
           or "tree planting" in item
+          or "neighborhood art" in item
+          or "mosaic" in item
           or "pole" in item and "paint" in item):
         return "Beautification"
     elif ("turn arrow" in item 
@@ -71,16 +74,9 @@ def get_menu_category(item):
           or "cul-de-sac" in item
           or "diagonal parking" in item):
         return "Street Redesign"
-    elif ("school" in item
-          or "cps" in item
-          or "library" in item
-          or "elementary" in item
-          or "art" in item and "program" in item):
-        return "Education"
-    elif ("traffic" in item
-          or "speed" in item
-          or  "bus" in item and "pad" in item):
-        return "Traffic Infrastructure"
+    elif ("traffic" in item and "signal" in item
+          or "speed indicator" in item):
+        return "Traffic Signals"
     elif "sidewalk" in item:
         return "Sidewalk Repair"
     elif ("pod" in item and "camera" in item
@@ -92,9 +88,13 @@ def get_menu_category(item):
         return "Police Cameras"
     elif ("park" in item
           or "playground" in item
+          or "play space" in item
           or "garden" in item):
         return "Parks"
     elif ("viaduct" in item):
         return "Viaducts"
+    elif ("school" in item
+          or "elementary" in item):
+        return "Schools"
     else:
         return "Misc."
